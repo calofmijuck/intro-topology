@@ -29,7 +29,8 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 
-\newcommand{\inte}{\mathrm{int}}
+\newcommand{\inte}[1]{\mathrm{Int}\,#1}
+\newcommand{\cl}[1]{\overline{#1}}
 \newcommand{\diam}{\text{diam}}
 \newcommand{\dist}{\text{dist}}
 
@@ -86,5 +87,6 @@
 \setcounter{topic}{11}
 \newcommand{\topic}[1]{
     \addtocounter{topic}{1}
+    \vspace{20pt}
     \textbf{\large \S\thetopic\,\,#1}
 }
