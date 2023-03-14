@@ -3,16 +3,16 @@
 \newcommand{\mf}[1]{\mathfrak{#1}}
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\bb}[1]{\mathbb{#1}}
-\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+\renewcommand{\bf}[1]{\mathbf{#1}}
 
 \newcommand{\inv}{^{-1}}
 \newcommand{\adj}{\text{*}}
-\newcommand{\bs}{\setminus}
+\newcommand{\bs}{-}
 
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\paren}[1]{\left( #1 \right)}
-\newcommand{\seq}[1]{\left( #1 \right)}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
 \renewcommand{\span}[1]{\left\langle #1 \right\rangle}
 
 \newcommand{\ra}{\rightarrow}
@@ -29,10 +29,8 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 
-\newcommand{\inte}[1]{\mathrm{Int}\,#1}
+\DeclareMathOperator{\inte}{Int}
 \newcommand{\cl}[1]{\overline{#1}}
-\newcommand{\diam}{\text{diam}}
-\newcommand{\dist}{\text{dist}}
 
 \let\oldexists\exists
 \renewcommand{\exists}{\oldexists\,}
@@ -73,15 +71,22 @@
     {\textbf{\sffamily Lemma #1.}}%
 }
 
+\newcommand{\cor}[1]{%
+    \ifthenelse{\equal{#1}{.}}
+    {\textbf{\sffamily Corollary.}}%
+    {\textbf{\sffamily Corollary #1.}}%
+}
+
 \newcommand{\recall}{\textbf{\sffamily Recall.\;}}
 \newcommand{\rmk}{\textbf{\sffamily Remark.\;}}
 \newcommand{\pf}{\textbf{\sffamily Proof.\;}}
 \newcommand{\question}{\textbf{\sffamily Question.\;}}
 \newcommand{\notation}{\textbf{\sffamily Notation.\;}}
-\newcommand{\cor}{\textbf{\sffamily Corollary.\;}}
+
 \newcommand{\claim}{\textbf{Claim}}
 
 \newcommand{\note}[1]{({\sffamily #1})}
+\newcommand{\sref}[1]{{\sffamily #1}}
 
 \newcounter{topic}
 \setcounter{topic}{11}
@@ -89,4 +94,7 @@
     \addtocounter{topic}{1}
     \vspace{20pt}
     \textbf{\large \S\thetopic\,\,#1}
+    \vspace{3pt}
+    \hrule
+    \vspace{10pt}
 }
