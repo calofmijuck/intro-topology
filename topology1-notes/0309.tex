@@ -1,0 +1,114 @@
+\section*{March 9th, 2023}
+
+\thm{17.5} Let \(A \subseteq X\), with basis \(\mc{B}\).
+\begin{enumerate}
+    \item \(x \in \cl{A} \iff\) For any open set \(U\) containing \(x\), \(U \cap A \neq \varnothing\).
+          \item\(x \in \cl{A} \iff\) For all \(B \in \mc{B}\) containing \(x\), \(B \cap A \neq \varnothing\).
+\end{enumerate}
+
+\pf \note{1} Prove the contrapositive. \(x \notin \cl{A} \iff\) there exists an open set \(U\) containing \(x\) such that \(U \cap A = \varnothing\).
+
+\note{\mimp} Let \(U = X - \cl{A}\). Then \(x \in U\), and \(U \cap A = \varnothing\), since \(A \subseteq \cl{A}\).
+
+\note{\mimpd} \(A \subseteq X - U\), and \(X - U\) is closed. Since \(\cl{A}\) is the intersection of all closed sets containing \(A\), so \(\cl{A} \subseteq X - U\). Thus \(x \notin \cl{A}\).
+
+\defn. We say that \(U\) is a \textbf{neighborhood of \(x\)} if \(U\) is an open set containing \(x\).
+
+\defn. \note{Limit Point} Let \(A \subset X\). \(x \in X\) is a \textbf{limit point} of \(A\) if every neighborhood of \(x\) intersects \(A\) in some point other than \(x\). We denote the set of all limit points of \(A\) as \(A'\). i.e.
+\[
+    A' = \{x \in X : U \cap \paren{A \bs \{x\}} \neq \varnothing\}
+\]
+
+
+\ex. For \(B = \left\{\frac{1}{n} : n \in \N\right\} \subset \R\). Then \(B' = \{0\}\). \(\Q' = \R\), \(\N' = \varnothing\).
+
+\thm{17.6} \(\cl{A} = A \cup A'\).
+
+\pf \note{\(\supset\)} Trivial from the definition, with \sref{Theorem 17.5}.
+
+\note{\(\subset\)} Let \(x \in \cl{A}\). Then for any neighborhood \(U\) of \(x\), \(U \cap A \neq \varnothing\). If \(x \notin A\), then \(x \in A'\).
+
+\cor{17.7} \(A\) is closed if and only if \(A' \subseteq A\).
+
+\defn. A sequence \(\seq{x_n}\) \textbf{converges} to \(x \in X\) if
+\begin{center}
+    for every neighborhood \(U\) of \(x\), \(\exists N \in \N\) such that \(x _n \in U\) for all \(n \geq N\).
+\end{center}
+
+\ex. Let \(X = \{a, b, c\}\), \(\mc{T} = \{\varnothing, X, \{a, b\}, \{b, c\}, \{b\}\}\). Set \(x_n = b\). Then \(x_n\) converges to \(a, b, c\). We can see that the limit of a sequence in a topological space is not unique.
+
+There is a definition to remove this kind of behavior.
+
+\defn. \note{Hausdorff} A topological space \(X\) is \textbf{Hausdorff} if for all \(x_1, x_2 \in X\) with \(x_1 \neq x_2\), there exist neighborhoods \(U_1\) of \(x\) and \(U_2\) of \(x\) such that \(U_1 \cap U_2 = \varnothing\).
+
+\thm{17.10} If \(X\) is Hausdorff, a sequence of points of \(X\) converges to at most one point of \(X\).
+
+\pf Suppose that a sequence \(x_n\) in \(X\) converges to \(x\) and \(y\), with \(x \neq y\). Since \(X\) is Hausdorff, there exist neighborhoods \(U\) of \(x\) and \(V\) of \(y\) such that \(U \cap V = \varnothing\). Now we see that \(x_n\) cannot converge to \(y\).
+
+\defn. \(X\) satisfies \(T_1\)-axiom if every one-point set is closed.\footnote{Check that Hausdorff space is \(T_1\). (\sref{Theorem 17.8})}
+
+\thm{17.11} The product of two Hausdorff spaces is Hausdorff and a subspace of a Hausdorff space is Hausdorff.
+
+\topic{Continuous Functions}
+
+Let \(X, Y\) be topological spaces.
+
+\defn. \note{Continuity} A function \(f : X \ra Y\) is \textbf{continuous} if
+\begin{center}
+    for every open \(V \subseteq Y\), \(f\inv(V)\) is open in \(X\).
+\end{center}
+
+\rmk If \(\mc{B}\) is a basis of \(\mc{T}_Y\), we can replace the above by
+\begin{center}
+    for every \(B \in \mc{B}\), \(f\inv(B)\) is open in \(X\).
+\end{center}
+This is because every open set can be written as the union of basis elements. We can go one step further. If \(\mc{S}\) is a subbasis of \(\mc{T}_Y\),
+\begin{center}
+    for every \(S \in \mc{S}\), \(f\inv(S)\) is open in \(X\).
+\end{center}
+This is because basis elements can be written as a finite intersection of subbasis elements.
+
+\rmk Let \(f : \R \ra \R\), we compare this definition with the \(\epsilon-\delta\) definition.
+
+\note{\mimp} \(\forall x_0 \in \R\), \(\forall \epsilon > 0\), let \(V = (f(x_0) - \epsilon, f(x_0) + \epsilon)\). Then \(x_0 \in f\inv\paren{V}\), and \(f\inv(V)\) is open. So we can find an open interval \((a, b)\) containing \(x\), allowing us to choose \(\delta > 0\) with \((x_0 - \delta, x_0 + \delta) \subset (a, b)\). Now we see that if \(\abs{x - x_0} < \delta\) then \(f(x) \in V\).
+
+\note{\mimpd} Left as exercise.
+
+\ex. Identity function \(f : \R \ra \R_l\) is not continuous, but the identity function \(g: \R_l \ra \R\) is continuous. \textit{We have to consider both of the topologies of domain and range.}
+
+\pagebreak
+
+\thm{18.1} Let \(f : X \ra Y\). TFAE.
+\begin{enumerate}
+    \item \(f\) is continuous.
+    \item \(\forall A \subset X\), \(f(\cl{A}) \subseteq \cl{f(A)}\).
+    \item For every closed \(B \subset Y\), \(f\inv(B)\) is closed in \(X\).
+    \item \(\forall x \in X\), for every neighborhood \(V\) of \(f(x)\),   \(\exists\)neighborhood \(U\) of \(x\) such that \(f(U) \subset V\).\footnote{\(\forall x \in X\) can be replaced with \(f\) is continuous at \(x\).}
+\end{enumerate}
+
+\pf
+
+\note{1\mimp2} We show that if \(x \in \cl{A}\), then \(f(x) \in \cl{f(A)}\). Let \(x \in \cl{A}\). If \(V\) is a neighborhood of \(f(x)\), \(f\inv(V)\) is a neighborhood of \(x\). So \(f\inv(V) \cap A \neq \varnothing\). For \(y \in f\inv(V) \cap A\), \(f(y) \in V \cap f(A)\). Thus \(V \cap f(A) \neq \varnothing\), and \(f(x) \in \cl{f(A)}\).
+
+\note{2\mimp3} We show that \(A = f\inv(B)\) is closed, by showing \(\cl{A} = A\). If \(x \in \cl{A}\), we see that \(f(x) \in f(\cl{A}) \subseteq \cl{f(A)} \subset \cl{B} = B\). So \(x \in f\inv(B) = A\).
+
+\note{3\mimp1} Let \(V\) be an open set of \(Y\). Then \(Y \bs V\) is closed, so \(f\inv(Y \bs V) = f\inv(Y) \bs f\inv(V) = X \bs f\inv(V)\) is closed, so \(f\inv(V)\) is open. \(f\) is continuous.
+
+\note{1\mimp4} Trivial.
+
+\note{4\mimp1} Let \(V\) be an open set of \(Y\). For all \(x \in f\inv(V)\), there exists a neighborhood \(U_x\) of \(x\) such that \(f(U_x) \subseteq V\). Then \(U_x \subseteq f\inv(V)\). Thus \(\bigcup_{x \in f\inv(V)} U_x = f\inv(V)\), and \(f\inv(V)\) is open.
+
+\defn. \note{Homeomorphism} Let \(f: X \ra Y\) be a bijection. \(f\) is a \textbf{homeomorphism} if \(f\) and \(f\inv\) are both continuous. We say that the topological spaces \(X\) and \(Y\) are \textbf{homeomorphic}.
+
+\rmk The condition \textit{\(f\) and \(f\inv\) are continous} can be replaced with \textit{\(f(U)\) is open if and only if \(U\) is open}. Since open sets are preserved through \(f\), we can see that \(f\) preserves the structure of the topology.
+
+\rmk If \(f : X \ra Y\) is injective, restrict the range of \(f\) and define \(f': X \ra f(X)\) where \(f(X)\) is a subspace of \(Y\). Then \(f'\) is a homeomorphism. In this case, we say that \(f\) is an \textbf{imbedding of \(X\) in \(Y\)}.
+
+\ex.
+\begin{enumerate}
+    \item Let \(f: (-1, 1) \ra \R\) where \(f(x) = \frac{x}{1-x^2}\). This is a continuous bijection, with its inverse also continuous. \(f\) is a homeomorphism.
+    \item Non-example. \(g : [0, 1) \ra S^1\) where \(g(t) = (\cos 2\pi t, \sin 2\pi t)\). \(g\) is a continuous bijection, but its inverse is not continuous since the preimage of \([0, 1)\) is not open in \(S^1\).
+\end{enumerate}
+
+
+\pagebreak
