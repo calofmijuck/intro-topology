@@ -1,0 +1,106 @@
+\section*{March 30th, 2023}
+
+How to construct a surjective map? We consider a partition! Each subset in the partition will be considered as an element of \(X^*\).
+
+\(X^*\) is a \textit{partition} of \(X\) into disjoint nonempty subsets of \(X\) whose union is \(X\). Then \(p: X \ra X^*\) defined as \(p(x) = x^*\), where \(x^*\) is an element of \(X^*\) containing \(x\).
+
+Equip \(X^*\) with the quotient topology. Then \(V\) is open in \(X^*\) if and only if \(p\inv(V)\) is open in \(X\). Meanwhile,
+\[
+    p\inv(V) = \bigcup_{x^* \in V} p\inv(x^*)
+\]
+and consider \(p\inv(x^*)\)  as a subset of \(X\).
+
+We saw that restricting the domain of a quotient map does not necessarily give a quotient map. But in the following cases, it gives a quotient map.
+
+\thm{22.1} Given a quotient map \(p : X \ra Y\), let \(A \subset X\) be saturated, and let \(q = p \mid_A : A \ra p(A)\).
+\begin{enumerate}
+    \item If \(A\) is open (or closed) in \(X\), then \(q\) is also a quotient map.
+    \item If \(p\) is either an open (or closed) map then \(q\) is also a quotient map.
+\end{enumerate}
+
+\pf We prove the following claims.
+
+\quad \claim. \(q\inv(V) = p\inv(V)\) if \(V \subset p(A)\).
+
+\quad \pf From \(V \subset p(A)\), we have \(p\inv(V) \subset p\inv(p(A))\). We show that \(p\inv(p(A)) = A\). The left inclusion is always true. If \(x \in p\inv(p(A))\) then \(p(x) = p(a)\) for some \(a \in A\). We have \(a \in A \cap p\inv(\{p(x)\}) \neq \varnothing\). Since \(A\) is saturated, \(p\inv(\{p(x)\}) \subset A\). But \(x \in p\inv(\{p(x)\})\), so \(x \in A\). Thus \(p\inv(V) \subset A\), so we have \(q\inv(V) = p\inv(V) \cap A = p\inv(V)\).
+
+\quad \claim. \(p(U \cap A) = p(U) \cap p(A)\) if \(U \subset X\).
+
+\quad \pf The right inclusion is always true. Now take \(y \in p(U) \cap p(A)\), then \(\exists u \in U\), \(\exists a \in A\) such that \(y = p(u) = p(a)\). Then \(u \in p\inv(p(a)) \subset A\) since \(A\) is saturated. So \(u \in U \cap A\) and \(y = p(u) \in p(U\cap A)\).
+
+Take \(V \subset p(A)\), assume that \(q\inv(V)\) is open in \(A\). We show that \(V\) is open in \(p(A)\).
+
+\note{1} By assumption, \(q\inv(V) = p\inv(V)\) is open in \(X\), so \(V\) is open in \(Y\) since \(p\) is a quotient map. Then \(V = p(A) \cap V\) is open in \(p(A)\).
+
+\note{2} Assume that \(p\) is an open map. Then \(q\inv(V) = p\inv(V) = U \cap A\) for some open set \(U\) in \(X\). Then \(V = p(p\inv(V))\) (\(p\) surjective), so \(V = p(U \cap A) = p(U) \cap p(A)\). Since \(p(U)\) is open in \(Y\), \(V\) is open in \(p(A)\).
+
+Note that the reverse direction is trivial, since \(q = p \circ j\) is continuous.
+
+\rmk Composition of two quotient maps is also a quotient map.
+
+\pf Let \(f : X \ra Y\), \(g : Y \ra Z\) be quotient maps. Then for \(W \subset Z\), \((g\circ f)\inv(W)\) is open in \(X\) \miff \(g\inv(W)\) is open in \(Y\) \miff \(W\) is open in \(Z\).
+
+\rmk If \(X\) is Hausdorff, \(X^*\) doesn't have to be Hausdorff. Take \(p: \R \ra \{a, b\}\) as \(p(x) = a\) if \(x \in \Q\), \(p(x) = b\) otherwise.
+
+\thm{22.2} Let \(p : X \ra Y\) be a quotient map, and \(Z\) be a topological space. Let \(g : X \ra Z\) be a map that is constant on each set \(p\inv(\{y\})\) for \(y \in Y\). Then \(g\) induces a map \(f : Y \ra Z\) such that \(f \circ p = g\), and
+\begin{enumerate}
+    \item \(f\) is continuous if and only if \(g\) is continuous.
+    \item \(f\) is a quotient map if and only if \(g\) is a quotient map.
+\end{enumerate}
+\[
+    \begin{tikzcd}[row sep = large, column sep = large]
+        X \arrow[dr, "g"] \arrow[d, "p"'] & ~ \\
+        Y \arrow[r, dashed, "f"'] & Z
+    \end{tikzcd}
+\]
+
+\pf Set \(f: Y \ra Z\) as \(f(y) = z\) where \(\{z\} = g(p\inv(\{y\}))\). (constant) Then for \(x \in p\inv(\{y\})\), \(\{f(p(x))\} = g(p\inv(\{p(x)\})) = \{g(x)\}\). So \(f\circ p = g\).
+
+\note{1} \note{\mimp} Trivial, since \(g\) is a composition of two continuous maps. \\
+\note{\mimpd} Let \(V\) be open in \(Z\). Then \(g\inv(V)\) is open in \(X\). \(g\inv(V) = p\inv(f\inv(V))\), so \(f\inv(V)\) is open in \(Y\) since \(p\) is a quotient map.
+
+\note{2} \note{\mimp} Trivial, since \(g\) is a composition of two quotient maps. \\
+\note{\mimpd} \(f \circ p = g\), so \(f\) is surjective.\footnote{Check this! Assume that \(g\) is surjective...} For \(V \subset Z\), assume \(f\inv(V)\) open in \(Y\). \(p\) is continuous, so \(p\inv(f\inv(V)) = g\inv(V)\) is open in \(X\). Since \(g\) is a quotient map, \(V\) is open in \(Z\).
+
+\pagebreak
+
+\cor{22.3} If \(g : X \ra Z\) is surjective and continuous, define
+\[
+    X^* = \left\{g\inv(\{z\}) : z \in Z \right\}.
+\]
+Equip \(X^*\) with the quotient topology. Then
+\begin{enumerate}
+    \item \(g\) induces a bijective continuous map \(f : X^* \ra Z\) and \(f\) is a homeomorphism if and only if \(g\) is a quotient map.
+    \item If \(Z\) is Hausdorff, \(X^*\) is also Hausdorff.
+\end{enumerate}
+\[
+    \begin{tikzcd}[row sep = large, column sep = large]
+        X \arrow[dr, "g"] \arrow[d, "p"'] & ~ \\
+        X^* \arrow[r, dashed, "f"'] & Z
+    \end{tikzcd}
+\]
+
+\pf For \(x \in p\inv(Y)\), \(p(x) = g\inv\paren{\{g(x)\}}\). Check that \(f\) is bijective and continuous.
+
+\note{1} \note{\mimp} Trivial. \(f\) is a homeomorphism, so it is a quotient map. \\
+\note{\mimpd} \(g\) is a quotient map, so \(f\) is a quotient map. Check that for any open set \(Y\) of \(X^*\), \(V = f(Y) \subset Z\) is open. Then \(f\inv\) is continuous, so \(f\) is a homeomorphism.
+
+\note{2} Take different points \(x^*, y^* \in X^*\). Then \(f\) is a bijection, so \(f(x^*) \neq f(y^*)\) in \(Z\). There exists disjoint neighborhoods \(U, V\) of \(f(x^*), f(y^*)\). So take inverse images then \(f\inv(U), f\inv(V)\) are disjoint neighborhoods of \(x^*, y^*\). So \(X^*\) is Hausdorff.
+
+\ex. Let \(X = \bigcup_{n \in \N} \paren{[0, 1] \times \{n\}}\), \(Z = \left\{x \times \frac{x}{n} : x \in [0, 1],\, n \in \N\right\}\). Define \(g(x\times n) = x \times \frac{x}{n}\). \(g\) is surjective and continuous (product of continuous maps). Take \(X^* = \{g\inv(\{z\}) : z \in Z\}\) and equip \(X^*\) with the quotient topology with a quotient map \(p\). Then \(f: X^* \ra Z\) is a bijective continuous map but not a homeomorphism. We show that \(g\) is not a quotient map.
+
+Take \(A = \{x_n\}\) where \(x_n = \frac{1}{n} \times n\), which is closed in \(X\).\footnote{Inverse of \(xy = 1\).} Then \(g(A) = \{z_n\}\) where \(z_n = \frac{1}{n} \times \frac{1}{n^2}\). \(A\) is saturated with respect to \(g\), but \(g(A)\) is not closed in \(Z\) since it has a limit point \(\bf{0}\). So \(g\) is not a quotient map.
+
+\ex.
+\begin{enumerate}
+    \item Let \(X = \{x \times y : x^2 + y^2 \leq 1\} \subset \R^2\). Consider a partition \(X^*\) where all the interior points are a one-point set, and the boundary itself is another set. If we equip \(X^*\) with the quotient topology, then \(X^*\) is homeomorphic to \(S^2\).\footnote{\href{https://math.stackexchange.com/q/4274691}{Finding an explicit homeomorphism from \(D^2/S^1\) to \(S^2\)}.}
+    \item Let \(X = [0, 1] \times [0, 1]\). Consider a partition \(X^*\) consisting of:
+          \begin{itemize}
+              \item All the interior points as a one-point set.
+              \item \(\{x \times 0, x \times 1\}\) where \(0 < x < 1\).
+              \item \(\{0 \times y, 1 \times y\}\) where \(0 < y < 1\).
+              \item \(\{0 \times 0, 0 \times 1, 1 \times 0, 1 \times 1\}\).
+          \end{itemize}
+          Then \(X^*\) is homeomorphic to a torus.\footnote{\href{https://math.stackexchange.com/q/362204/329909}{Torus and Square}.}
+\end{enumerate}
+\pagebreak
