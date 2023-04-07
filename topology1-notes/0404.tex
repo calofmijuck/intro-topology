@@ -1,0 +1,118 @@
+\section*{April 4th, 2023}
+
+Let \(X = \{a, b, c\}\). Consider a partition \(X^* = \{\{a, b\}, \{c\}\}\). Then we can construct a surjective map \(a, b \mapsto \{a, b\}\), \(c \mapsto \{c\}\). Even though \(\{a, b\}\) and \(\{c\}\) are elements of \(X^*\), but sometimes we consider them as subsets of \(X\).
+
+\ex. \(X = \R\), \(Y = (\R \bs \N) \cup \{y_0\}\) where \(y_0 \notin \R\). Define \(p : X \ra Y\) as
+\[
+    p(x) = \begin{cases}
+        x & (x \in \R \bs \N) \\ y_0 & (x \in \N)
+    \end{cases}.
+\]
+Then the positive integer points are identified! Equip \(Y\) with the quotient topology.
+\begin{enumerate}
+    \item \textit{\(Y\) is not 1st countable.} Let \(\seq{V_n}\) be a countable collection of neighborhoods of \(y_0 \in Y\). For each \(n \in \N\), \(\exists \epsilon_n > 0\) such that \((n - \epsilon_n, n + \epsilon_n) \subset p\inv(V_n)\). Let \(U = \bigcup_{n \in \N} \paren{n - \frac{\epsilon_n}{2}, n + \frac{\epsilon_n}{2}}\) which is open in \(\R\). \(p(U)\) is open in \(Y\), (\textbf{Why?}) but \(V_n \not\subset p(U)\) for every \(n \in \N\). (If not, \(\exists n \in \N\) such that \(p\inv(V_n) \subset U\) which is a contradiction.)
+    \item \textit{\(Y\) is Fréchet-Urysohn.} For \(A \subset Y\), let \(y \in \cl{A}\). We first consider the case where \(y \in A\). If \(y \neq y_0\), construct a sequence \(\seq{a_i}\) converging to \(y\). (avoid all integer points by taking small balls!) If \(y = y_0\), take the constant sequence.
+
+          Now assume \(y = y_0 \notin A\). Then \(p\inv(A) \subset \R \bs \N\).
+
+          \quad \claim. There exists \(n \in \N\) such that \(n \in \cl{p\inv(A)}\).
+
+          \quad \pf Suppose that for all \(n \in \N\), \(n \notin \cl{p\inv(A)}\). Then there exists a neighborhood \(U_n\) of \(n\) such that \(U_n \cap p\inv(A) = \varnothing\). Let \(U = \bigcup_{n \in \N} U_n\), then \(U \cap p\inv(A) = \varnothing\). So \(p(U) \cap A= \varnothing\), which is a contradiction. (\(p(U)\) is open since \(U\) is saturated)
+
+
+          There exists a sequence \(\seq{x_i}\) in \(p\inv(A)\) that converges to \(n\). So \(p(x_i) \in A\), \(p(n) = y_0\), showing that the sequence lemma holds.
+\end{enumerate}
+
+\chapter{Connectedness and Compactness}
+
+\recall We needed continuity and connectedness, compactness for the following theorems.
+\begin{enumerate}
+    \item \note{Intermediate Value Theorem} If \(f : [a, b] \ra \R\) is continuous and \(f(a) \leq r \leq f(b)\), then there exists \(c \in [a, b]\) such that \(f(c) = r\).
+
+    \item \note{Maximum Value Theorem} If \(f : [a, b] \ra \R\) is continuous, there exists \(c \in [a, b]\) such that \(f(x) \leq f(c)\) for all \(x \in [a, b]\).
+\end{enumerate}
+
+\topic{Connected Spaces}
+
+Let \(X\) be a topological space.
+
+\defn. \note{Separation} \(A\) \textbf{separation} of \(X\) is a pair \(U, V\) of disjoint nonempty open subsets of \(X\) whose union is \(X\).
+
+\defn. \note{Connected} The space \(X\) is \textbf{connected} if there is no separation of \(X\).
+
+\rmk This condition is equivalent to
+\begin{center}
+    If \(U\) is both open and closed in \(X\), then \(U = \varnothing\) or \(U = X\).
+\end{center}
+
+\lemma{23.1} Let \(Y\) be a subset of \(X\). A spearation of \(Y\) is a pair \(A, B\) of disjoint nonempty subsets of \(Y\) such that \(A \cup B = Y\) and \(A' \cap B = \varnothing  = A \cap B'\).
+
+\pf \\
+\note{\mimp} Let \(A, B\) be a separation of \(Y\). Then \(A = \cl{A} \cap Y\), since \(A\) is closed in \(Y\). Then \(A \cap B = \cl{A} \cap Y \cap B = \cl{A} \cap B\). \(A, B\) are disjoint, so \(\varnothing = \cl{A} \cap B = (A \cup A') \cap B = A' \cap B\).
+
+\note{\mimpd} We only need to show that \(A, B\) are open sets of \(Y\). \(\cl{A} \cap B = (A \cup A') \cap B = \varnothing\) by assumption. Then \(\cl{A} \cap Y = A\). Similarly, \(\cl{B} \cap Y = B\). So \(A, B\) are closed in \(Y\), which implies that \(A, B\) are open in \(Y\).
+
+\ex.
+\begin{enumerate}
+    \item In \(\R^2\), consider \(X = \{x \times y : y = 0\} \cup \{x \times y : x > 0, xy = 1\}\). \(X\) is disconnected. Set \(U = \{x \times y : y = 0\}\), \(V = \{x \times y : x > 0, xy = 1\}\). Then neither contains a limit point of the other.
+    \item \(\Q \subset \R\) is disconnected. In fact, the only nonempty connected subspace of \(\Q\) are the one-point sets. If \(p, q \in \Q\) with \(p \neq q\), choose \(r \in (p, q)\) which is irrational. Then \(\Q \cap (-\infty, r)\) and \(\Q \cap (r, \infty)\) provide a separation.
+\end{enumerate}
+
+\lemma{23.2} If \(C, D\) is a spearation of \(X\), and if \(Y\) is a connected subspace of \(X\), then either \(Y \subset C\) or \(Y \subset D\).
+
+\pf Suppose that \(C \cap Y, D \cap Y\) are not empty. Then \(C \cap Y\), \(D \cap Y\) is a separation of \(Y\). Contradicting that \(Y\) is connected.
+
+How do we construct connected spaces from connected spaces?
+
+\thm{23.3} Let \(\seq{A_\alpha}\) be a collection of connected subspaces of \(X\). Suppose that \(\bigcap_{\alpha \in J} A_\alpha \neq \varnothing\). Then \(Y = \bigcup_{\alpha \in J} A_\alpha\) is also connected.
+
+\pf If \(Y\) is disconnected, there exists a separation \(C, D\) of \(Y\). Choose \(p \in \bigcap A_\alpha\), then \(p \in C\) or \(p \in D\). Assume that \(p \in C\). For all \(\alpha \in J\), \(A_\alpha \subset C\) by \sref{Lemma 23.2}. So \(Y \subset C\), contradicting that \(D\) is nonempty.
+
+\thm{23.4} Let \(A\) be a connected subspace of \(X\). If \(A \subset B \subset \cl{A}\), then \(B\) is connected.
+
+\pf If \(B\) is disconnected, there exists a separation \(C, D\) of \(B\). Since \(A\) is connected, either \(A \subset C\) or \(A \subset D\). Assume \(A \subset C\). Then \(\cl{A} \subset \cl{C}\), so \(\cl{A} \cap D \subset \cl{C} \cap D = \varnothing\). But \(D = B \cap D \subset \cl{A} \cap D = \varnothing\), which contradicts that \(D\) is a nonempty subset of \(B\).
+
+In other words: If \(B\) is formed by adjoining to the connected subspace \(A\) some or all of its limit points, then \(B\) is also connected.
+
+\thm{23.5} Let \(f : X \ra Y\) be a continuous function. If \(X\) is connected, then the image \(f(X)\) is also connected.
+
+\pf If not, let \(A, B\) be a separation of \(f(X)\). Consider \(g : X \ra f(X)\), which is a surjective continuous function. Then \(g\inv(A), g\inv(B)\) is nonempty (surjective), disjoint, open (continuity), providing a separation of \(X\).
+
+\thm{23.6} Let \(X_1, \dots, X_n\) be connected spaces. Then \(\prod_{i=1}^n X_i\) is connected.
+
+\pf We will use induction. For \(n = 2\), fix \(a \times b \in X \times Y\). Consider \(T_x = (X \times \{b\}) \cup (\{x\} \times Y)\). \(X \times \{b\}\) is homeomorphic to \(X\) so it is connected, and similarly \(\{x\} \times Y\) is connected. Since \((X \times \{b\}) \cap (\{x\} \times Y) = \{x \times b\}\), \(T_x\) is connected by \sref{Theorem 23.3}. Then \(X \times Y = \bigcup_{x \in X} T_x\) is connected, since \(a \times b \in \bigcap_{x \in X} T_x \neq \varnothing\).
+
+Since \(X_1 \times \cdots \times X_n\) is homeomorphic to \((X_1 \times \cdots \times X_{n-1}) \times X_n\), we conclude that \(\prod_{i=1}^n X_i\) is connected by the induction hypothesis.
+
+\ex.
+\begin{enumerate}
+    \item Consider \(\R^\omega\) with the box topology. Let \(A\) be a set of all bounded sequences, and let \(B\) be a set of all unbounded sequences. Then \(A, B\) are both open sets, so \(\R^\omega\) is not connected. For any sequence \(\bf{a} \in \R^\omega\), take an open set \(C = \prod_{i \in \N} (a_i - 1, a_i + 1)\). If \(\bf{a}\) is bounded, \(C \subset A\), and if \(\bf{a}\) is unbounded, \(C \subset B\). Thus \(A, B\) are both open.
+    \item \(\R^\omega\) with the product topology is connected.\footnote{For the moment, we assume that \(\R\) is connected.} Since \(\widetilde{\R^n} = \{\bf{x} \in \R^\omega : x_i = 0, \forall i > n\}\) is homeomorphic to \(\R^n\), it is connected. Then \(\R^\infty = \bigcup_{n \in \N} \widetilde{\R^n}\) is also connected, since \(\bf{0} \in \widetilde{\R^n}\) for all \(n\). Now it is enough to show that \(\cl{\R^\infty} = \R^\omega\), by \sref{Theorem 23.4}.
+
+          Take \(\bf{a} = (a_i)_{i \in \N} \in \R^\omega\). Let \(U = \prod U_i\) be a basis element containing \(\bf{a}\). Since \(\exists N \in \N\) such that \(U_i = \R\) for all \(i > N\), \((a_1, \dots, a_N, 0, 0, \dots) \in \R^\omega \cap U \neq \varnothing\).
+\end{enumerate}
+
+\rmk An arbitrary product of connected spaces is connected in the product topology.
+
+\pf Left as exercise. (Check \sref{Exercise 23.10})
+
+\pagebreak
+
+\topic{Connected Subspaces of the Real Line}
+
+\defn. \note{Order Relation} A relation \(<\) on a set \(X\) is an \textbf{order relation} if
+\begin{enumerate}
+    \item \note{Comparibility} For all different \(x, y \in X\), either \(x < y\) or \(y < x\).
+    \item \note{Nonreflexivity} There is no \(x \in X\) such that \(x < x\).
+    \item \note{Transitivity} If \(x < y\) and \(y < z\), then \(x < z\).
+\end{enumerate}
+
+\defn. \note{Linear Continuum} Let \(X\) be a simply ordered set having more than one element. Then \(X\) is a \textbf{linear continuum} if
+\begin{enumerate}
+    \item \(X\) has the least upper bound property.\footnote{If a subset of \(X\) has a upper bound, it has a supremum in \(X\).}
+    \item If \(x < y\), \(\exists z \in X\) such that \(x < z < y\).
+\end{enumerate}
+
+\ex. \(B = (-1, 0) \cup (0, 1)\) does not have the least upper bound property.
+
+\pagebreak
