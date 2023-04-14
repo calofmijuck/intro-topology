@@ -1,0 +1,96 @@
+\section*{April 11th, 2023}
+
+\thm{25.1} The components of \(X\) are connected disjoint subspaces of \(X\) whose union is \(X\) such that each nonempty connected subspace of \(X\) intersects only one of them.
+
+\pf Since components were defined as an equivalence relation, it is clear that components are disjoint and its union is \(X\).
+
+\note{Step 1} \textit{Each nonempty subset subspace \(A\) of \(X\) intersects only one of them.} \\
+Suppose that \(A \cap C_1 \neq \varnothing\), \(A \cap C_2 \neq \varnothing\) where \(C_1, C_2\) are components of \(X\). Take \(x_1, x_2\) from each set. Then \(x_1 \sim x_2\) since \(A\) is a connected subspace. Then \(C_1 = C_2\).
+
+\note{Step 2} \textit{Components of \(X\) are connected.} \\
+Choose \(x_0\) from a component \(C\) of \(X\). For \(x \in C\), there exists a connected subspace \(A_x\) containing both \(x_0\) and \(x\). Then \(A_x \subset C\) by \sref{Step 1}, and \(\bigcup_{x \in C} A_x = C\). We conclude that \(C\) is connected by common point theorem.
+
+Similary, we can define the path component.
+
+\defn. \note{Path Component} Let \(X\) be a space.
+\begin{center}
+    \(x \sim y \iff \exists\) a path in \(X\) from \(x\) to \(y\).
+\end{center}
+The equivalence classes of \(X\) are called the \textbf{path components}.
+
+\rmk This is indeed an equivalence relation. For transitivity, use the pasting lemma.
+
+\rmk \sref{Theorem 25.1} can be rewritten as:
+The \textit{path} components of \(X\) are \textit{path} connected disjoint subspaces of \(X\) whose union is \(X\) such that each nonempty \textit{path} connected subspace of \(X\) intersects only one of them.
+
+\rmk Each component \(C\) of \(X\) is closed in \(X\). \(\cl{C}\) is connected, so \(\cl{C} \subset C\).
+
+\ex.
+\begin{enumerate}
+    \item Components of \(\Q\) are the singletons, and singletons are not open in \(\Q\).
+    \item For the topologist's sine curve \(S\). \(\cl{S} = S \cup \paren{0 \times [-1, 1]}\). \(\cl{S}\) has 1 component, and has 2 path components. \(S\) is open in \(\cl{S}\) but not closed in \(\R^2\). Similarly for \(0 \times [-1, 1]\).
+\end{enumerate}
+
+\defn. \note{Locally Connected} A space \(X\) is \textbf{locally connected} at \(x\) if for every neighborhood \(U\) of \(x\), there exists a connected neighborhood \(V\) of \(x\) contained in \(U\). \(X\) is locally connected if it is locally connected for every \(x \in X\).
+
+You can also define locally \textit{path} connected.
+
+\ex.
+\begin{enumerate}
+    \item \([-1, 0) \cup (0, 1] \subset \R\) is not connected but locally connected.
+    \item \(\Q\) is not connected and not locally connected.
+    \item The topologist's sine curve is connected but not locally connected. Consider any neighborhood of \((0, y)\), \(y \in [-1, 1]\). Then it has infinitely many components.
+\end{enumerate}
+
+\thm{25.3} \(X\) is locally connected if and only if for every open set \(U\) of \(X\), each component of \(U\) is open in \(X\).\footnote{Take a close look at the proof.}
+
+\pf \note{\mimp} Let \(C\) be a component of \(U\). For \(x \in C\), there exists a connected neighborhood \(V_x\) of \(x\) such that \(V_x \subset U\). Then \(V_x \subset C\) by \sref{Theorem 25.1}, \(\bigcup_{x \in C} V_x = C\).
+
+\note{\mimpd} For \(x \in X\) and neighborhood \(U\) of \(x\), let \(C\) be the component of \(U\) containing \(x\). By assumption, \(C\) is open. Then \(x \in C \subset U\) and \(C\) is a connected neighborhood of \(X\).
+
+\thm{25.4} Locally path connected version of \sref{Theorem 25.3}.
+
+\thm{25.5} Each path component of \(X\) lies in a component of \(X\). If \(X\) is locally path connected, then the components and the path components of \(X\) are the same.
+
+\pf Let \(C\) be a component of \(X\), take \(x \in C\). There is a path component \(P\) containing \(x\). Then \(P \subset C\), since path components are connected. If \(X\) is locally path connected, we show that \(P = C\).
+
+If not, let \(Q\) be the union of path components of \(X\) that are differenent from \(P\) and intersect \(C\). Then \(C = P \sqcup Q\), and \(P, Q\) are both open in \(X\) since \(X\) is locally path connected. So \(P, Q\) give a separation contradicting that \(C\) is connected.
+
+\vspace*{-10pt}
+
+\topic{Compact Spaces}
+
+This is a very important concept and you will use in many places. The definition is strange for arbitrary topological spaces. You will see later that this definition is natural. The point is that compactness is related to finiteness.
+
+\defn. \note{Cover} A collection \(\mc{A}\) of subsets of \(X\) is a \textbf{covering} of \(X\) if \(\bigcup_{A \in \mc{A}} A = X\).
+
+If the subsets of \(X\) are open, then it is an \textbf{open covering}.
+
+\defn. \note{Compact} \(X\) is \textbf{compact} if every open covering \(\mc{A}\) of \(X\) contains a finite subcollection that also covers \(X\).
+
+\ex.
+\begin{enumerate}
+    \item \(\R\) is not compact. \(\mc{A} = \{(-n, n) : n \in \N\}\) has no finite subcover.
+    \item \(X = \{0\} \cup \left\{\frac{1}{n} : n \in \N \right\}\) is compact. If \(\mc{A}\) is an open covering of \(X\), for some \(U \in \mc{A}\), \(0 \in U\). Since \(U\) is open, \(U\) contains all but finitely many points of \(X\).
+    \item A space with finitely many points is compact.
+    \item \(X = (0, 1]\) is not compact. \(\mc{A} = \left\{\left(\frac{1}{n}, 1\right] : n \in \N\right\}\) has no finite subcover.
+\end{enumerate}
+
+\defn. Let \(Y \subset X\). A collection \(\mc{A}\) of subsets of \(X\) \textbf{covers} \(Y\) if \(Y \subset \bigcup_{A \in \mc{A}} A\).
+
+\lemma{26.1} \(Y \subset X\). Then \(Y\) is compact if and only if every covering of \(Y\) by \textit{sets open in \(X\)} contains a finite subcollection covering \(Y\).
+
+\pf \\
+\note{\mimp} Let \(\mc{A} = \seq{A_\alpha}_{\alpha \in J}\) be a covering of \(Y\) such that \(A_\alpha\) are open and \(Y \subset \bigcup_{\alpha \in J} A_\alpha\). Then \(\{A_\alpha \cap Y : \alpha \in J\}\) is a open covering of \(Y\), so there exists a finite subcollection \(\{A_{\alpha_i} \cap Y\}\) covering \(Y\). Then \(\{A_{\alpha_i}\}\) is a cover of \(Y\).
+
+\note{\mimpd} Left as exercise.
+
+\thm{26.2} Every closed subspace of a compact space is also compact.
+
+\pf If \(\mc{A}\) is a covering of \(Y\) by open sets of \(X\), \(\mc{B} = \mc{A} \cup \{X \bs Y\}\) is an open covering of \(X\). Now choose a finite subcollection of \(\mc{B}\).
+
+\thm{26.3} Every compact subspace \(Y\) of a Hausdorff space \(X\) is closed.
+
+\pf We show that \(X \bs Y\) is open. Take \(x_0 \in X \bs Y\). For \(y \in Y\), take disjoint neighborhoods \(U_y, V_y\) of \(x_0, y\). Then \(\{V_y : y \in Y\}\) is an open covering of \(Y\) by sets open in \(X\). Now take finite subcollection \(\{V_{y_1}, V_{y_2}, \dots, V_{y_n}\}\) covering \(Y\). Let \(U = \bigcap_{i=1}^n U_{y_i}\), \(V = \bigcup_{i=1}^n V_{y_i}\). Then \(U\) is open, \(Y \subset V\) and \(U \cap V = \varnothing\). This implies that \(x_0 \in U \subset X \bs Y\) and \(U\) is a neighborhood of \(x_0\).
+
+\pagebreak
