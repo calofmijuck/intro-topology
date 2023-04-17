@@ -1,0 +1,94 @@
+\section*{March 28th, 2023}
+
+Uniform convergence only depends on the metric.
+
+\ex. Set \(X = Y = (0, \infty)\) as subspaces of \(\R\). Consider two metrics \(d(y_1, y_2) = \abs{y_1 - y_2}\), \(d'(y_1, y_2) = \abs{\log y_1 - \log y_2}\). These two metrics induce the same topology on \(Y\). (Check!)
+
+Now consider \(f_n : X \ra Y\), \(f_n(x) = x + \frac{1}{n}\). \(f_n \ra x\). Then \(d\paren{f_n(x), f(x)} = \frac{1}{n} \ra 0\). But \(d'\paren{f_n(x), f(x)} = \abs{\log\frac{x + 1/n}{x}}\) which does not converge to 0 as \(x \ra 0\).
+
+\defn. We say that a topological space is a Fréchet-Urysohn space, if it satisfies the sequence lemma (\sref{Lemma 21.2}).
+
+\rmk We saw that if a topological space \(X\) is 1st countable, it is a Fréchet-Urysohn space. But the reverse direction is not true, and we will construct an example after we learn the quotient topology.
+
+\rmk From \sref{Theorem 40.3} \note{Nagata Smirnov Metrization Theorem}, A space \(X\) is metrizable if and only if \(X\) is regular and has a basis that is countably locally finite. So metrizability is a topological property!
+
+\rmk Let \(X\) be a set, \(f_n : X \ra \R\) be a sequence of functions. Consider the \textbf{uniform metric} \(\bar{\rho}\) on \(\R^X\). Then \(f_n \ra f\) uniformly if and only if \(f_n \ra f\) in \((\R^X, \bar{\rho})\).
+
+\pf \\
+\note{\mimpd} Since \(f_n \ra f\) in \((\R^X, \bar{\rho})\), given \(\epsilon > 0\), \(\exists N \in \N\) such that for \(n \geq N\), \(f_n \in B_{\bar{\rho}}(f, \epsilon)\). Set \(\epsilon \leq 1\), then by definition of \(\bar{\rho}\),
+\[
+    d\paren{f(x), f_n(x)}= \bar{d}\paren{f(x), f_n(x)} \leq \bar{\rho}\paren{f, f_n} < \epsilon, \quad (x \in X).
+\]
+
+\note{\mimp} By uniform convergence, \(\forall \epsilon > 0\), \(\exists N \in \N\) such that for \(n \geq N\), \(d\paren{f(x), f_n(x)} < \frac{\epsilon}{2}\) for all \(x \in X\). Since \(\bar{d}\paren{f(x), f_n(x)} \leq d\paren{f(x), f_n(x)}\),
+\[
+    \bar{\rho}\paren{f_n, f} = \sup\left\{\bar{d}(f_n, f)\right\} \leq \frac{\epsilon}{2} < \epsilon
+\]
+
+\ex. We use the sequence lemma the show the following.
+\begin{enumerate}
+    \item \(\R^\omega\) in the box topology is not metrizable. We use the sequence lemma. Define
+          \[
+              A = \{(x_1, x_2, \dots) : x_i > 0, \,\forall i \in \N\},
+          \]
+          then \(\bf{0} \in \cl{A}\). This is because for any basis element \(B = \prod_{i} (a_i, b_i)\), then \(B \cap A \neq \varnothing\) since \(\paren{\frac{b_1}{2}, \frac{b_2}{2}, \dots} \in B \cap A\).
+
+          We claim that there doesn't exist a sequence of points of \(A\) converging to \(\bf{0}\). Take any sequence \(a_n = (x_{1n}, x_{2n}, \dots) \in A\), and consider \(B' = (-x_{11}, x_{11}) \times (-x_{22}, x_{22}) \times \cdots\). Then \(\bf{0} \in B'\), but \(a_n \notin B'\) since \(x_{nn} \notin (-x_{nn}, x_{nn})\). So \(a_n \not\ra \bf{0}\) in the box topology.
+
+    \item If \(J\) is uncountable, then \(\R^J\) with the product topology is not metrizable. Define
+          \[
+              A = \{(x_\alpha) \in \R^J : x_\alpha = 1 \text{ for all but finitely many } \alpha\},
+          \]
+          then we see that \(\bf{0} \in \cl{A}\). Consider a basis element \(\prod U_\alpha\) containing \(\bf{0}\), where \(U_\alpha \neq \R\) for \(\alpha = \alpha_1, \dots, \alpha_n\), \(U_\alpha = \R\) otherwise. We can choose \(x_\alpha = 0\) for \(\alpha = \alpha_1, \dots, \alpha_n\), and \(x_\alpha = 1\) for all other \(\alpha\).
+
+          We claim that there doesn't exist a sequence of points of \(A\) converging to \(\bf{0}\). Take any sequence \(a_n = ((a_n)_\alpha)_{\alpha \in J} \in A\), and define \(J_n = \{\alpha \in J : (a_n)_\alpha \neq 1\}\). Then \(J_n\) should be finite. Then \(\bigcup_{n \in \N} J_n\) is countable, so there exists \(\beta \in J \bs \paren{\bigcup J_n}\). (\(J\) is uncountable) Which means that \((a_n)_\beta = 1\) for all \(n \in \N\). Then \(\pi_\beta\inv\paren{(-1, 1)}\) contains \(\bf{0}\), but does not contain \(a_n\) since \(\pi_\beta(a_n) = 1\). So \(a_n \not\ra \bf{0}\).
+\end{enumerate}
+
+\topic{The Quotient Topology}
+
+Very important section! Consider an interval. If you glue the two endpoints, we obtain a circle! What we are doing is that we are identifying the two endpoints. Then we give a topology on the new space and it should be homeomorphic to a circle.
+
+Let \(X, Y\) be topological spaces.
+
+\defn. \note{Quotient Map} A surjective map \(p : X \ra Y\) is a \textbf{quotient map} if
+\begin{center}
+    \(U \subset Y\) is open in \(Y\) if and only if \(p\inv(U)\) is open in \(X\).
+\end{center}
+
+\defn. \textbf{Saturated Set} A subset \(C\) of \(X\) is \textbf{saturated} with respect to \(p\) if
+\begin{center}
+    \(C \cap p\inv(\{y\}) \neq \varnothing\) then \(p\inv(\{y\}) \subset C\).
+\end{center}
+
+\rmk \(p\) is a quotient map if and only if \(p\) is continuous and \(p\) maps \textit{saturated} open sets of \(X\) to open sets of \(Y\).
+
+\defn. A map \(f : X \ra Y\) is an \textbf{open map} if for all open sets \(U\) in \(X\), \(f(U)\) is open in \(Y\). Similarly, \(f\) is a \textbf{closed map} if for all closed sets \(C\) in \(X\), \(f(C)\) is closed in \(Y\).
+
+\ex. \(X = [0, 1] \cup [2, 3] \subset \R\), \(Y = [0, 2] \subset \R\). Then define \(p : X \ra Y\) as
+\[
+    p(x) = \begin{cases}
+        x & (x \in [0, 1]) \\ x - 1 & (x \in [2, 3]).
+    \end{cases}
+\]
+Then \(p\) is surjective, continuous and a closed map. But it is not an open map, since \(p([0, 1])\) is not open in \(Y\). For \(A \subset X\) closed,
+\[
+    p(A) = p(A \cap [0, 1]) \cup p(A \cap [2, 3]),
+\]
+which is a union of two closed sets in \(Y\) (Check!)
+
+We slightly modify the example to \(A = [0, 1) \cup [2, 3]\) with \(q = p \mid_A : A \ra Y\). Then \(q\) is not a quotient map, since \([2, 3] = q\inv([1, 2])\) is saturated but \(q([2, 3]) = [1, 2]\) is not open in \(Y\).
+
+\ex. \(\pi_1 : \R \times \R \ra \R\) is continuous, surjective, and an open map. But it is not a closed map, since for \(C = \{x \times y : xy = 1\}\), \(\pi_1(C) = \R \bs \{0\}\), which is not closed.\footnote{\(C\) is closed since \((x, y) \mapsto xy\) is continuous.}
+
+If we restrict \(A = C \cup \{\bf{0}\} \subset \R \times \R\) and \(q = \pi_1 \mid_A : A \ra \R\), it is not a quotient map. Consider \(\{\bf{0}\} = q\inv(\{0\})\) which is saturated but \(q(\{\bf{0}\}) = \{0\}\) is not open in \(\R\).
+
+\defn. Let \(X\) be a topological space and \(A\) be a set. With a surjective map \(p : X \ra A\), the \textbf{quotient topology} \(\mc{T}\) is defined as the topology on \(A\) such that \(p\) is a quotient map.
+\begin{center}
+    \(V \subset A, V \in \mc{T}\) if and only if \(p\inv(V)\) is open in \(X\).
+\end{center}
+
+\rmk Check that this is indeed a topology.
+
+\ex. Moved to the notes of April 4th, 2023.
+
+\pagebreak

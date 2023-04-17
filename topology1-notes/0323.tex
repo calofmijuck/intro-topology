@@ -1,0 +1,107 @@
+\section*{March 23rd, 2023}
+
+It is very important whether a topology is metrizable. Is \(\R^\omega\) metrizable, when considering it as a box topology and a product topology?
+
+\thm{20.5} On \(\R^\omega\) define \(D(\bf{x}, \bf{y}) = \sup_{i \in \N} \left\{\frac{\bar{d}(x_i, y_i)}{i}\right\}\) for \(\bf{x}, \bf{y} \in \R^\omega\). Then the metric topology on \(\R^\omega\) induced by \(D\) is equal to the product topology.
+
+\pf \\
+\note{\(\subset\)} Let \(\bf{x} \in B_D(\bf{x}, \epsilon)\) be a basis element on the topology induced by \(D\). Let \(V = (x_1 - \epsilon, x_1 + \epsilon) \times \cdots \times (x_N - \epsilon, x_N + \epsilon) \times \R \times \cdots\), where \(N > \frac{1}{\epsilon}\). Let \(\bf{y} \in V\), then \(\abs{x_i - y_i} < \epsilon\) for all \(i = 1, \dots, N\). Then
+\[
+    D(\bf{x}, \bf{y}) = \sup\left\{\frac{\bar{d}(x_i, y_i)}{i}\right\} \leq \max\left\{\frac{\bar{d}(x_1, y_1)}{1}, \dots, \frac{\bar{d}(x_N, y_N)}{N}, \frac{1}{N}\right\} < \epsilon,
+\]
+so \(V \subset B_D(\bf{x}, \epsilon)\).
+
+\note{\(\supset\)} Let \(\bf{x} \in U = \prod_{i \in \N} U_i\) where \(U_i\) is open in \(\R\) for \(i = i_1, \dots, i_n\) and \(U_i = \R\) for all other \(i\). For all \(i\), choose \(0 < \epsilon_i \leq 1\) such that \((x_i - \epsilon, x_i + \epsilon) \subset U_i\). Choose \(\epsilon = \min_{i_1 \leq i \leq i_n} \frac{\epsilon_i}{i}\), then for \(\bf{y} \in B_D(\bf{x}, \epsilon)\),
+\[
+    \frac{\bar{d}(x_i, y_i)}{i} \leq D(\bf{x}, \bf{y}) < \epsilon \leq \frac{\epsilon_i}{i}
+\]
+So, \(\abs{x_i - y_i} = \bar{d}(x_i, y_i) < \epsilon_i\) for all \(i\), (\(\epsilon_i \leq 1\)) and we have \(\bf{x} \in B_D(\bf{x}, \epsilon) \subset U\).
+
+\topic{The Metric Topology (continued)}
+
+\rmk Check these!
+\begin{enumerate}
+    \item For metric space \((X, d)\), suppose we have a subset \(A \subset X\). Now we have two ways to give a topology on \(A\). The first way is the subspace topology, and the second way is to give a metric topology induced by \(d \mid_{A\times A}\). In fact, these two are the same.
+
+    \item A metric space is Hausdorff.
+
+    \item Countable product of metrizable spaces is also metrizable.
+\end{enumerate}
+
+\thm{21.1} Let \((X, d_X)\), \((Y, d_Y)\) be metric spaces. Then, \(f : X \ra Y\) is continuous if and only if
+\begin{center}
+    \(\forall x \in X\), \(\forall \epsilon > 0\), \(\exists \delta > 0\) such that \(d_X(x, y) < \delta \implies d_Y\paren{f(x), f(y)} < \epsilon\)
+\end{center}
+
+\pf
+\note{\mimp} Since \(f\) is continuous, \(x \in f\inv\paren{B_{d_Y}\paren{f(x), \epsilon}}\) which is open. So we can take some open set \(B_{d_X}(x, \delta) \subset f\inv\paren{B_{d_Y}\paren{f(x), \epsilon}}\). Then \(f(B_{d_X}(x, \delta)) \subset B_{d_Y}\paren{f(x), \epsilon}\).
+
+\note{\mimpd} Let \(V\) be a open set in \(Y\). Let \(x \in f\inv(V)\). There exists \(\epsilon > 0\) such that \(f(x) \in B_{d_Y}\paren{f(x), \epsilon} \subset V\). By assumption, we choose \(\delta > 0\) such that \(f(B_{d_X}(x, \delta)) \subset B_{d_Y}\paren{f(x), \epsilon}\). So \(x \in B_{d_X}(x, \delta) \subset f\inv(V)\), and we conclude that \(f\inv(V)\) is open.
+
+If you remember analysis, we could use sequences to show that a function is continuous. For general topological spaces, this is not possible. But for metric spaces, we can do this.
+
+\lemma{21.2} \note{Sequence Lemma} Let \(X\) be a topological space, and \(A \subset X\).
+\begin{enumerate}
+    \item For a sequence \(\seq{x_n}\) in \(A\), \(x_n \ra x\) in \(X\).
+    \item \(x \in \cl{A}\).
+\end{enumerate}
+(1)\mimp (2) always holds, but (2)\mimp (1) only if \(X\) is metrizable.
+
+\pf \\
+\note{\mimp} Using the definition of convergence, for all neighborhood \(U\) of \(x\), \(\exists N \in \N\) such that \(x_n \in U\) for \(n \geq N\). Then \(x_n \in U \cap A \neq \varnothing\). So \(x \in \cl{A}\).
+
+\note{\mimpd} We assume that \(X\) is metrizable. For each \(n \in \N\), \(B_d\paren{x, \frac{1}{n}} \cap A \neq \varnothing\), so choose \(x_n \in B_d\paren{x, \frac{1}{n}} \cap A\). We show that \(x_n \ra x\). For every neighborhood \(U\) of \(x\), there exists \(\epsilon > 0\) such that \(x \in B_d(x, \epsilon) \subset U\). Choose large enough \(N \in \N\) so that \(\frac{1}{N} < \epsilon\). Then for \(n \geq N\), \(x_n \in B_d\paren{x, \frac{1}{n}} \subset B_d\paren{x, \frac{1}{N}} \subset B_d(x, \epsilon) \subset U\).
+
+\thm{21.3} Let \(f : X \ra Y\).
+\begin{enumerate}
+    \item \(f\) is continuous.
+    \item For any convergent sequence \(x_n \ra x\) in \(X\), \(f(x_n) \ra f(x)\).
+\end{enumerate}
+(1)\mimp (2) always holds, but (2)\mimp (1) only if \(X\) is metrizable.
+
+\pf \\
+\note{\mimp} Let \(V\) be a neighborhood of \(f(x)\). \(f\inv(V)\) is a neighborhood of \(x \in X\). Then choose large enough \(N \in \N\) so that \(x_n \in f\inv(V)\) for \(n \geq N\). Then \(f(x_n) \in V\).
+
+\note{\mimpd} We assume that \(X\) is metrizable. Let \(A \subset X\). We show that \(f(\cl{A}) \subset \cl{f(A)}\). If \(x \in \cl{A}\), we choose a sequence \(x_n \in A\) such that \(x_n \ra x\). Then \(f(x_n) \ra f(x)\) by assumption. By \sref{Lemma 21.2}, \(f(x_n)\) is a convergent sequence in \(f(A)\), so \(f(x) \in \cl{f(A)}\). We conclude that \(f(\cl{A}) \subset \cl{f(A)}\).
+
+Actually, we can weaken the condition that \(X\) is metrizable, to that \(X\) is \textit{1st countable}.
+
+\defn. \note{Countable Basis} A space \(X\) has a \textbf{countable basis} at \(x \in X\) if there exists a collection \(\seq{U_n}\) of neighborhoods of \(x\) such that for all neighborhoods \(U\) of \(x\), there exists \(n\) such that \(U_n \subseteq U\).
+
+\defn. A space \(X\) is \textbf{1st countable} if \(X\) has a countable basis at every \(x \in X\).
+
+\rmk In the proof of \sref{Lemma 21.2}, choosing \(B_d\paren{x, \frac{1}{n}}\) was essential for the proof. If we assume that \(X\) is 1st countable, use \(B_n = U_1\cap \cdots \cap U_n\) as a open set that intersects \(A\). Then we choose \(x_n\) from the intersection. Then by the definition of countable basis, we can choose some \(N\) with \(U_N \subset U\). Then we conclude that \(x_n \in B_n \subset U_N \subset U\) for \(n \geq N\), so \(x_n \ra x\).
+
+\lemma{21.4} Functions on \(\R \times \R \ra \R\) as \((x, y) \mapsto x + y, x - y, xy\) are continuous. Also \(\R \times (\R - \{0\}) \ra \R\) as \((x, y) \mapsto x/y\) is also continuous.
+
+The following theorem directly follows from the lemma.
+
+\thm{21.5} Let \(f, g : \R \times \R \ra \R\) be continuous functions. Then
+\[
+    f + g, \quad f - g, \quad fg, \quad f/g
+\]
+are continuous. (\(g \neq 0\))
+
+\medskip
+
+Let \(X\) be a topological space and \((Y, d)\) be a metric space.
+
+\defn. \note{Uniform Convergence} Let \(f_n : X \ra Y\) be a sequence of functions and \(f : X \ra Y\).
+\(f_n\) \textbf{converges uniformly} to \(f\) if
+\begin{center}
+    \(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(d(f_n(x), f(x)) < \epsilon\) for all \(n \geq N\), \(x \in X\).
+\end{center}
+
+\thm{21.6} \note{Uniform Limit Theorem} Let \(f_n : X \ra Y\) be a sequence of continuous functions. If \(f_n \ra f\) uniformly, then \(f\) is continuous.
+
+\pf Let \(x_0 \in X\). For all neighborhood \(V\) of \(f(x_0)\), we show that there exists a neighborhood \(U\) of \(x_0\) such that \(f(U) \subset V\).
+
+Let \(y_0 = f(x_0)\). Then choose \(\epsilon > 0\) such that \(B_d(y_0, \epsilon) \subset V\). By uniform convergence, \(\exists N \in \N\) such that \(d(f_n(x), f(x)) < \frac{\epsilon}{3}\), for \(n \geq N\) and \(x \in X\). Since \(f_N\) is continuous, choose neighborhood \(U\) of \(x_0\) such that \(f(U) \subset B_d(f_N(x_0), \frac{\epsilon}{3})\). Then \(f(U) \subset B_d(y_0, \epsilon)\), since for \(x \in U\),
+\[
+    \begin{aligned}
+        d(f(x), f(x_0)) \leq d(f(x), f_N(x)) + d(f_N(x), f_N(x_0)) + d(f_N(x_0), f(x_0)) < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon.
+    \end{aligned}
+\]
+Then \(f(U) \subset B_d(y_0, \epsilon) \subset V\).
+
+\pagebreak
