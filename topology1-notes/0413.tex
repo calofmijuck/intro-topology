@@ -1,0 +1,80 @@
+\section*{April 13th, 2023}
+
+\lemma{26.4} If \(Y\) is a compact subspace of a Hausdorff space \(X\) and \(x_0 \notin Y\), then there exists disjoint open sets \(U, V\) of \(X\) such that \(x_0 \in X\), \(Y \subset V\).
+
+\pf Look at the proof of \sref{Theorem 26.3}.
+
+Remove the Hausdorff condition from \sref{Theorem 26.3}, then we have counterexamples. Consider \(\R\) with the finite complement topology. Any subset of \(\R\) is compact!
+
+\thm{26.5} If \(f : X \ra Y\) is continuous and \(X\) is compact, \(f(X)\) is compact.
+
+\pf Let \(\mc{A}\) be a covering of \(f(X)\) by sets open in \(Y\). Since \(f\) is continuous, \(\mc{B} = \{f\inv(A) : A \in \mc{A}\}\) is an open covering. Using compactness of \(X\), \(\{f\inv(A_1), \dots, f\inv(A_n)\}\) covers \(X\). Then \(\{A_1, \dots, A_n\}\) should cover \(f(X)\).
+
+\thm{26.6} Let \(f : X \ra Y\) be a continuous function. If \(X\) is compact and \(Y\) is Hausdorff then \(f\) is a closed map.
+
+\pf Any closed subset \(C\) of \(X\) is compact, so \(f(C)\) is compact. Every compact subspace of a Hausdorff space is closed, so \(f(C)\) is closed.
+
+\rmk Additionally, if \(f\) is bijective, \(f\inv\) is a continuous map, so \(f\) becomes a homeomorphism. It is often hard to show that \(f\inv\) is continuous, but in this case, it is very easy.
+
+\thm{26.7} The product of finitely many compact spaces is compact.
+
+\pf (Important!) We show that if \(X\) and \(Y\) are compact, \(X \times Y\) is also compact.
+
+\note{Step 1} \note{Tube Lemma} Consider the product space \(X \times Y\) where \(Y\) is compact. For \(x_0 \in X\), let \(N\) be an open set of \(X \times Y\) containing \(x_0 \times Y\). Then there exists a neighborhood \(W\) of \(x_0\) in \(X\) such that \(W \times Y \subset N\).\footnote{Compactness of \(Y\) is necessary. Counterexample: \(N = \left\{x\times y : \abs{x} < \frac{1}{y^2 + 1}\right\}\)}
+
+\pf For \(y \in Y\), there exists a basis element \(U_y \times V_y \subset N\) containing \(x_0 \times y\), since \(N\) is open. Then \(\{U_y\times V_y : y \in Y\}\) covers \(x_0 \times Y\). Since \(x_0 \times Y\) is homeomorphic to a compact space \(Y\), it is also compact. So we can cover \(x_0 \times Y\) by \(U_{y_i} \times V_{y_i}\), \(i = 1, \dots, n\). Now let \(W = \bigcap_{i=1}^n U_{y_i}\). \(W\) is open and contains \(x_0\).
+
+Next we show that \(W \times Y \subset N\). For any \(x\times y \in W \times Y\), there exists some \(j\) such that \(y \in V_{y_j}\). Also for this \(j\), \(x \in U_{y_j}\) by the choice of \(W\). Therefore \(x \times y \in U_{y_j} \times V_{v_j} \subset N\).
+
+\note{Step 2} Let \(\mc{A}\) be an open covering of \(X \times Y\). For any \(x \in X\), there exists \(\{A_{x, 1}, \dots, A_{x, m_x}\} \subset \mc{A}\) that covers \(x \times Y\). Since \(x \times Y \subset \bigcup_{j=1}^{m_x} A_{x, j}\), we use the tube lemma to obtain a neighborhood \(W_x\) of \(x\) such that \(W_x \times Y \subset \bigcup_{j=1}^{m_x} A_{x, j}\). Since \(X\) is compact, there exists \(W_{x_1}, \dots, W_{x_k}\) such that \(X = \bigcup_{i=1}^k W_{x_i}\). Then we have \(X \times Y = \bigcup_{i=1}^k (W_i \times Y) = \bigcup_{i=1}^k \bigcup_{j=1}^{m_{x_i}} A_{x_i, j}\).
+
+\thm. \note{Tychonoff} The product of infinitely many compact spaces is compact.
+
+Next is a criterion of compactness formulated with closed sets. It is sometimes useful.
+
+\defn. \note{Finite Intersection Property} A collection \(\mc{C}\) of subsets of \(X\) has the \textbf{finite intersection property} if for every finite subcollection \(\{C_1, \dots, C_n\} \subset \mc{C}\), \(\bigcap_{i=1}^n C_i \neq \varnothing\).
+
+\thm{26.9} The following are equivalent.
+\begin{enumerate}
+    \item \(X\) is compact.
+    \item For any collection \(\mc{C}\) of closed sets in \(X\) having finite intersection property, \(\bigcap_{C \in \mc{C}} C \neq \varnothing\).
+\end{enumerate}
+
+\pf Given a collection \(\mc{A}\) of subset of \(X\), let \(\mc{C} = \{X \bs A : A \in \mc{A}\}\). Check the following.
+\begin{enumerate}
+    \item \(\mc{A}\) is a collection of open sets \(\iff\) \(\mc{C}\) is a collection of closet sets.
+    \item \(\mc{A}\) covers \(X \iff \bigcap_{C \in \mc{C}} C = \varnothing\).
+    \item The finite subcollection \(\{A_1, \dots, A_n\}\) of \(\mc{A}\) covers \(X \iff \bigcap_{i=1}^n (X \bs A_i) = \varnothing\).
+\end{enumerate}
+Then, taking the contrapositive of compactness condition, we have: `Given any collection \(\mc{A}\) of open sets, if no finite subcollection of \(\mc{A}\) covers \(X\), then \(\mc{A}\) doesn't cover \(X\).' Apply (1), (2), (3) to get ``Given any collection \(\mc{C}\) of closed sets, if \(\bigcap_{i=1}^n C_i \neq \varnothing\) for any subcollection \(\{C_1, \dots, C_n\}\) of \(\mc{C}\), then \(\bigcap_{C \in \mc{C}} C \neq \varnothing\).'' This is exactly equivalent to (2).
+
+\rmk Given a nested sequence of closed sets \(C_1 \supset C_2 \supset \cdots \supset C_n \supset \cdots\) in a compact space \(X\), if \(C_n \neq \varnothing\) for all \(n \in \N\), then \(\seq{C_n}\) automatically has the finite intersection property. Since \(X\) is compact, \(\bigcap_{n \in \N} C_n \neq \varnothing\) by \sref{Theorem 26.9}.
+
+\topic{Compact Subspaces of the Real Line}
+
+\thm{27.1} Let \(X\) be a simply ordered set having the least upper bound property. In the order topology, each closed interval in \(X\) is compact.
+
+\pf Since \([a, a] = \{a\}\) is compact, consider \([a, b]\) with \(a < b\). Let \(\mc{A}\) be a covering of \([a, b]\) by open sets of \([a, b]\).
+
+\note{Step 1} If \(x \in [a, b]\) and \(x \neq b\), then \(\exists y \in [a, b]\) and \(x < y\), such that \([x, y]\) can be covered by at most two elements of \(\mc{A}\).
+\begin{itemize}
+    \item Case 1. \(x\) has an immediate successor \(y\) in \(X\). Then \((x, y) = \varnothing\), so \([x, y] = \{x\} \cup \{y\}\). This can be covered by 2 elements.
+    \item Case 2. Otherwise, choose \(A \in \mc{A}\) containing \(x\). There exists \(c \in [a, b]\) such that \([x, c) \subset A\), since \(A\) is open. Now choose \(y \in (x, c)\). (no immediate successor) Then \([x, y]\) is covered by \(A\).
+\end{itemize}
+\note{Step 2} Let \(C = \{y \in [a, b] : y > a \text{ and } [a, y] \text{ can be covered by finitely many elements of } \mc{A}\}\). Then \(C \neq \varnothing\) by \sref{Step 1}. Let \(c = \sup C\), then \(a < c \leq b\).
+
+\note{Step 3} We show that \(c \in C\). Suppose not, choose \(A \in \mc{A}\) such that \(c \in A\). Then \(\exists d \in [a, b]\) such that \((d,c] \subset A\). (\(A\) is open) Then \(\exists z \in C\) such that \(z \in (d, c)\), since if not, \(d\) would have been the supremum. So \([a, z]\) is covered by finitely many elements of \(\mc{A}\) because \(z \in C\). \([z, c] \subset A\), so \([a, c] = [a, z] \cup [z, c]\), which is a contradiction to \(c \notin C\).
+
+\note{Step 4} We show that \(c = b\). Suppose that \(c < b\). Use \sref{Step 1} to see that \(\exists y \in [a, b]\), \(c < y\) such that \([c, y]\) can be covered by finitely many elements. Since \(c \in C\), \([a, c]\) can be covered with finitely many elements of \(\mc{A}\). Now write \([a, y] = [a, c] \cup [c, y]\). Then \(y \in C\), contradicting that \(c\) is the supremum.
+
+\cor{27.2} Every closed interval in \(\R\) is compact.
+
+\thm{27.3} A subspace \(A\) of \(\R^n\) is compact if and only if \(A\) is closed and bounded in the Euclidean metric \(d\) or the square metric \(\rho\).
+
+\pf \note{\mimp} If \(A\) is compact, \(A\) is closed since \(\R^n\) is Hausdorff. Since \(\{B_\rho(\bf{0}, m) : m \in \N\}\) covers \(A\), we can take a finite subcovering, and take the ball with the largest radius \(M\). Then \(A \subset B_\rho(\bf{0}, M)\). \(A\) is bounded.
+
+\note{\mimpd} Since \(A\) is bounded, \(\exists N > 0\) such that \(\rho(x, y) \leq N\) for all \(x, y \in A\). Choose any \(x_0 \in A\), let \(\rho(x_0, \bf{0}) = b\). Then \(\rho(x, \bf{0}) \leq \rho(x, x_0) + \rho(x_0 , \bf{0}) = N +b\) for all \(x \in A\). So \(A \subset [-(N + b), N + b]^n\). Since \(A\) a closed subset of a product of finite closed intervals, \(A\) is compact.
+
+\prob. We could construct a continuous surjective map from the disk \(D^2\) to a sphere \(S^2\). \(D^2\) is compact, so its image is also compact. Since \(\R^2, \R^3\) are Hausdorff, \(g\) is a closed map. Then \(g\) is a quotient map. By \sref{Corollary 22.3}, \(D^2 / S^1\) is homeomorphic to \(S^2\).
+
+\pagebreak
