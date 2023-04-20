@@ -6,7 +6,7 @@ Uniform convergence only depends on the metric.
 
 Now consider \(f_n : X \ra Y\), \(f_n(x) = x + \frac{1}{n}\). \(f_n \ra x\). Then \(d\paren{f_n(x), f(x)} = \frac{1}{n} \ra 0\). But \(d'\paren{f_n(x), f(x)} = \abs{\log\frac{x + 1/n}{x}}\) which does not converge to 0 as \(x \ra 0\).
 
-\defn. We say that a topological space is a Fréchet-Urysohn space, if it satisfies the sequence lemma (\sref{Lemma 21.2}).
+\defn. We say that a topological space is a \textbf{Fréchet-Urysohn space}, if it satisfies the sequence lemma (\sref{Lemma 21.2}).
 
 \rmk We saw that if a topological space \(X\) is 1st countable, it is a Fréchet-Urysohn space. But the reverse direction is not true, and we will construct an example after we learn the quotient topology.
 
@@ -31,7 +31,7 @@ Now consider \(f_n : X \ra Y\), \(f_n(x) = x + \frac{1}{n}\). \(f_n \ra x\). The
           \[
               A = \{(x_1, x_2, \dots) : x_i > 0, \,\forall i \in \N\},
           \]
-          then \(\bf{0} \in \cl{A}\). This is because for any basis element \(B = \prod_{i} (a_i, b_i)\), then \(B \cap A \neq \varnothing\) since \(\paren{\frac{b_1}{2}, \frac{b_2}{2}, \dots} \in B \cap A\).
+          then \(\bf{0} \in \cl{A}\). This is because for any basis element \(B = \prod_{i} (a_i, b_i)\) containing \(\bf{0}\), we have \(\paren{\frac{b_1}{2}, \frac{b_2}{2}, \dots} \in B \cap A \neq \varnothing\).
 
           We claim that there doesn't exist a sequence of points of \(A\) converging to \(\bf{0}\). Take any sequence \(a_n = (x_{1n}, x_{2n}, \dots) \in A\), and consider \(B' = (-x_{11}, x_{11}) \times (-x_{22}, x_{22}) \times \cdots\). Then \(\bf{0} \in B'\), but \(a_n \notin B'\) since \(x_{nn} \notin (-x_{nn}, x_{nn})\). So \(a_n \not\ra \bf{0}\) in the box topology.
 
@@ -55,7 +55,7 @@ Let \(X, Y\) be topological spaces.
     \(U \subset Y\) is open in \(Y\) if and only if \(p\inv(U)\) is open in \(X\).
 \end{center}
 
-\defn. \textbf{Saturated Set} A subset \(C\) of \(X\) is \textbf{saturated} with respect to \(p\) if
+\defn. \note{Saturated Set} A subset \(C\) of \(X\) is \textbf{saturated} with respect to \(p\) if
 \begin{center}
     \(C \cap p\inv(\{y\}) \neq \varnothing\) then \(p\inv(\{y\}) \subset C\).
 \end{center}

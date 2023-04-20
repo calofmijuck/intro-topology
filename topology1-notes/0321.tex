@@ -16,7 +16,7 @@ We assume the axiom of choice in this lecture, so we will use it if necessary.
 
 \note{2\mimp3} \note{Lemma 9.2}. For \(\alpha \in J\), let \(A_\alpha' = \{\alpha\} \times A_\alpha\), which is not empty. Then \(\{A_\alpha'\}\) are disjoint. By axiom of choice, there exists a set \(C\) consisting of exactly one element from each \(A_\alpha'\). Therefore for each \(\alpha \in J\), there exists a unique \((\alpha, a_\alpha) \in C\) with \(a_\alpha \in A_\alpha\). Since \(C \subset \bigcup_{\alpha \in J} \paren{\{\alpha\} \times A_\alpha} \subset \bigcup_{\alpha \in J} \paren{J \times A_\alpha} = J \times \bigcup_{\alpha \in J} A_\alpha\), \(C\) is indeed a map we wanted.
 
-\note{3\mimp1} If \(c : J \ra \bigcup_{\alpha \in J} A_\alpha\) is a choice function, itis an element of \(\prod_{\alpha \in J} A_\alpha\).
+\note{3\mimp1} If \(c : J \ra \bigcup_{\alpha \in J} A_\alpha\) is a choice function, it is an element of \(\prod_{\alpha \in J} A_\alpha\).
 
 We cannot prove \sref{Theorem 19.5} without the axiom of choice!
 
@@ -29,7 +29,7 @@ We cannot prove \sref{Theorem 19.5} without the axiom of choice!
 \[
     \prod_{\alpha \in J} \cl{A_\alpha} = \bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}},
 \]
-and \(\pi_\alpha\inv\) is continuous, \(\bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\) is a closed set. But \(\prod_{\alpha \in J} A_\alpha \subset \bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\), so by definition, \(\cl{\prod_{\alpha \in J} A_\alpha} \subset \bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\)
+and \(\pi_\alpha\) is continuous, \(\bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\) is a closed set. But \(\prod_{\alpha \in J} A_\alpha \subset \bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\), so by definition, \(\cl{\prod_{\alpha \in J} A_\alpha} \subset \bigcap_{\alpha \in J} \pi_\alpha\inv\paren{\cl{A_\alpha}}\)
 because \(\cl{\prod_{\alpha \in J} A_\alpha}\) is the smallest closed set containing \(\prod_{\alpha \in J} A_\alpha\).
 
 \note{AoC\mimp} Let \(\bf{x} = (x_\alpha) \in \prod \cl{A_\alpha}\). Then for any basis element \(U\) containing \(\bf{x}\), \(U = \prod U_\alpha\). Since \(x_\alpha \in \cl{A_\alpha}\), \(\exists y_\alpha \in U_\alpha \cap A_\alpha \neq \varnothing\). Then \(\bf{y} = (y_\alpha) \in U \cap \prod A_\alpha\).
@@ -86,7 +86,7 @@ On \(\R^\omega\), we want to define a metric, so let \(x, y \in \R^\omega\),
 \]
 These may not exist sometimes. So use the standard bounded metric.
 
-\defn. Let \(J\) be an index set, and \(\bf{x} = (x_\alpha), \bf{y} = (y_\alpha) \in \R^J\). Define
+\defn. Let \(J\) be an index set, and \(\bf{x} = (x_\alpha)\), \(\bf{y} = (y_\alpha) \in \R^J\). Define
 \[
     \bar{\rho}(\bf{x}, \bf{y}) = \sup\left\{\bar{d}(x_\alpha, y_\alpha) : \alpha \in J\right\}
 \]

@@ -10,17 +10,16 @@ Let \(X = \{a, b, c\}\). Consider a partition \(X^* = \{\{a, b\}, \{c\}\}\). The
 \]
 Then the positive integer points are identified! Equip \(Y\) with the quotient topology.
 \begin{enumerate}
-    \item \textit{\(Y\) is not 1st countable.} Let \(\seq{V_n}\) be a countable collection of neighborhoods of \(y_0 \in Y\). For each \(n \in \N\), \(\exists \epsilon_n > 0\) such that \((n - \epsilon_n, n + \epsilon_n) \subset p\inv(V_n)\). Let \(U = \bigcup_{n \in \N} \paren{n - \frac{\epsilon_n}{2}, n + \frac{\epsilon_n}{2}}\) which is open in \(\R\). \(p(U)\) is open in \(Y\), (\textbf{Why?}) but \(V_n \not\subset p(U)\) for every \(n \in \N\). (If not, \(\exists n \in \N\) such that \(p\inv(V_n) \subset U\) which is a contradiction.)
+    \item \textit{\(Y\) is not 1st countable.} Let \(\seq{V_n}\) be a countable collection of neighborhoods of \(y_0 \in Y\). For each \(n \in \N\), \(\exists \epsilon_n > 0\) such that \((n - \epsilon_n, n + \epsilon_n) \subset p\inv(V_n)\). Let \(U = \bigcup_{n \in \N} \paren{n - \frac{\epsilon_n}{2}, n + \frac{\epsilon_n}{2}}\) which is open in \(\R\). Since \(U\) is saturated and open in \(X\), \(p(U)\) is open in \(Y\). But \(V_n \not\subset p(U)\) for every \(n \in \N\). (If not, \(\exists n \in \N\) such that \(p\inv(V_n) \subset U\) which is a contradiction.)
     \item \textit{\(Y\) is Fréchet-Urysohn.} For \(A \subset Y\), let \(y \in \cl{A}\). We first consider the case where \(y \in A\). If \(y \neq y_0\), construct a sequence \(\seq{a_i}\) converging to \(y\). (avoid all integer points by taking small balls!) If \(y = y_0\), take the constant sequence.
 
           Now assume \(y = y_0 \notin A\). Then \(p\inv(A) \subset \R \bs \N\).
 
           \quad \claim. There exists \(n \in \N\) such that \(n \in \cl{p\inv(A)}\).
 
-          \quad \pf Suppose that for all \(n \in \N\), \(n \notin \cl{p\inv(A)}\). Then there exists a neighborhood \(U_n\) of \(n\) such that \(U_n \cap p\inv(A) = \varnothing\). Let \(U = \bigcup_{n \in \N} U_n\), then \(U \cap p\inv(A) = \varnothing\). So \(p(U) \cap A= \varnothing\), which is a contradiction. (\(p(U)\) is open since \(U\) is saturated)
+          \quad \pf Suppose that for all \(n \in \N\), \(n \notin \cl{p\inv(A)}\). Then there exists a neighborhood \(U_n\) of \(n\) such that \(U_n \cap p\inv(A) = \varnothing\). Let \(U = \bigcup_{n \in \N} U_n\), then \(U \cap p\inv(A) = \varnothing\). So \(p(U) \cap A= \varnothing\), which is a contradiction. \(p(U)\) is open since \(U\) is saturated, and \(y = y_0 \in p(U)\), so it is a contradiction to \(y \in \cl{A}\).
 
-
-          There exists a sequence \(\seq{x_i}\) in \(p\inv(A)\) that converges to \(n\). So \(p(x_i) \in A\), \(p(n) = y_0\), showing that the sequence lemma holds.
+          There exists a sequence \(\seq{x_i}\) in \(p\inv(A) \subset \R\) that converges to \(n\). So \(p(x_i) \in A\), \(p(n) = y_0\), showing that the sequence lemma holds.
 \end{enumerate}
 
 \chapter{Connectedness and Compactness}
@@ -60,7 +59,7 @@ Let \(X\) be a topological space.
 
 \lemma{23.2} If \(C, D\) is a spearation of \(X\), and if \(Y\) is a connected subspace of \(X\), then either \(Y \subset C\) or \(Y \subset D\).
 
-\pf Suppose that \(C \cap Y, D \cap Y\) are not empty. Then \(C \cap Y\), \(D \cap Y\) is a separation of \(Y\). Contradicting that \(Y\) is connected.
+\pf Suppose that \(C \cap Y, D \cap Y\) are not empty. Then \(C \cap Y\), \(D \cap Y\) is a separation of \(Y\), contradicting that \(Y\) is connected.
 
 How do we construct connected spaces from connected spaces?
 
@@ -102,7 +101,7 @@ Since \(X_1 \times \cdots \times X_n\) is homeomorphic to \((X_1 \times \cdots \
 
 \defn. \note{Order Relation} A relation \(<\) on a set \(X\) is an \textbf{order relation} if
 \begin{enumerate}
-    \item \note{Comparibility} For all different \(x, y \in X\), either \(x < y\) or \(y < x\).
+    \item \note{Comparability} For all different \(x, y \in X\), either \(x < y\) or \(y < x\).
     \item \note{Nonreflexivity} There is no \(x \in X\) such that \(x < x\).
     \item \note{Transitivity} If \(x < y\) and \(y < z\), then \(x < z\).
 \end{enumerate}
