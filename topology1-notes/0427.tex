@@ -1,0 +1,117 @@
+\chapter{Countability and Separation Axioms}
+
+\section*{April 27th, 2023}
+
+\topic{The Countability Axioms}
+
+\defn. \note{Countable Basis} A space \(X\) has a \textbf{countable basis} at \(x \in X\) if there exists a collection \(\seq{U_n}\) of neighborhoods of \(x\) such that for all neighborhoods \(U\) of \(x\), there exists \(n\) such that \(U_n \subseteq U\).
+
+\defn.
+\begin{enumerate}
+    \item \note{1st Countable} A space \(X\) is \textbf{1st countable} if \(X\) has a countable basis at every \(x \in X\).
+    \item \note{2nd Countable} A space \(X\) is \textbf{2nd countable} if it has a countable basis.
+\end{enumerate}
+
+\ex.
+\begin{enumerate}
+    \item \(\R\) has a countable basis.
+    \item \(\R^n\), \(\R^\omega\) with the product topology is 2nd countable.
+    \item \(\R^\omega\) with the uniform topology is 1st countable but not 2nd countable.\footnote{1st countable since it is a metric space.}
+
+          \quad \claim. If \(X\) is 2nd countable, then any discrete subspace \(A\) of \(X\) is countable.
+
+          \quad \pf Let \(\mc{B}\) be a countable basis. For \(a \in A\), \(\exists B_a \in \mc{B}\) such that \(B_a \cap A = \{a\}\). The map \(a \mapsto B_a\) is injective, so \(A\) is countable. \qed
+
+          \pf Consider \(A = \{\bf{x} = (x_n)_{n \in \N} : x_n = 0 \text{ or } 1, \forall n\}\).
+          \(\bar{\rho}(a, b) = 1\) if \(a \neq b \in A\). Take balls centered at \(a\), with smaller radius than 1. Then it is a discrete subspace. But \(A\) has the same cardinality as \(\{0, 1\}^{\N}\), which is uncountable, contradiction. \qed
+\end{enumerate}
+
+Both countability axioms are well behaved when taking subspaces or countable products.
+
+\thm{30.2} A subspace of 1st/2nd countable space is also 1st/2nd countable. Also, a countable product of 1st/2nd countable spaces if also 1st/2nd countable.
+
+\pf Check by yourself! \qed
+
+\medskip
+
+\defn. \note{Dense} \(A \subset X\) is \textbf{dense} in \(X\) if \(\cl{A} = X\).
+
+\thm{30.3} Let \(X\) be a 2nd countable space. Then
+\begin{enumerate}
+    \item \note{Lindelöf Space} Every open covering of \(X\) has a countable subcollection covering \(X\).
+    \item There exists a countable subset of \(X\) that is dense in \(X\).
+\end{enumerate}
+
+\rmk The converse of above theorem holds when \(X\) is a metrizable space. (Check!)
+
+\pf Let \(\mc{B} = \seq{B_n}_{n\in \N}\) be a countable basis.
+
+\note{1} Let \(\mc{A}\) be an open covering of \(A\). For every \(n \in \N\), choose \(A_n \in \mc{A}\) that contains \(B_n\), if any. For index set \(J \subset \N\), let \(\mc{A}' = \seq{A_n}_{n \in J}\). We check that \(\mc{A}'\) covers \(X\). Given \(x \in X\), \(\exists A \in \mc{A}\) such that \(x \in A\). Since \(A\) is open, \(\exists B_n \in \mc{B}\) such that \(x \in B_n \subset A\). So \(n \in J\) and \(x \in B_n \subset A_n \in \mc{A}'\).
+
+\note{2} For \(n \in \N\), if \(B_n \neq \varnothing\), choose \(x_n \in B_n\). Let \(D = \seq{x_n}_{n \in J}\). Now we show that \(\cl{D} = X\). For \(x \in X\), every \(B_n \in \mc{B}\) containing \(x\) should intersect \(D\). This is true since \(x_n \in B_n \cap D \neq \varnothing\). \qed
+
+\ex. \(\R_l\) is 1st countable, take a collection of \(\left[x, x + \frac{1}{n}\right)\), which is a basis at \(x\). The property (2) also holds. (rationals!) Is also Lindelöf. \textit{But \(\R_l\) is not 2nd countable.}
+
+\pf Let \(\mc{B}\) be a basis for \(\R_l\). Define a map \(x \mapsto B_x\), where \(x \in B_x \subset [x, x+1)\). This map is injective. If \(B_x = B_y\), then \(\inf B_x = \inf B_y\), so \(x = y\). \(\mc{B}\) cannot be countable. \qed
+
+\ex. \(\R_l \times \R_l\) is not Lindelöf.\footnote{Product of Lindelöf space is not Lindelöf.}
+
+\pagebreak
+
+\topic{The Separation Axioms}
+
+Recall that Hausdorff axiom was a separation axiom.
+
+\defn. Suppose that one-points sets are closed in \(X\).
+\begin{enumerate}
+    \item \note{Regular} \(X\) is \textbf{regular} if for each pair of point \(x\) and a closed set \(B\) disjoint from \(x\), there exists disjoint open sets containing \(x\) and \(B\), respectively.
+    \item \note{Normal} \(X\) is \textbf{normal} if for each pair of disjoint closed sets \(A, B\) of \(X\), there exists disjoint open sets containing \(A, B\), respectively.
+\end{enumerate}
+
+\rmk Normal \mimp Regular \mimp Hausdorff.
+
+This is another way to formulate the separation axioms.
+
+\lemma{31.1} Assume that one-point sets are closed.
+\begin{enumerate}
+    \item \(X\) is regular if and only if for all \(x \in X\), for any neighborhood \(U\) of \(x\), \(\exists\)neighborhood \(V\) of \(x\) such that \(\cl{V} \subset U\).
+    \item \(X\) is normal if and only if for every closed set \(A\) and for any open set \(U\) containing \(A\), \(\exists\)open set \(V\) containing \(A\) such that \(\cl{V} \subset U\).
+\end{enumerate}
+
+\pf \\
+\note{1} \note{\mimp} Let \(B = X \bs U\), not containing \(x\). There exists disjoint open sets \(V\) containing \(x\), and \(W\) containing \(B\). Since \(V \subset X \bs W \subset X \bs B = U\), and \(X \bs W\) is closed, \(\cl{V} \subset X \bs W\). Thus \(\cl{V} \subset U\).
+
+\note{\mimpd} Let \(x \in X\). Given closed set \(B\) disjoint from \(x\), let \(U = X \bs B\). \(U\) is a neighborhood of \(x\), so there is a neighborhood \(V\) of \(x\) such that \(\cl{V} \subset U = X \bs B\). Then \(x \in V\) and \(B \subset X \bs \cl{V}\).
+
+\note{2} Replace \(x\) with closed set \(A\). Check by yourself! \qed
+
+\thm{31.2} A subspace/product of a regular space is also regular.
+
+\pf
+\note{Subspace} Let \(x \in Y\), \(x \notin B \subset Y\), \(B\) closed. We can write \(B = \cl{B} \cap Y\). Then \(x \notin \cl{B}\). Since \(X\) is regular, there exists disjoint open sets \(V, W\) with \(x \in V\), \(\cl{B} \subset W\). Take intersections with \(Y\). Then \(x \in V \cap Y\), \(B = Y \cap \cl{B} \subset Y \cap W\).
+
+\note{Product} Let \(\{X_\alpha\}\) be a family of regular spaces. Let \(\bf{x} = (x_\alpha) \in X\), \(U\) be a neighborhood of \(\bf{x}\) in \(X\). We will use \sref{Lemma 31.1}. Choose a basis element \(\prod U_\alpha \subset U\) containing \(x\). For each \(\alpha \in J\), we can choose a neighborhood \(V_\alpha\) of \(x_\alpha\) in \(X_\alpha\) such that \(\cl{V_\alpha} \subset U_\alpha\). Here, if \(U_\alpha = X_\alpha\), choose \(V_\alpha\) as \(X_\alpha\). Then \(V = \prod V_\alpha\) is open in \(X\), and \(\cl{V} = \prod \cl{V_\alpha} \subset \prod U_\alpha \subset U\). \qed
+
+\rmk Unfortunately, there is no analogous property for normal spaces.
+
+\ex.
+\begin{enumerate}
+    \item \(\R_K\) is Hausdorff but not regular. \(0 \notin K\), and \(K\) is closed in \(\R_K\). Suppose that \(\R_K\) is regular, so that there exists disjoint open sets \(U, V\) containing \(0, K\). Choose basis element \(B\) with \(0 \in B \subset U\). Then \(B = (a, b) \bs K\), since \((a, b)\) would definitely intersect \(K\). Choose \(\frac{1}{n} \in (a, b)\), and take basis element \(C\) such that \(\frac{1}{n} \in C \subset V\). Then \(C = (c, d)\), since \(\frac{1}{n} \notin (c, d) \bs K\). Choose \(\max\left\{c, \frac{1}{n+1}\right\} < z < \frac{1}{n}\). Then \(z \in (a, b) \subset U\), \(z \in (c, d) \subset V\). \(U, V\) are not disjoint.
+
+    \item \(\R_l\) is normal. Suppose that \(A, B\) are disjoint closed sets in \(\R_l\). Then for \(a \in A\), \(\exists [a, x_a) \subset \R_l \bs B\). (\(\R_l \bs B\) is open) Similarly for \(b\in B\), \(\exists [b, x_b) \subset \R_l \bs A\). Then \(U = \bigcup_{a \in A} [a, x_a)\), \(V = \bigcup_{b \in B} [b, x_b)\) are disjoint open sets. If not, there exists \(a \in A\), \(b\in B\) such that \([a, x_a) \cap [b, x_b) \neq \varnothing\). Since \([a, x_a) \cap B = \varnothing\), so \(b < a\). Similarly \([b, x_b) \cap A = \varnothing\), so \(a < b\). This is a contradiction.
+    \item \(\R_l \times \R_l\) is not normal. (Read!)
+\end{enumerate}
+
+\topic{Normal Spaces}
+
+Although normal spaces don't behave very well, but you will see that normal spaces are important when we have additional properties. A normal space can be metrizable if some additional property is given.
+
+\thm{32.3} Every compact Hausdorff space is normal.
+
+\pf Was exam question. Refer to \sref{Lemma 26.4}, \sref{Exercise 26.5}. \qed
+
+\thm{32.2} Every metrizable space is normal.
+
+\pf Let \(A, B\) be disjoint closed sets of a metrizable space \((X, d)\). For \(a \in A\), \(\exists \epsilon_a > 0\) such that \(B(a, \epsilon_a) \cap B = \varnothing\). (\(a \in B(a, \epsilon_a) \subset X \bs B\)) Similarly for \(b \in B\), \(\exists \epsilon_b > 0\) such that \(B(b, \epsilon_b) \cap A = \varnothing\). Take \(U = \bigcup_{a \in A} B\paren{a, \frac{\epsilon_a}{2}}\) and \(V = \bigcup_{b \in B} B\paren{b, \frac{\epsilon_b}{2}}\).\footnote{Since \(U \cap V\) may not be disjoint, we divide \(\epsilon\) by 2.} We show that \(U, V\) are disjoint. Suppose that \(z \in U \cap V\). Then \(d(a, z) < \frac{\epsilon_a}{2}\), \(d(b, z) < \frac{\epsilon_b}{2}\), so \(d(a, b) < \frac{\epsilon_a + \epsilon_b}{2}\). If \(\epsilon_a \leq \epsilon_b\), \(d(a, b) < \epsilon_b\), so \(a \in B(b, \epsilon_b)\). This contradicts \(B(b, \epsilon_b) \cap A = \varnothing\). The case \(\epsilon_b \leq \epsilon_a\) is also impossible. \qed
+
+\pagebreak
