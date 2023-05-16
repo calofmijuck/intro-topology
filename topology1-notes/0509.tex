@@ -1,0 +1,85 @@
+\section*{May 9th, 2023}
+
+\rmk \(\R^\omega\) with the product topology is not homeomorphic to \(\R^\omega\) with the uniform topology. \(\R^\omega\) with the product topology is 2nd countable.
+
+\([0, 1]^\omega\) with the product topology is not homeomorphic to \([0, 1]^\omega\) with the uniform topology. Consider \(\{0, 1\}^\omega\).
+
+\claim. For \(H = \prod_{n \in \Z} \left[0, \frac{1}{n}\right] \subset \R^\omega\). Consider \(H\) as a subspace. Then the topology on \(H\) as a subspace of product topology, and as a subspace of uniform topology are the same.
+
+\claim. \([0, 1]^\omega\) with the product topology, \(H\) with uniform topology. \(\seq{x_n} \ra \seq{\frac{x_n}{n}}\) is homeomorphism.
+
+\topic{Imbeddings of Manifolds}
+
+\defn. \note{Manifold} An \textbf{\(m\)-manifold} is a Hausdorff space \(X\) with a countable basis such that each point \(x \in X\) has a neighborhood that is homeomorphic to an open subset of \(\R^m\).
+
+\ex. 1-manifold is a curve, 2-manifold is a surface.
+
+Our goal today is that any compact manifold can be imbedded in \(\R^N\) for some \(N \in \N\).
+
+\defn. \note{Support} If \(\varphi : X \ra \R\), the \textbf{support} of \(\varphi\) is defined as \(\cl{\varphi\inv(\R \bs\{0\})}\).
+
+\defn. \note{Partition of Unity} Let \(\{U_1, \dots, U_n\}\) be a finite open covering of \(X\). An indexed family of continuous functions \(\varphi_i: X \ra [0, 1]\) for \(i = 1, \dots, n\) is said to be a \textbf{partition of unity} dominated by \(\{U_i\}\) if:
+\begin{enumerate}
+    \item Support \(\varphi_i \subset U_i\) for all \(i\).
+    \item \(\sum_{i=1}^n \varphi_i(x) = 1\) for all \(x \in X\).
+\end{enumerate}
+
+\thm{36.1} Let \(X\) be a normal space, and \(\{U_1, \dots, U_n\}\) be a finite open covering of \(X\). Then there exists a partition of unity dominated by \(\{U_i\}\).
+
+\pf Want to modify \(U_i\) to a smaller one.
+
+\note{Step 1} \(A_1 = X \bs (U_2 \cup \cdots \cup U_n)\). \(A_1\) is closed, and \(A_1 \subset U_1\) since \(\seq{U_i}\) is a cover. Using normality, there exists open set \(V_1\) containing \(A_1\) such that \(\cl{V_1} \subset U_1\). Then \(\{V_1, U_2, \dots, U_n\}\) still covers \(X\). \(V_1\) is slightly smaller than \(U_1\). Similarly, modify \(U_2\) with \(A_2 = X \bs V_1 \bs (U_3 \cup \cdots \cup U_n)\). Then \(\{V_1, \dots, V_n\}\) will cover \(X\). Also \(\cl{V_i} \subset U_i\) for all \(i\).
+
+\note{Step 2} We apply the procedure on \sref{Step 1} to \(\{V_1, \dots, V_n\}\), and get \(\{W_1, \dots, W_n\}\), which is an open covering of \(X\) with \(\cl{W_i} \subset V_i\). By the Urysohn lemma, there are continuous functions \(\psi_i : X \ra [0, 1]\) such that \(\psi_i(\cl{W_i}) = \{1\}\) and \(\psi_i(X \bs V_i) = \{0\}\).\footnote{Do you notice why we had to shrink \(U_i\)? To use Urysohn lemma.} Then the support \(\cl{\psi_i\inv(\R \bs \{0\})} \subset \cl{V_i} \subset U_i\). (first condition)
+
+Since \(\{W_i\}\) is a cover of \(X\), \(\Psi(x) = \sum \psi_i(x) > 0\) for all \(x \in X\). Then \(\varphi_j(x) = \psi_j(x) / \Psi(x)\) will satisfy the second condition. \qed
+
+\thm{36.2} Any compact \(m\)-manifold \(X\) can be imbedded in \(\R^N\) for some \(N \in \N\).
+
+\pf Since \(X\) is compact, find a finite open covering \(\{U_i\}\). \(X\) is an \(m\)-manifold, we have imbeddings \(g_i : U_i \ra \R^m\) for each \(i\). Since \(X\) is normal (compact Hausdorff), there exists a partition of unity \(\{\varphi_i\}\) dominated by \(\{U_i\}\).
+
+Let \(A_i\) be the support of \(\varphi_i\). For each \(i\), define \(h_i : X \ra \R^m\) as \(x \mapsto \varphi_i(x)g_i(x)\) if \(x \in U_i\) and \(x \mapsto \bf{0}\) if \(x \in X \bs A_i\). This map is well-defined, and continuous since the restrictions onto open sets \(U_i\), \(X \bs A_i\) are continuous. Define
+\[
+    F : X \ra \overbrace{\R \times \cdots \times \R}^{n \text{ times}} \times \overbrace{\R^m \times \cdots \times \R^m}^{n \text{ times}}, \quad x \mapsto \paren{\varphi_1(x), \dots, \varphi_n(x), h_1(x), \dots, h_n(x)}.
+\]
+\(F\) is clearly continuous. \(X\) is compact, so by \sref{Theorem 26.6}, \(F\) is a closed map and \(F\inv\) is continuous. To show that \(F\) is injective, suppose that \(F(x) = F(y)\). Then \(\varphi_i(x) = \varphi_i(y)\), \(h_j(x) = h_j(y)\) for all \(i\). There exists \(i\) such that \(\varphi_i(x) = \varphi_i(y) > 0\), since the sum of \(\varphi_i(x)\) is 1. So \(x, y \in U_i\), and \(\varphi_i(x) g_i(x) = h_i(x) = h_i(y) = \varphi_i(y) g_i(y)\). Therefore \(g_i(x) = g_i(y)\) and \(x = y\) since \(g_i\) are imbeddings. \qed
+
+\ex. Let \(P^2\) be a surface, that is obtained by identifying the antipodal points on \(S^2\). Then this surface cannot be imbedded in \(\R^3\).\footnote{\(P^2\) is the real projective plane.}
+
+\topic{The Tychonoff Theorem (Skip)}
+
+\thm. An arbitrary product of compact spaces is compact.
+
+\setcounter{chapter}{5}
+\chapter{Metrization Theorems and Paracompactness}
+
+\setcounter{topic}{38}
+\topic{Local Finiteness}
+
+\defn. \note{Locally Finite} Let \(X\) be a topological space. A collection \(\mc{A}\) of subsets of \(X\) is \textbf{locally finite} in \(X\) if every point of \(X\) has a neighborhood that intersects only finitely many elements of \(\mc{A}\).
+
+\ex. \(\mc{C} = \left\{\left(\frac{1}{n+1}, \frac{1}{n}\right): n \in \N\right\}\) is locally finite in \((0, 1)\) but not locally finite in \(\R\).
+
+\lemma{39.1} Let \(\mc{A}\) be a locally finite collection of subsets of \(X\).
+\begin{enumerate}
+    \item Any subcollection of \(\mc{A}\) is locally finite.
+    \item \(\mc{B} = \{\cl{A}: A \in \mc{A}\}\) is locally finite.
+    \item \(\cl{\bigcup_{A \in \mc{A}} A} = \bigcup_{A \in \mc{A}} \cl{A}\).
+\end{enumerate}
+
+\pf \note{1} Trivial.
+
+\note{2} Any open set that intersects \(\cl{A}\), intersects \(A\).
+
+\note{3} Let \(Y = \bigcup_{A \in \mc{A}} A\). Then \(\cl{A} \subset \cl{Y}\), so \(\bigcup \cl{A} \subset \cl{Y}\). To show the other direction, let \(x \in \cl{Y}\). Take a neighborhood \(U\) of \(x\) such that \(U\) intersects only finitely many elements \(\{A_1, \dots, A_k\}\) of \(\mc{A}\). If \(x \notin \cl{A_1} \cup \cdots \cup \cl{A_k}\), by construction of \(Y\) and the choice of \(\{A_i\}\), \(U \bs \cl{A_1} \bs \cdots \bs \cl{A_k}\) is a neighborhood of \(x\) with its intersection with \(Y\) empty. Then \(x \notin \cl{Y}\), contradiction. \qed
+
+\defn. \note{Countably Locally Finite} A collection \(\mc{B}\) of subsets of \(X\) is \textbf{countably locally finite} if \(\mc{B} = \bigcup_{n\in \N} \mc{B}_n\) where \(\mc{B}_n\) is locally finite.
+
+\rmk Countable basis implies that the basis is countably locally finite. So we have a weaker condition here.
+
+\defn. \note{Refinement} Let \(\mc{A}, \mc{B}\) be collections of subsets of \(X\). \(\mc{B}\) is a \textbf{refinement} of \(\mc{A}\) if
+\begin{center}
+    \(\forall B \in \mc{B}\), \(\exists A \in \mc{A}\) such that \(B \subset A\).
+\end{center}
+
+\pagebreak

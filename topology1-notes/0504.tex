@@ -1,0 +1,82 @@
+\section*{May 4th, 2023}
+
+We will skip sections 37, 38, 41, 42, 50.
+
+\topic{The Urysohn Metrization Theorem}
+
+\thm{34.1} \note{Urysohn} Every regular space \(X\) with countable basis is metrizable.
+
+\pf We will show that \(X\) is homeomorphic to a subspace of a metrizable space \(Y = \R^\omega\).
+
+\note{Step 1} \textit{There exists a countable collection of continuous functions \(f_n : X \ra [0, 1]\) such that \(\forall x_0 \in X\), for all neighborhood \(U\) of \(x_0\), \(\exists n\) such that \(f_n(x_0) > 0\) and \(f_n (X \bs U) = \{0\}\).}\footnote{\(X\) is normal by \sref{Theorem 32.1}.} \\
+Suppose that \(\seq{B_n}_{n\in \N}\) is a countable basis for \(X\). Collect any pair \(n, m \in \N\) with \(\cl{B_n} \subset B_m\), then this set is countable. Since \(X\) is normal, there is a continuous function \(g_{n,m} : X \ra [0, 1]\) such that \(g_{n,m}(\cl{B_n}) = \{1\}\) and \(g_{n,m}(X \bs B_m) = \{0\}\) by the Urysohn lemma. This is the desired countable collection.
+
+Given \(x_0 \in X\) and a neighborhood \(U\) of \(x_0\), take a basis element \(B_m\) such that \(x_0 \in B_m \subset U\). By regularity, take another basis element \(B_n\) containing \(x_0\) such that \(\cl{B_n} \subset B_m\). So \(g_{n,m}(x_0) = 1\) and \(g_{n,m}(X \bs U) = g_{n, m}(X \bs B_m) = \{0\}\). Re-index the collection \(\seq{g_{n, m}}\) as \(\seq{f_n}\).
+
+\note{Step 2} Equip \(\R^\omega\) with the product topology. We already know that \(\R^\omega\) is metrizable. Define \(F : X \ra \R^\omega\), where \(x \mapsto \paren{f_1(x), f_2(x), \dots}\). Our claim is that \(F\) is an imbedding.
+\begin{itemize}
+    \item \(F\) is continuous since \(f_i\) are continuous and \(\R^\omega\) is equipped with the product topology.
+
+    \item \(F\) is injective. If \(x \neq y\), \(x \in X \bs \{y\}\), and since one-point sets are closed, \(\exists n\) such that \(f_n(x) > 0\) and \(f_n(y) = 0\). So \(F(x) \neq F(y)\).
+
+    \item \(F\inv\) is continuous. We show that for every open set \(U\) in \(X\), \(F(U)\) is open in \(Z = F(X)\). Let \(z_0 \in F(U)\), choose \(x_0 \in U\) such that \(F(x_0) = z_0\). Then \(\exists N\) such that \(f_N(x_0) > 0\) and \(f_N(X \bs U) = \{0\}\). by \sref{Step 1}. Let \(V = \pi_N\inv \paren{(0, \infty)}\) and \(W = V \cap Z\). \(V\) is open in \(\R^\omega\), so \(W\) is open in \(Z\). We check that \(z_0 \in W \subset F(U)\). First, \(\pi_N(z_0) = f_N(x_0) > 0\), so \(z_0 \in W\).
+
+    If \(z \in W\), \(\pi_N(z) \in (0, \infty)\) and \(z = F(x)\) for some \(x \in X\). Then \(\pi_N(z) = f_N(x) > 0\), so \(x \in U\) and \(z \in F(U)\). \(F(U)\) is open.
+\end{itemize}
+\(F\) is a homeomorphism of \(X\) onto \(F(X)\). \qed
+
+During the proof we have shown the following:
+
+\thm{34.2} \note{Imbedding Theorem} Let \(X\) be a space where one-point sets are closed. Suppose that there exists a collection \(\seq{f_\alpha}_{\alpha \in J}\) of continuous functions \(f_\alpha : X \ra \R\) satisfying:
+\begin{center}
+    \(\forall x_0 \in X\), \(\forall\) neighborhood \(U\) of \(x_0\), \(\exists \alpha \in J\) such that \(f_\alpha(x_0) > 0\) and \(f_\alpha(X \bs U) = \{0\}\).
+\end{center}
+Then \(F : X \ra \R^J\) where \(x \mapsto \paren{f_\alpha(x)}\) is an imbedding of \(X\) in \(\R^J\).
+
+\pf Refer to \sref{Step 2} of the above proof. \qed
+
+\rmk We can change \(\R\) to \([0, 1]\). Then \(F\) imbeds \(X\) in \([0, 1]^J\).
+
+We have a nice corollary, description of completely regular space.
+
+\thm{34.3} \(X\) is completely regular if and only if \(X\) is homeomorphic to a subspace of \([0, 1]^J\) for some \(J\).
+
+\pf \note{\mimp} \sref{Theorem 34.2}. \\
+\note{\mimpd} \([0, 1]\) is a normal space so it is completely regular. Completely regular is well behaved under product topology. \qed
+
+We have an another proof for the Urysohn metrization theorem. We change \sref{Step 2}.
+
+\pf We use the uniform topology \((\R^\omega, \bar{\rho})\). Note that \(\bar{\rho} \mid_{[0, 1]^\omega} = \rho\), with \(\rho(\bf{x}, \bf{y}) = \sup\{\abs{x_i - y_i}\}\). We use the countable collection of functions \(f_n : X \ra [0, 1]\) such that \(f_n(x) \leq \frac{1}{n}\) for all \(x \in X\).\footnote{Uniform topology is finer than the product topology, so we need a slight modification by dividing each \(f_n\) by \(n\). Also, check why we set \(f_n(x) \leq \frac{1}{n}\).} Define \(F: X \ra [0, 1]^\omega\) as \(x \mapsto \paren{f_1(x), f_2(x), \dots}\). \(F\) is an embedding.
+\begin{itemize}
+    \item \(F\) is injective. (Check!)
+    \item \(F: X \ra F(X)\) is an open map. This is because uniform topology is finer than the product topology.
+    \item \(F\) is continuous. Let \(x_0 \in X\) and \(\epsilon > 0\). We find a neighborhood \(U\) of \(x_0\) such that \(x_0 \in U \implies \rho(F(x), F(x_0)) < \epsilon\). Take large enough \(N\) so that \(\frac{1}{N} \leq \frac{\epsilon}{2}\). For each \(n = 1, 2, \dots, N\), choose a neighborhood \(U_n\) of \(x_0\) such that \(x \in U_n \implies \abs{f_n(x) - f_n(x_0)} \leq \frac{\epsilon}{2}\), by continuity of \(f_n\). Then \(U = U_1 \cap \cdots \cap U_N\) is the desired neighborhood. Let \(x \in U\).
+
+    If \(n \leq N\), \(\abs{f_n(x) - f_n(x_0)} \leq \frac{\epsilon}{2}\) by construction of \(U\). If \(n > N\), since \(f_n(x) \leq \frac{1}{n}\), \(\abs{f_n(x) - f_n(x_0)} \leq \frac{1}{n} \leq \frac{1}{N} \leq \frac{\epsilon}{2}\). Thus \(\rho(F(x), F(x_0)) = \sup_{n \in \N} \abs{f_n(x) - f_n(x_0)} < \epsilon\).\footnote{This proof will be useful later when we prove the Nagata-Smirnov metrization theorem.} \qed
+\end{itemize}
+
+The converse of \sref{Theorem 34.1} is not true. Some metric spaces don't have countable bases. We have to weaken the condition to get a equivalent condition. We will come back later.
+
+\topic{The Tietze Extension Theorem}
+
+\thm{35.1} Let \(X\) be a normal space, and \(A\) be a closed subspace of \(X\).
+\begin{enumerate}
+    \item Any continuous map of \(A\) into \([a, b]\) can be extended to a continuous map of \(X\) into \([a, b]\).
+    \item Any continuous map of \(A\) into \(\R\) can be extended to a continuous map of \(X\) into \(\R\).
+\end{enumerate}
+
+\pf \note{Step 1} Given a continuous function \(f : A \ra [-r, r]\), then there exists a continuous function \(g : X \ra \R\) such that \(\abs{g(x)} \leq \frac{1}{3}r\) for all \(x \in X\) and \(\abs{f(a) - g(a)} \leq \frac{2}{3}r\) for all \(a \in A\).
+
+Let \(I_1 = \left[-r, -\frac{1}{3}r\right]\), \(I_2 = \left[-\frac{1}{3}r, \frac{1}{3}r\right]\), \(I_3 = \left[\frac{1}{3}r, r\right]\), \(B = h\inv(I_1)\), \(C = h\inv(I_3)\). Then \(B, C\) are closed. By the Urysohn lemma, there is a continuous function \(g : X \ra \left[-\frac{1}{3}r, \frac{1}{3}r\right]\) such that \(g(x) = -\frac{1}{3}r\) for \(x \in B\), \(g(x) = \frac{1}{3}r\) for \(x \in C\). The condition \(\abs{g(x)} \leq \frac{1}{3}r\) is automatically satisfied. If \(a \in B\), \(f(a), g(a) \in I_1\). If \(a \in C\), \(f(a), g(a) \in I_3\). If \(a \notin B \cup C\), \(f(a), g(a) \in I_2\). So \(\abs{f(a) - g(a)} \leq \frac{2}{3}r\) in all cases.
+
+\note{1} Without loss of generality, let \([a, b] = [-1, 1]\). By \sref{Step 1}, there exists a continuous function \(g_1 : X \ra \R\) such that \(\abs{g_1(x)} \leq \frac{1}{3}\) and \(\abs{f(a) - g_1(a)} \leq \frac{2}{3}\) for all \(a \in A\). Using \sref{Step 1} again on the function \(f(x) - g_1(x)\), there is a continuous function \(g_2 : X \ra \R\) such that \(\abs{g_2(x)} \leq \frac{1}{3} \cdot \frac{2}{3}\) for \(x \in X\) and \(\abs{f(a) - g_1(a) - g_2(a)} \leq \paren{\frac{2}{3}}^2\), for \(a \in A\). Repeat the process to get a continuous function \(g_{n+1} : X \ra \R\) such that
+\[
+    \abs{g_{n+1}(x)} \leq \frac{1}{3} \paren{\frac{2}{3}}^n, \qquad \abs{f(a) - \sum_{k=1}^{n+1}g_k(a)} \leq \paren{\frac{2}{3}}^{n+1}.
+\]
+Let \(g(x) = \sum_{n=1}^\infty g_n(x)\), then \(g(x)\) converges uniformly by the Weierstrass \(M\)-test. So \(g\) is continuous. It is clear that \(g(a) = f(a)\) for all \(a \in A\). To restrict the image to \([-1, 1]\), modify \(g\) by \(r \circ g\) where \(r(y) = y\) if \(\abs{y} \leq 1\), \(r(y) = \frac{y}{\abs{y}}\) if \(\abs{y} \geq 1\).
+
+\note{2} We want to use the fact that \(\R\) is homeomorphic to \((-1, 1)\). But if we look at the proof of (1), we need the range to be a closed interval.
+
+Given \(f: A \ra \R\), replace \(\R\) with \((-1, 1)\) and then extend \(f\) to \(g : X \ra [-1, 1]\). Let \(D = g\inv(\{-1\}) \cup g\inv(\{1\})\). \(D\) is closed in \(X\). Since \(g(A) = f(A) \subset (-1, 1)\), \(A \cap D = \varnothing\). \(A\) and \(D\) are disjoint and closed, so by Urysohn lemma, \(\exists \varphi : X \ra [0, 1]\) such that \(\varphi(D) = \{0\}\), \(\varphi(A) = \{1\}\). Let \(h(x) = \varphi(x)g(x)\). \(h(a) = g(a) = f(a)\) for all \(a \in A\). Also \(h(X)\) maps to the open interval \((-1, 1)\), since \(h(x) = 0\) for \(x \in D\), \(\abs{g(x)} < 1\) if \(x \notin D\). \qed
+
+\pagebreak
