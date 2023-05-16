@@ -1,0 +1,71 @@
+\section*{May 2nd, 2023}
+
+\thm{32.1} Every regular space with a countable basis (2nd countable) is normal.
+
+\pf Let \(X\) be the space with countable basis \(\mc{B}\). Let \(A, B\) be disjoint closed sets of \(X\). \(\forall x \in A\), there exists neighborhood \(W_x\) of \(x\) such that \(\cl{W_x} \subset X \bs B\). (\sref{Lemma 31.1}) There exists \(B_x \in \mc{B}\) such that \(x \in B_x \subset W_x\). Since \(\seq{B_x}_{x\in A} \subset \mc{B}\) and \(\mc{B}\) is countable, rewrite it as \(\seq{U_n}_{n \in \N}\). Note that \(\cl{U_n} \subset X \bs B\), and by construction, \(A \subset \bigcup_{n \in \N} U_n\). Similarly, we can obtain \(\seq{V_n}_{n \in \N} \subset \mc{B}\) such that \(\cl{V_n} \subset X \bs A\) and \(B \subset \bigcup_{n \in \N} V_n\).
+
+To make the sets disjoint, we need a trick. Define \(U_n' = U_n \bs \bigcup_{i=1}^n \cl{V_i}\) and \(V_n' = V_n \bs \bigcup_{i=1}^n \cl{U_i}\). We need to show that \(U' = \bigcup_{n\in \N}U_n'\) still contains \(A\). If \(x \in A\), \(\exists n \in \N\) such that \(x \in U_n\). But \(x \notin \cl{V_i}\) for all \(i\), (\(\cl{V_n} \subset X \bs A\)) so \(x \in U_n'\). Similarly, \(V' = \bigcup_{n \in \N} V_n'\) still contains \(B\).
+
+Finally we show that \(U' \cap V' = \varnothing\). If \(x \in U' \cap V'\), \(\exists j, k\) such that \(x \in U_j' \cap V_k'\). Suppose \(j \leq k\). \(x \in U_j\) but \(x \notin \cl{U_j}\). (\(x \in V_k'\), by construction) This is a contradiction. Also for \(k \leq j\), similar reasoning follows. \qed
+
+\pagebreak
+
+\topic{The Urysohn Lemma}
+
+\thm{33.1} Let \(X\) be a normal space. If \(A, B\) are disjoint closed subsets of \(X\), then there exists a continuous map \(f : X \ra [a, b]\) such that \(f(x) = a\) if \(x \in A\), \(f(x) = b\) if \(x \in B\).
+
+\pf Without loss of generality, let \([a, b] = [0, 1]\).
+
+\note{Step 1} Let \(P = \Q \cap [0, 1]\). Define a map \(p \mapsto U_p\) such that \(p < q\) then \(\cl{U_p} \subset U_q\). (\mast) Since \(P\) is countable, we can inductively define \(U_p\). Let \(P = \{p_1, p_2, \dots\}\) with \(p_1 = 1, p_2 = 0\). Let \(U_{p_1} = U_1 = X \bs B\). \(U_1\) is an open set containing a closed set \(A\), so there exists an open set \(U_{p_2} = U_0\) such that \(A \subset U_0\) and \(\cl{U_0} \subset U_1\). (\sref{Lemma 31.1})
+
+Let \(P_n = \{p_1, \dots, p_n\}\). (\(n\geq 2\)) Suppose \(U_p\) is defined for \(p \in P_n\) and satisfies (\mast). Let
+\[
+    s = \max\{p \in P_n : p < p_{n+1}\}, \quad t = \min\{q \in P_n : p_{n+1} < q\}.
+\]
+Since \(s < t\), \(\cl{U_s} \subset U_t\) by the induction hypothesis. Because \(X\) is normal and \(\cl{U_s}\) is closed, there exists open set \(U_{p_{n+1}}\) of \(X\) such that \(\cl{U_s} \subset U_{p_{n+1}}\) and \(\cl{U_{p_{n+1}}} \subset U_t\).
+
+Now we show that (\mast) holds for all \(p, q \in P_{n+1}\). If \(p, q \in P_n\), trivial, so suppose either \(p\) or \(q\) is equal to \(p_{n+1}\). If \(p = p_{n+1} < q\), then \(p_{n+1} < t \leq q\) and \(\cl{U_{p_{n+1}}} \subset U_t \subset \cl{U_t} \subset U_q\). The case \(p < q = p_{n+1}\) can be done similarly.
+
+\note{Step 2} Extend the above map \(p \mapsto U_p\) by setting \(U_p = \varnothing\) if \(p < 0\), \(U_p = X\) if \(p > 1\). This map still satisfies (\mast). Define \(\Q(x) = \{p \in \Q : x \in U_p\}\), and \(f(x) = \inf \Q(x)\). We show that this \(f\) is the desired function.
+
+\begin{enumerate}
+    \item \(f(X) \subset [0, 1]\). \\
+    For all \(x \in X\), \(\Q(x) \cap (-\infty, 0) = \varnothing\) and \((1, \infty) \cap \Q \subset \Q(x)\).
+
+    \item \(x \in \cl{U_r} \implies f(x) \leq r\). \\
+    For \(r < s\), then \(x \in \cl{U_r} \subset U_s\). \((r, \infty) \cap \Q \subset \Q(x)\). So \(f(x) = \inf \Q(x) \leq r\). In particular, if \(x \in A\), then \(x \in \cl{U_0}\). So, \(f(x) = 0\).
+
+    \item \(x \notin U_r \implies f(x) \geq r\). \\
+    For \(s < r\), \(x \notin U_s \subset \cl{U_s} \subset U_r\). So \(\Q(x) \cap (-\infty, r) = \varnothing\). So \(f(x) = \inf \Q(x) \geq r\). In particular, if \(x \in B\), then \(x \notin U_1\), so \(f(x) = 1\).
+\end{enumerate}
+
+Finally, we show that \(f\) is continuous. Let \(x_0 \in X\) and \(f(x_0) \in (c, d)\). Choose \(p, q \in \Q\) such that \(p < f(x_0) < q\). There exists a neighborhood \(U = U_q \bs \cl{U_p}\) of \(x_0\) such that \(f(U) \subset (c, d)\).
+\begin{itemize}
+    \item \(x_0 \in U = U_q \bs \cl{U_p}\). \\
+    \(f(x_0) < q \implies x_0 \in U_q\) by (3), and \(f(x_0) > p \implies x_0\notin \cl{U_p}\) by (2).
+
+    \item \(f(U) \subset [p, q]\). \\
+    For \(x \in U\), \(x \in U_q \subset \cl{U_q}\), so \(f(x) \leq q\). Also \(x \notin \cl{U_p}\), \(x \notin U_p\), so \(f(x) \geq p\) by (3). \qed
+\end{itemize}
+
+\rmk Due to the Urysohn lemma, we can describe normality as the following: \(X\) is normal if and only if for every pair of disjoint closed sets \(A, B\) of \(X\), there exists a continuous function \(f : X \ra [0, 1]\) such that \(f(A) = \{0\}\), \(f(B) = \{1\}\). The converse direction is obtained by preimages of \(\left[0, \frac{1}{3}\right), \left(\frac{2}{3}, 1\right]\) by \(f\).
+
+Can we replace `normal' to `regular'? Sadly, no, which is why we have another separation axiom.
+
+\defn. \note{Completely Regular} A space \(X\) is \textbf{completely regular} if one-point sets are closed, and for a point \(x_0\) and a closed set \(A\) not containing \(x_0\), there exists a continuous function \(f: X \ra [0, 1]\) such that \(f(x_0) = 1\) and \(f(A) = \{0\}\).
+
+\rmk Normal \mimp Completely Regular \mimp Regular. The converse is false for both cases.
+
+\rmk The separation axioms: \(T_1\), \(T_2\) (Hausdorff), \(T_3\) (regular), \(T_4\) (normal).\footnote{T comes from the German word Trennungsaxiom.}
+
+\thm{33.2} A subspace/product of a completely regular space is completely regular.
+
+\pf \note{Subspace} Check by yourself.
+
+\note{Product} Let \(X = \prod X_\alpha\). Let \(\bf{b} = (b_\alpha) \in X\) and \(A\) be closed in \(X\) and \(\bf{b} \notin A\). Choose a basis element \(\prod U_\alpha\) containing \(\bf{b}\), such that \(\prod U_\alpha \cap A = \varnothing\). This is possible since \(X \bs A\) is open and \(x_0 \in X \bs A\). Suppose that \(U_\alpha \neq X_\alpha\) for \(\alpha = \alpha_1, \dots, \alpha_n\). For all \(i\), there exists a continuous function \(f_i: X_{\alpha_i} \ra [0, 1]\) such that \(f_i(b_{\alpha_i}) = 1\) and \(f_i(X_{\alpha_i} \bs U_{\alpha_i}) = \{0\}\). Then let
+\[
+    f(\bf{x}) = f_1 \paren{\pi_{\alpha_1} (\bf{x})} \cdot \cdots \cdot f_n \paren{\pi_{\alpha_n} (\bf{x})}.
+\]
+\(f(\bf{b}) = 1\), and if \(x \notin \prod U_\alpha\), \(f(x) = 0\). In particular, if \(x \in A\), then \(f(x) = 0\). Also, \(f\) is continuous since each \(f_i\) is continuous.
+
+\pagebreak
