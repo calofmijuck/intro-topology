@@ -1,0 +1,69 @@
+\section*{May 11th, 2023}
+
+\lemma{39.2} Let \((X, d)\) be a metric space. If \(\mc{A}\) is an open covering of \(X\), then there exists an open covering \(\mc{E}\) of \(X\) such that \(\mc{E}\) is a refinement of \(\mc{A}\) and \(\mc{E}\) is countably locally finite.
+
+\pf We will use the well-ordering theorem. If \(A\) is a set, then there exists an order relation on \(A\) that is well-ordered.\footnote{Every non-empty subset of \(A\) has a smallest element.} Choose a well-ordering \(<\) for \(\mc{A}\). Fix \(n\). For \(U \in \mc{A}\), define
+\[
+    S_n(U) = \left\{x \in X : B_d\paren{x, \frac{1}{n}} \subset U\right\}
+\]
+and \(T_n(U) = S_n(U) - \bigcup_{V < U} V\).
+
+\quad \claim. If \(V \neq W \in \mc{A}\), then \(d(x, y) \geq \frac{1}{n}\) for all \(x \in T_n(V)\), \(y \in T_n(W)\).
+
+\quad \pf Assume \(V < W\). \(B_d\paren{x, \frac{1}{n}} \subset V\). But \(y \notin V\), so \(d(x, y) \geq \frac{1}{n}\).
+
+Define open sets \(E_n(U)\) as
+\[
+    E_n(U) = \bigcup_{x \in T_n(U)} B_d\paren{x, \frac{1}{3n}}.
+\]
+Similarly, \(d(x, y) \geq \frac{1}{3n}\). Take \(x' \in T_n(V)\) with \(d(x, x') < \frac{1}{3n}\), \(y' \in T_n(W)\) with \(d(y, y') < \frac{1}{3n}\). Then by triangle inequality, \(d(x, y) + d(x, x') + d(y, y') \geq d(x', y') \geq \frac{1}{n}\).
+
+For \(x \in E_n(V)\), \(\exists x' \in T_n(V)\) with \(d(x, x') < \frac{1}{3n}\). Since \(T_n(V) \subset S_n(V)\), \(B_d\paren{x', \frac{1}{n}} \subset V\) and \(x \in B_d\paren{x', \frac{1}{n}}\). So for \(V \in \mc{A}\), \(E_n(V) \subset V\). Now set
+\[
+    \mc{E}_n = \{E_n(U) : U \in \mc{A}\}.
+\]
+\begin{itemize}
+    \item \(\mc{E}_n\) is a refinement of \(\mc{A}\), since \(E_n(V) \subset V\) for \(V \in \mc{A}\).
+    \item \(\mc{E}_n\) is locally finite. \(\forall x \in X\), \(B_d\paren{x, \frac{1}{6n}}\) intersects at most one element of \(\mc{E}_n\).
+\end{itemize}
+
+\quad \claim. \(\mc{E} = \bigcup_{n \in \N} \mc{E}_n\) covers \(X\).
+
+\quad \pf Let \(x \in X\), choose \(U\) to be the first element of \(\mc{A}\) containing \(x\), in the well-ordering \(<\). There exists \(n\) such that \(B_d\paren{x, \frac{1}{n}} \subset U\), then \(x \in S_n(U)\). But \(U\) is the first element containing \(x\), so \(x \in T_n(U)\). \(T_n(U) \subset E_n(U) \in \mc{E}_n\), so \(\mc{E}\) is an open covering of \(X\). \qed
+
+In this way, we can produce an open covering that is countably locally finite.
+
+\rmk Well-ordering theorem is equivalent to the axiom of choice.
+
+Now we can show the Nagata-Smirnov Metrization theorem.
+
+\topic{The Nagata-Smirnov Metrization Theorem}
+
+\defn. \note{\(G_\delta\)-set} A subset \(A\) of \(X\) is a \textbf{\(G_\delta\)-set} if it equals the intersection of a countable collection of open subsets of \(X\).
+
+\ex.
+\begin{enumerate}
+    \item If \(X\) is 1st countable and Hausdorff, \(\{x\}\) is a \(G_\delta\)-set for all \(x \in X\).
+    \item If \(X\) is a metric space, each closed set \(A\) is a \(G_\delta\)-set.
+    \[
+        U(A, \epsilon) = \{x \in X : d(x, A) < \epsilon\} = \bigcup_{a \in A} B_d(a, \epsilon).
+    \]
+    The last equality should be checked. Write \(A = \bigcap_{n \in \N} U\paren{A, \frac{1}{n}}\). If \(x \in U\paren{A, \frac{1}{n}}\), \(\exists a_n \in A\) such that \(x \in B_d\paren{a_n, \frac{1}{n}}\). \(a_n \in B_d\paren{x, \frac{1}{n}}\), which implies \(x \in \cl{A} = A\).
+\end{enumerate}
+
+\lemma{40.1} If \(X\) is a regular space with a basis \(\mc{B}\) that is countably locally finite, then \(X\) is normal and every closed set in \(X\) is a \(G_\delta\)-set in \(X\).
+
+\pf We first show that every closed set in \(X\) is a \(G_\delta\)-set in \(X\). \\
+\note{Step 1} Let \(W\) be open in \(X\). There exists a countable collection \(\seq{U_n}\) of open sets of \(X\) such that \(W = \bigcup U_n = \bigcup \cl{U_n}\).
+
+\(\mc{B} = \bigcup_{n \in \N} \mc{B}_n\) where \(\mc{B}_n\) is locally finite. Consider \(\mc{C}_n = \{B \in \mc{B}_n : \cl{B} \subset W\}\). This is a subcollection, so it is also locally finite. Define \(U_n = \bigcup_{B \in \mc{C}_n} B\), then \(U_n\) is open, \(\cl{U_n} = \bigcup_{B \in \mc{C}_n} \cl{B_n}\). (\sref{Lemma 39.1}) So \(\bigcup U_n \subset \bigcup \cl{U_n} \subset W\). To show the other direction, Let \(x \in W\). By regularity, there exists \(B \in \mc{B}\) such that \(x \in B\) and \(\cl{B} \subset W\). \(\exists n\) such that \(B \in \mc{B}_n\). So \(B \in \mc{C}_n\) by definition, so \(x \in U_n\). \(W \subset \bigcup U_n\).
+
+\note{Step 2} \(X\) is normal. Let \(C, D\) be disjoint closed sets in \(X\). By \sref{Step 1}, there is a countable collection \(\seq{U_n}\) of open sets such that \(X \bs D = \bigcup U_n = \bigcup \cl{U_n}\). Then \(\cl{U_n} \subset X \bs D\), \(C \subset \bigcup U_n\) since \(C, D\) are disjoint. Similarly, there exists \(\seq{V_n}\) such that \(\cl{V_n} \subset X \bs C\) and \(D \subset \bigcup V_n\).
+
+Now repeat the proof of \sref{Theorem 32.1}. (regular space with countable basis is normal) \qed
+
+\lemma{40.2} If \(X\) is normal and \(A\) is a closed \(G_\delta\)-set in \(X\), there exists a continuous function \(f : X \ra [0, 1]\) such that \(f(x) = 0\) if \(x \in A\) and \(f(x) > 0\) if \(x \notin A\).
+
+\pf Let \(A = \bigcap U_n\), \(U_n\) open. By the Urysohn lemma, for each \(n \in \N\), there is a continuous map \(f_n : X \ra [0, 1]\) such that \(f_n(x) = 0\) if \(x \in A\), \(f_n(x) = 1\) if \(x \in X \bs U_n\). Define \(f(x) = \sum \frac{f_n(x)}{2^n}\), which is continuous since it converges uniformly. \(f\) is the desired function. \qed
+
+\pagebreak
