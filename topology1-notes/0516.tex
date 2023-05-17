@@ -1,0 +1,93 @@
+\section*{May 16th, 2023}
+
+\thm{40.3} \note{Nagata-Smirnov Metrization Theorem} \(X\) is metrizable if and only if \(X\) is regular and has a countably locally finite basis.
+
+\pf \note{\mimp} If \(X\) is metrizable, it is normal by \sref{Theorem 32.2}, so it is regular. For \(m \in \N\), define \(\mc{A}_m = \left\{B_d\paren{x, \frac{1}{m}} : x \in X\right\}\). By \sref{Lemma 39.2}, there is an open covering \(\mc{B}_m\) of \(X\) refining \(\mc{A}_m\) such that \(\mc{B}_m\) is countably locally finite. Write \(\mc{B}_m = \bigcup_{l \in \N} B_{m, l}\). Then \(\mc{B} = \bigcup_{m \in \N} \mc{B}_m\) will be countably locally finite.\footnote{Countable union of countable sets is countable.}
+
+Next we need to show that \(\mc{B}\) is a basis for \(X\). Given \(x \in X\) and \(\epsilon > 0\), choose \(m\) such that \(\frac{1}{m} < \frac{\epsilon}{2}\). Since \(\mc{B}_m\) covers \(X\), \(\exists B \in \mc{B}_m\) such that \(x \in B\). \(\mc{B}_m\) is a refinement of \(\mc{A}\), so \(\diam B \leq \frac{2}{m} < \epsilon\). \(x \in B \subset B_d(x, \epsilon)\) and we conclude that \(\mc{B}\) is a countably locally finite basis.
+
+\note{\mimpd} By \sref{Lemma 40.1}, \(X\) is normal and every closed set in \(X\) is a \(G_\delta\)-set in \(X\). We show that \(X \hookrightarrow (\R^J, \bar{\rho})\) for some \(J\). Write \(\mc{B} = \bigcup \mc{B}_n\) where \(\mc{B}_n\) is locally finite.
+
+For each \(n \in \N\) and \(B \in \mc{B}_n\), there exists a continuous function \(f_{n, B}: X \ra \left[0, \frac{1}{n}\right]\) such that \(f_{n, B}(x) = 0\) for all \(x \in X \bs B\), \(f_{n, B}(x) > 0\) for all \(x \in B\). (\sref{Lemma 40.2}) Then \(\{f_{n, B}\}\) separates points from closed sets of \(X\), because \(\forall x_0 \in X\), for every neighborhood \(U\) of \(x_0\), there is a basis element \(B \in \mc{B}\) such that \(x_0 \in B \subset U\). Then for some \(n \in \N\), \(B \in \mc{B}_n\). So \(f_{n, B}(x) = 0\) for \(x \in X \bs B\), \(f_{n, B}(x) > 0\) for \(x \in B\).
+
+Let \(J = \{(n, B) \in \N \times \mc{B} : B \in \mc{B}_n\}\). Define \(F: X \ra [0, 1]^J\) where \(x \mapsto \paren{f_{n, B}(x)}_{(n, B) \in J}\). If \([0, 1]^J\) is given the product topology, then we know that \(F\) is an imbedding. (\sref{Theorem 34.2}) In this cases, equip \([0, 1]^J\) with the uniform topology. It is clear that \(F\) is still injective, and that \(F\) is an open map of \(X\) onto \(Z = F(X)\), since the uniform topology is finer. But we don't know if \(F\) is continuous yet. Our task is to show that \(F\) is continuous.
+
+Note that \(\bar{\rho}\mid_{[0, 1]^J \times [0, 1]^J} = \rho\) where \(\rho\paren{(x_\alpha), (y_\alpha)} = \sup \{\abs{x_\alpha - y_\alpha}\}\). We will show that \(\forall x_0 \in X\), \(\forall \epsilon > 0\), there exists a neighborhood \(W\) of \(x_0\) such that \(x \in W \implies \rho\paren{F(x), F(x_0)} < \epsilon\).
+
+Fix \(n \in \N\). \(\mc{B}_n\) is locally finite, so there is a neighborhood \(U_n\) of \(x_0\) that intersects only finitely many elements of \(\mc{B}_n\). Define \(\mc{C}_n = \{B \in \mc{B}_n : U_n \cap B \neq \varnothing\}\), then this set is finite. Note that if \(B \notin \mc{C}_n\), \(U_n \subset X \bs B\), so \(f_{n, B} \mid_{U_n} \equiv 0\) by construction.
+
+Since each \(f_{n, B}\) is continuous, for \(B \in \mc{C}_n\), there is a neighborhood \(V_{n, B}\) of \(x_0\) such that \(V_{n, B} \subset U_n\) and \(\abs{f_{n, B} (x) - f_{n, B} (x_0)} \leq \frac{\epsilon}{2}\) for all \(x \in V_{n, B}\).
+
+Choose \(N\) large enough so that \(\frac{1}{N} \leq \frac{\epsilon}{2}\), define \(W = \bigcap_{n \leq N, B \in \mc{C}_n} V_{n, B}\). \(W\) is a finite intersection of open sets, so \(W\) is a neighborhood of \(x_0\). It is enough to show that \(\abs{f_{n, B}(x) - f_{n, B}(x_0)} \leq \frac{\epsilon}{2}\) for \(n \in \N\), \(B \in \mc{B}_n\), since \(\rho\) is defined as the supremum.
+\begin{itemize}
+    \item Case 1. If \(n > N\), \(\abs{f_{n, B}(x) - f_{n, B}(x_0)} \leq \frac{1}{n} < \frac{1}{N} \leq \frac{\epsilon}{2}\) for all \(x \in X\). (\(\leq \frac{1}{n}\) by construction)
+    \item Case 2. If \(B \notin \mc{C}_n\), \(\abs{f_{n, B}(x) - f_{n, B}(x_0)} = 0\) for all \(x \in U_n\), by the note above.\footnote{Since \(W \subset U_n\) by definition, this is okay.}
+    \item Case 3. If \(n \leq N\) and \(B \in \mc{C}_n\), \(\abs{f_{n, B}(x) - f_{n, B}(x_0)} \leq \frac{\epsilon}{2}\) for all \(x \in W\) by definition of \(W\).
+\end{itemize}
+Take the supremum, and we are done. \qed
+
+Compare this proof with the proof of \sref{Theorem 34.1}. (Urysohn metrization theorem)
+
+\pagebreak
+
+\chapter{Complete Metric Spaces and Function Spaces}
+
+\setcounter{topic}{42}
+
+\topic{Complete Metric Spaces}
+
+\defn. \note{Cauchy Sequence} Let \((X, d)\) be a metric spae. A sequence \(\seq{x_n}\) of points in \(X\) is a \textbf{Cauchy sequence} if
+\begin{center}
+    \(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(n, m \geq N \implies d(x_n, x_m) < \epsilon\).
+\end{center}
+
+\defn. \note{Completeness} \((X, d)\) is \textbf{complete} if every Cauchy sequence converges.
+
+\ex.
+\begin{enumerate}
+    \item If \((X, d)\) is complete, let \(A \subset X\) be a closed subspace of \(X\). Then \((A, d\mid_{A \times A})\) is complete.
+    \item \((X, d)\) is complete if and only if \((X, \bar{d})\) is complete.
+\end{enumerate}
+Often, the following statement is easier to verify.
+
+\lemma{43.1} \((X, d)\) is complete if every Cauchy sequence has a convergent subsequence.
+
+\pf Let \(\seq{x_n}\) be Cauchy, and \(x_{n_i} \ra x\). \(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(n, m \geq N \implies d(x_n, x_m) < \frac{\epsilon}{2}\). \(\exists n_i \geq N\) such that \(d(x_{n_i}, x) < \frac{\epsilon}{2}\). Then for all \(n \geq N\), \(d(x_n, x) \leq d(x_n, x_{n_i}) + d(x_{n_i}, x) < \epsilon\). \qed
+
+\thm{43.2} \((\R^k, d)\) and \((\R^k, \rho)\) are complete.
+
+\pf Let \(\seq{x_n}\) be Cauchy in \(\R^k\). We show that \(\seq{x_n}\) is bounded. \(\exists N \in \N\) such that \(n, m \geq N \implies \rho(x_n, x_m) \leq 1\). Take a large radius \(M = \max\{\rho(0, x_1), \dots, \rho(0, x_{N-1}), \rho(0, x_N) + 1\}\).
+
+Then \(\rho(0, x_n) \leq M\) for all \(n\). Then \(\seq{x_n} \subset [-M, M]^k\), which is compact and also sequentially compact. So \(\seq{x_n}\) has a convergent subsequence and \((\R^k, \rho)\) is complete. (\sref{Theorem 28.2})
+
+As for \((\R^k, d)\), simply note that \(d\) and \(\rho\) are comparable due to the inequality \(\rho(x, y) \leq d(x, y) \leq \sqrt{k} \rho(x, y)\). A Cauchy sequence with respect to \(\rho\) is also a Cauchy sequence with respect to \(d\). \qed
+
+\rmk \note{Lemma 43.3} Let \(X = \prod X_\alpha\) be a product space, and let \(\seq{\bf{x}_n}\) be a sequence of \(X\). Then \(\bf{x}_n \ra \bf{x}\) if and only if \(\pi_\alpha(\bf{x}_n) \ra \pi_\alpha(\bf{x})\) for all \(\alpha \in J\).
+
+\pf Simple exercise. \qed
+
+\thm{43.4} There is a metric \(D\) for the product space \(\R^\omega\) relative to which \(\R^\omega\) is complete.
+
+\pf Reuse the metric
+\[
+    D(\bf{x}, \bf{y}) = \sup \left\{ \frac{\bar{d}(\pi_i (\bf{x}), \pi_i(\bf{y}))}{i}\right\},
+\]
+where \(\bar{d}(a, b) = \min\{\abs{a - b}, 1\}\). We know that \(\R^\omega\) has the product topology with this metric. (\sref{Theorem 20.5}) Let \(\seq{\bf{x}_n}\) be Cauchy. \(\bar{d}(\pi_i(\bf{x}), \pi_i(\bf{y})) \leq i D(\bf{x}, \bf{y})\) for all \(i\). Then \(\pi_i(\bf{x}_n)\) is a Cauchy sequence for fixed \(i\), with respect to the metric \(\bar{d}\) in \(\R\). So it converges, say to \(a_i\). Then \(\bf{x}_n \ra (a_1, a_2, \dots) \in \R^\omega\). \qed
+
+\ex. \((-1, 1) \subset \R\) is not complete. Consider \(x_n = 1 - \frac{1}{n}\). But \((-1, 1)\) is homeomorphic to \(\R\). So we see that completeness is not a topological property and it depends on the metric.
+
+Since \(\R^J\) with the product topology is not metrizable, nothing to say more about this example.
+
+\notation Recall that \(x \in Y^J\) could be written as \(x = (x_\alpha)_{\alpha \in J} = (x(\alpha))\) where \(x : J \ra Y\).
+
+\recall \(\bar{\rho}(\bf{x}, \bf{y}) = \sup\{\bar{d}(x(\alpha), y(\alpha)) : \alpha \in J\}\).
+
+\thm{43.5} If a metric space \((Y, d)\) is complete, then \((Y^J, \bar{\rho})\) is complete.
+
+\pf \((Y, \bar{d})\) is also complete. Let \(\seq{f_n}\) be a Cauchy sequence in \((Y^J, \bar{\rho})\). Given \(\alpha \in J\),
+\[ \tag{\mast}
+    \bar{d}\paren{f_n(\alpha), f_m(\alpha)} \leq \bar{\rho}(f_n, f_m).
+\]
+So \(\seq{f_n(\alpha)}\) is Cauchy in \((Y, \bar{d})\), and it converges, say to \(y_\alpha \in Y\). Define \(f : J \ra Y\) by \(f(\alpha) = y_\alpha\), then \(f \in Y^J\). Now we show that \(f_n \ra f\) in the metric \(\bar{\rho}\).
+
+\(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(n,m \geq N \implies \bar{\rho}(f_n, f_m) < \frac{\epsilon}{2}\). Fix \(n \geq N\) and \(\alpha \in J\), then let \(m \ra \infty\) in (\mast). We have \(\bar{d}\paren{f_n(\alpha), f(\alpha)} \leq \frac{\epsilon}{2}\), so \(\bar{\rho}(f_n, f) \leq \frac{\epsilon}{2} < \epsilon\). \qed
