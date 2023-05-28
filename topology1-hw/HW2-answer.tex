@@ -25,7 +25,15 @@
 \vspace{7mm}
 
 \begin{minipage}[t][260mm]{90mm}
-    {\bfseries \large \#1.}
+    {\bfseries \large \#1.} \(f\) is continuous. Let \(x_0 \in X\). Given \(\epsilon > 0\), \(B_d(f(x_0), \epsilon)\) is a neighborhood of \(f(x_0)\). Then for all \(x \in B_d(x_0, \epsilon)\), \(d(x, x_0) = d(f(x), f(x_0)) < \epsilon\), so \(f(x) \in B_d(f(x_0), \epsilon)\).
+
+    \(f\) is injective. If \(f(x) = f(y)\), \(d(f(x), f(y)) = d(x, y) = 0\), so \(x = y\).
+
+    \(f\) is surjective. Since \(X\) is compact, \(f(X)\) is compact. \(X\) is Hausdorff, so \(f(X)\) is closed. If \(a \in X - f(X)\), there exists a basis element \(B_d(a, \epsilon)\) (\(\epsilon > 0\)) containing \(a\) and contained in \(X - f(X)\). Then \(B_d(a, \epsilon) \cap f(X) = \varnothing\). Set \(x_1 = a\), \(x_{n+1} = f(x_n)\). Then for \(n, m \in \N\), \(d(x_n, x_m) = d(x_1, x_{m-n+1})\) since \(f\) is an isometry. If \(n \neq m\), \(x_{m-n+1} \in f(X)\), so \(d(x_n, x_m) = d(x_1, x_{m-n+1}) \geq \epsilon\). (\mast) \(X\) is a compact metric space, so it must be sequentially compact. So there is a convergent subsequence of \(\seq{x_n}\). However, the subsequence is not Cauchy by (\mast), so it does not converge. Thus \(a \in f(X)\).
+
+    \(f\inv\) is continuous. \(X\) is compact, so a for any closed subset \(C\) of \(X\), \(C\) is compact. Then \(f(C)\) is compact since \(f\) is continuous. Then since \(X\) is Hausdorff, so \(f(C)\) is closed. \(f\) is bijective and is a closed map, so \(f\inv\) is continuous.
+
+    From these conditions, \(f\) is bijective and a homeomorphism.
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][260mm]{90mm}
@@ -39,7 +47,11 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#2.}
+    {\bfseries \large \#2.} Let \(\mc{A}\) be an open covering of \(X \times Y\). For each \(x \in X\), take a finite subcover \(\{A_{x, 1}, \dots, A_{x, m_x}\} \\\subset \mc{A}\) that covers \(x \times Y\). This is possible since \(x \times Y\) is homeomorphic to a compact space \(Y\). Then \(\bigcup_{i=1}^{m_x} A_{x, i}\) is an open set of \(X \times Y\) containing \(x \times Y\).
+
+    By the tube lemma, there is a neighborhood \(W_x\) of \(x\) in \(X\) such that \(W_x \times Y \subset \bigcup_{i=1}^{m_x} A_{x, i}\). \(\bigcup_{x \in X} W_x\) is an open cover of \(X\). Since \(X\) is Lindelöf, there exists a countable subcover \(\seq{W_{x_n}}_{n \in \N}\) of \(X\). We can write \(X = \bigcup_{n \in \N} W_{x_n}\).
+
+    Then \(X \times Y = \bigcup_{n\in \N} (W_{x_n} \times Y)\) and \(W_{x_n} \times Y \subset \bigcup_{i=1}^{m_{x_n}} A_{x_n, i}\), so \(\bigcup_{n\in \N} \bigcup_{i=1}^{m_{x_n}} A_{x_n, i}\) is a countable subcollection covering \(X \times Y\). Thus \(X \times Y\) is Lindelöf.
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -54,7 +66,17 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#3.}
+    {\bfseries \large \#3.} Let \(C, D\) be disjoint closed subsets of \(Y\). \(p\) is continuous, so \(p\inv(C), p\inv(D)\) are disjoint and closed in \(X\). Since \(X\) is normal, there exists a disjoint pair of open sets \(U, V\) such that \(p\inv(C) \subset U\), \(p\inv(D) \subset V\). Also, \(X \bs U\), \(X \bs V\) are closed, so \(p(X\bs U), p(X\bs V)\) are closed. Define
+    \[
+        U' = Y \bs p(X \bs U), \quad V' = Y \bs p(X \bs V).
+    \]
+    Then \(U', V'\) are disjoint open sets in \(Y\), such that \(C \subset U'\), \(D \subset V'\).
+
+    \(C \subset U'\). For \(y \in C\), suppose that \(y \in p(X \bs U)\). \(p\) is surjective, so choose \(x \in X \bs U\) such that \(y = p(x)\). But \(x \in p\inv(C) \subset U\), which is a contradiction. \(y \notin p(X \bs U)\) and \(y \in U'\). \(D \subset V'\) can be shown similarly.
+
+    \(U', V'\) are disjoint. Suppose that \(y \in U' \cap V'\). Then \(y \notin p(X\bs U) \cup p(X \bs V)\). But this is impossible due to the surjectivity of \(p\). There exists \(x \in X\) such that \(y = p(x)\), and since \(U, V\) are disjoint, \(x \in X \bs U\) or \(x \in X \bs V\). So \(y = p(x) \in p(X \bs U) \cup p(X\bs V)\).
+
+    Also, one point sets are closed in \(Y\) since it is an image of some one point set of \(X\), which is closed. Hence \(Y\) is normal.
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -69,7 +91,23 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#4.}
+    {\bfseries \large \#4.} \note{\mimp} \(\{0\}, \{1\}\) are closed in \([0, 1]\), so \(A = f\inv(\{0\})\), \(B = f\inv(\{1\})\) are closed since \(f\) is continuous. Also \(A \cap B = f\inv(\{0\}) \cap f\inv(\{1\}) = \varnothing\). Let \(P = \Q \cap (0, 1)\). For \(r \in P\), \([0, r), (r, 1]\) are open subsets of \([0, 1]\), so \(f\inv\paren{[0, r)}, f\inv\paren{(r, 1]}\) are open subsets of \(X\). Then
+    \[
+        A = \bigcap_{r \in P} f\inv\paren{[0, r)}, \quad B = \bigcap_{r\in P} f\inv\paren{(r, 1]},
+    \]
+    since \(\bigcap_{r\in P} f\inv\paren{[0, r)} = f\inv\paren{\bigcap_{r \in P} [0, r)} = f\inv(\{0\}) = A\). It can be shown similarly for \(B\). \(P\) is countable, so \(A, B\) are disjoint closed \(G_\delta\) sets in \(X\).
+
+    \note{\mimpd} By \sref{Lemma 40.2}, there exists continuous functions \(f_A : X \ra [0, 1]\) and \(f_B : X \ra [0, 1]\) such that
+    \begin{itemize}
+        \item \(f_A(x) = 0\) if \(x \in A\), \(f_A(x) > 0\) if \(x \notin A\).
+        \item \(f_B(x) = 0\) if \(x \in B\), \(f_B(x) > 0\) if \(x \notin B\).
+    \end{itemize}
+    Define \(f : X \ra [0, 1]\) as
+    \[
+        f(x) = \frac{f_A(x)}{f_A(x) + f_B(x)}, \quad (x \in X).
+    \]
+    Then for \(x \in A\), \(f(x) = 0\). If \(x \in B\), \(f(x) = 1\) (\(f_A(x) > 0\)). If \(x \notin A\cup B\), \(0 < f(x) < 1\) since \(0 < f_A(x) < f_A(x) + f_B(x)\).
+
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -84,7 +122,22 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#5.}
+    {\bfseries \large \#5.} \note{\mimp} Let \((X, d)\) be a compact Hausdorff metric space. For each \(n \in \N\), the collection \(\left\{B_d\paren{x, \frac{1}{n}} : x \in X\right\}\) is a cover of \(X\). \(X\) is compact, so choose a finite subcover \(\B_n\),
+    \[
+        \B_n = \left\{B_d\paren{x_{n, k}, \frac{1}{n}} : k = 1, \dots, M_n\right\}
+    \]
+    Since countable union of finite sets is countable, \(\B = \bigcup_{n \in \N} \B_n\) is countable. We now check that \(\B\) is a basis.
+
+    For every \(x \in X\), \(\exists n, k \in \N\) such that \(x \in B_d\paren{x_{n, k}, \frac{1}{n}}\) since \(\B_n\) is a cover of \(X\).
+
+    Next, for every \(x \in X\) and any neighborhood \(U\) of \(x\), there is a basis element \(B_d(x, \epsilon)\) such that \(x \in B_d(x, \epsilon) \subset U\). We now choose \(N\) large enough so that \(\frac{1}{N} < \frac{\epsilon}{2}\). Then choose an element from \(\B_N\) such that \(x \in B_d\paren{x_{N, k}, \frac{1}{N}}\). For all \(y \in B_d\paren{x_{N, k}, \frac{1}{N}}\),
+    \[
+        d(x, y) \leq d(x, x_{N, k}) + d(x_{N, k}, y) < \frac{2}{N} < \epsilon.
+    \]
+    So \(y \in B_d(x, \epsilon)\), and \(x \in B_d\paren{x_{N, k}, \frac{1}{N}} \subset B_d(x, \epsilon) \subset U\). Thus \(\B\) is a countable basis.
+
+    \note{\mimpd} Let \(X\) be a compact Hausdorff space having a countable basis. By \sref{Theorem 32.3}, compact Hausdorff spaces are normal. So \(X\) is regular and has a countable basis. By Urysohn metrization theorem, \(X\) is metrizable.
+
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -99,7 +152,10 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#6.}
+    {\bfseries \large \#6.} Let \(X\) be normal and \(A, B\) be disjoint closed subsets of \(X\). Let \(F = A\cup B\), which is closed in \(X\). Define a continuous map \(\varphi : F \ra [0, 1]\) as \(\varphi(x) = 0\) if \(x \in A\), \(\varphi(x) = 1\) if \(x \in B\). \(\varphi\) is continuous by the pasting lemma.
+
+    Now by Tietze extension theorem, extend the map \(\varphi\) to a continuous function \(f : X \ra [0, 1]\). Then \(f(x) = 0\) for \(x \in A\), \(f(x) = 1\) for \(x \in B\), which is the desired function in the Urysohn lemma.
+
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -114,7 +170,11 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#7.}
+    {\bfseries \large \#7.} (a) We show that \(Z \bs Y\) is open. Let \(a \in Z \bs Y\), \(b = r(a) \in Y\). \(Z\) is Hausdorff, so there are disjoint neighborhoods \(U, V\) of \(a, b\) respectively. Then \(V \cap Y\) is open in \(Y\), so \(r\inv(V\cap Y)\) is open in \(X\), and \(r\inv(V\cap Y) \cap U\) is open in \(X\).
+
+    Then \(r\inv(V\cap Y) \cap U\) is a neighborhood of \(a\) contained in \(Z \bs Y\). \(a \in U\) by construction, \(a \in r\inv(V\cap Y)\) since \(b = r(a) \in V \cap Y\). Also, if \(x \in r\inv(V\cap Y) \cap U\), then \(x \in U\) and \(r(x) \in V \cap Y\). But \(U \cap V = \varnothing\), so \(r(x) \neq x\) and \(x \notin Y\). Thus \(Z \bs Y\) is open and \(Y\) is closed.
+
+    (b) Suppose that there exists a continuous function \(r : \R^2 \ra A\) such that \(r(a) = a\) for \(a \in A\). Since \(\R^2\) is connected, \(r(\R^2) = A\) must be connected. But \(A\) is a two-point set, which is disconnected. Contradiction.
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
@@ -129,11 +189,53 @@
 \vspace{5mm}
 
 \begin{minipage}[t][270mm]{90mm}
-    {\bfseries \large \#8.}
+    {\bfseries \large \#8.} Let \(\B_1\) be the collection of all open intervals in \(\R\) that do not contain \(0\). Also let
+    \[
+        \B_2 = \{(-a, 0) \cup \{x\} \cup (0, a) : a > 0,\, x \in \{p
+    , q\}\}.
+    \]
+    We are given that \(\B = \B_1 \cup \B_2\) is a basis of \(X\).
+
+    To show that \(X\) has a countable basis, define \(\C_1\) as the collection of all open intervals in \(\R\) with rational endpoints, that do not contain \(0\). Also define
+    \[
+        \C_2 = \{(-r, 0) \cup \{x\} \cup (0, r) : r > 0,\, r \in \Q,\, x \in \{p, q\}\}
+    \]
+    \(C_1, \C_2\) are definitely countable, so we show that \(\C = \C_1 \cup \C_2\) is a basis of \(X\).
+
+    It is trivial that for every \(x \in X\), there is a basis element containing \(x\). Next, we show the second condition of being a basis.
+    \begin{itemize}
+        \item For \(C_1, C_1' \in \C_1\) and \(x \in C_1 \cap C_1'\), then \(x \neq 0\) and \(C_1 \cap C_1'\) is still an open interval with rational endpoints, that doesn't contain \(0\).
+
+        \item For \(C_2, C_2' \in \C_2\), let \(C_2 = (-\alpha, 0) \cup \{x\} \cup (0, \alpha)\), \(C_2' = (-\beta, 0) \cup \{y\} \cup (0, \beta)\), where \(x \in \{p, q\}\), \(\alpha, \beta > 0\). Set \(\gamma = \min\{\alpha, \beta\}\). Then if \(x = y\), \(C_2 \cap C_2' = (-\gamma, 0) \cup \{x\} \cup (0, \gamma) \in \C_2\). If \(x \neq y\), \(C_2 \cap C_2' = (-\gamma, 0) \cup (0, \gamma)\). So \(\exists (0, \gamma) \in \C_1\) such that \((0, \gamma) \subset C_2 \cap C_2'\).
+
+        \item For \(C_1 \in \C_1\), \(C_2 \in \C_2\), if \(C_1 \cap C_2\) is nonempty, it is an open interval with rational endpoints, that doesn't contain \(0\).
+    \end{itemize}
+
 \end{minipage}
 {\color{gray}\vline}
 \begin{minipage}[t][270mm]{90mm}
-    \phantom{?}
+    \phantom{?} Let \(\T_1\), \(\T_2\) be the topologies on \(X\) generated by \(\B\) and \(\C\) respectively. Next we show that \(\T_1 = \T_2\). \(\T_2 \subset \T_1\) is trivial, since for \(C \in \C\) and \(x \in C\), \(C \in \B\). So we prove that \(\T_1 \subset \T_2\).
+    \begin{itemize}
+        \item For \(B_1 = (a, b) \in \B_1\), \(x \in B_1\), we can choose \(r, s \in \Q\) so that \(a < r < x < s < b\). Then \(C_1 = (r, s) \in \C_1\) and \(x \in C_1 \subset B_1\).
+
+        \item For \(B_2 = (-a, 0) \cup \{z\} \cup (0, a) \in \B_2\), \(x \in B_2\), if \(x = z\), choose \(0 < r < a\), \(r \in \Q\) so that \(C_2 = (-r, 0) \cup \{z\} \cup (0, r) \in \C_2\) and \(x \in C_2 \subset B_2\). If \(x \neq z\), \(x \in (-a, 0)\) or \(x \in (0, a)\). Then there exists \(C_1 = (r, s) \in \C_1\) such that \(x \in C_1 \subset (-a, 0) \subset B_2\) or \(x \in C_1 \subset (0, a) \subset B_2\), since we can choose \(r, s \in \Q\) so that \(-a < r < x < s < 0\) or \(0 < r < x < s < a\).
+    \end{itemize}
+
+    Thus \(\C\) is a countable basis of \(X\). Next we show that for any \(x \in X\), there exists a neighborhood homeomorphic to a subset of \(\R\). If \(x \in \R \bs \{0\}\), any neighborhood \((a, b) \in \B_1\) of \(x\) is homeomorphic to \((a, b) \subset \R\), by the identity map. For \(x = p\), the neighborhood \((-a, 0) \cup \{p\} \cup (0, a) \in \B_2\) is homeomorphic to \((-a, a) \subset \R\) by the map \(f : X - \{q\} \ra \R\) defined as \(f(x) = 0\) if \(x = p\), \(f(x) = x\) otherwise.
+    \begin{itemize}
+        \item It is trivial that \(f\) is a bijection.
+        \item For any basis element \((a, b) \subset \R\), if \(0 \notin (a, b)\), \(f\inv\paren{(a, b)} = (a, b)\), so open. If \(0 \in (a, b)\), then \(a < 0\) and without loss of generality assume that \(\abs{a} \leq \abs{b}\). Then \(f\inv\paren{(a, b)} = (a, 0) \cup \{p\} \cup (0, b) = (a, 0) \cup \{p\} \cup (0, -a) \cup (-a, b)\), which is also open. \(f\) is continuous.
+        \item \(f\) is an open map, since any \(B \in \B\) is mapped to an open interval of \(\R\). \(f\) is bijective and open map, so \(f\inv\) is continuous.
+    \end{itemize}
+
+    Finally, \(X\) is not Hausdorff. Suppose that \(X\) is Hausdorff. For the points \(p, q \in X\), let \(U, V\) be disjoint neighborhoods of \(p, q\). By definition of basis, we can choose \(B_1, B_2 \in \B\) such that \(p \in B_1 \subset U\), \(q \in B_2 \subset V\). But basis elements from \(\B_1\) cannot contain \(p, q\), so let
+    \[
+        B_1 = (-a, 0) \cup \{p\} \cup (0, a), \quad B_2 = (-b, 0) \cup \{q\} \cup (0, b).
+    \]
+    Then \(B_1 \cap B_2 \neq \varnothing\), since \(\min\{a, b\} / 2 \in B_1 \cap B_2\). But \(U, V\) are disjoint, which is a contradiction.
+
+    Thus \(X\) satisfies the conditions of \(1\)-manifold, except for the Hausdorff condition.
+
 \end{minipage}
 %%%%%%%%%%%%%%%%%%
 
