@@ -1,0 +1,51 @@
+\section*{May 18th, 2023}
+
+We want to talk about continuous functions \(J \ra Y\), so we need a topology on \(J\).
+
+\defn. Let \(X\) be a topological space, let \((Y, d)\) be a metric space, define
+\begin{enumerate}
+    \item \(\mc{C}(X, Y) \subset Y^X\) as the set of continuous functions \(f : X \ra Y\).
+    \item \(\mc{B}(X, Y) \subset Y^X\) as the set of bounded functions \(f : X \ra Y\).
+\end{enumerate}
+
+\thm{43.6} \(\mc{C}(X, Y)\) and \(\mc{B}(X, Y)\) are closed in \((Y^X, \bar{\rho})\).
+
+\pf \(\mc{C}(X, Y)\) is closed by the uniform limit theorem. If \(f \in \cl{\mc{C}(X, Y)}\), then there is a sequence \(\seq{f_n}\) in \(\mc{C}(X, Y)\) that converges to \(f\). For \(\epsilon > 0\), \(\exists N \in \N\) such that \(n \geq N \implies \bar{\rho}(f_n, f) < \epsilon\). Since \(\bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \epsilon\) for all \(x \in X\), \(f\) is continuous.
+
+If \(f \in \cl{\mc{B}(X, Y)}\), then there is a sequence \(\seq{f_n}\) in \(\mc{B}(X, Y)\) that converges to \(f\). Choose \(N \in \N\) such that \(\bar{\rho}(f_n, f) < \frac{1}{2}\). Since \(\bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \frac{1}{2}\) for all \(x \in X\). We can change \(\bar{d}\) to \(d\). Denote \(M = \diam f_N(X)\). Then \(\diam f(X) \leq M + 1\), and \(f\) is bounded. \qed
+
+\cor. If \(Y\) is complete, \(\mc{C}(X, Y)\) and \(\mc{B}(X, Y)\) are complete in \((Y^X, \bar{\rho})\).
+
+\rmk For \(f, g \in \mc{B}(X, Y)\), \(\rho(f, g) = \sup\left\{d(f(x), g(x)) : x\in X\right\}\) is well-defined. Check that \(\bar{\rho}(f, g) = \min\{\rho(f, g), 1\}\), by dividing the cases \(\rho(f, g) > 1\) and \(\rho(f, g) \leq 1\).
+
+\defn. \note{Isometric Imbedding} \textbf{Isometric imbedding} is an imbedding that preserves the distance between two points. i.e. \(\Phi : (X, d_X) \ra (Y, d_Y)\) satisfies \(d_X(a, b) = d_Y(\Phi(a), \Phi(b))\).
+
+\thm{43.7} Let \((X, d)\) be a metric space. There exists an isometric imbedding \(\Phi\) of \(X\) into a complete metric space \(Y\).
+
+\pf Fix \(x_0 \in X\). Define \(\Phi: X \ra \R^X\) as \(a \mapsto \varphi_a\), where \(\varphi_a : X \ra \R\) is defined as \(\varphi_a(x) = d(x, a) - d(x, x_0)\). \(\varphi_a\) is bounded, since \(\abs{\varphi_a(x)} \leq d(x_0, a)\) by triangle inequality.
+
+If we define \(\Phi(a) = \varphi_a\), then \(\Phi(X) \subset \mc{B}(X, \R)\), and \((\mc{B}(X, \R), \rho)\) is complete by the above theorem. Now we show that \(\Phi\) is an isometric imbedding. By definition, \(\rho(\Phi(a), \Phi(b)) = \rho(\varphi_a, \varphi_b) = \sup\left\{ \abs{\varphi_a(x) - \varphi_b(x)} : x \in X\right\}\). Then \(\abs{\varphi_a(x) - \varphi_b(x)} = \abs{d(x, a) - d(x, b)} \leq d(a, b)\). But equality holds on \(x = a\) or \(b\), so \(\rho(\Phi(a), \Phi(b)) = d(a, b)\). \qed
+
+\defn. Let \(X\) be a metric space. If \(h : X \ra Y\) is an isometric imbedding of \(X\) into a complete metric space \(Y\), \(h(X)\) is exactly same as \(X\) as a metric space, and \(\cl{h(X)}\) is a complete metric space. This \(\cl{h(X)}\) is called the \textbf{completion} of \(X\).
+
+If there is another \(h' : X \ra (Y', D')\), there exists an isometry \((\cl{h(X)}, D) \ra (\cl{h'(X)}, D')\) that equal \(h'h\inv\) on \(h(X)\). The completion is unique up to isometry.
+
+\topic{A Space-Filling Curve}
+
+\thm{44.1} Let \(I = [0, 1]\). There is a continuous function \(f : I \ra I^2\) such that \(f(I) = I^2\).
+
+\pf Refer to the diagrams. \(f_n\) is a path made up of \(4^n\) triangluar paths. Each of them lie in a square having side length \(\frac{1}{2^n}\). Then we will show that \(\seq{f_n}\) is Cauchy in \(\mc{C}(I, I^2)\) with respect to the supremum metric \(\rho\) corresponding to the square metric \(d\).\footnote{This is a temporary notation.}
+
+Since \(d(f_n, f_{n+1}) \leq \frac{1}{2^n}\) by construction, \(\rho(f_n, f_{n+1}) \leq \frac{1}{2^n}\). Then \(\rho(f_n, f_{n+m}) \leq \frac{2}{2^n}\) by the triangle inequality. We can conclude that \(f_n\) is a Cauchy sequence with respect to metric \(\rho\). Since \(\mc{C}(I, I^2)\) is complete,\footnote{\(I^2\) is a closed subset of a complete metric space, so it is complete. Then \(\mc{C}(I, I^2)\) is complete with the uniform metric by \sref{Theorem 43.6}. Also, \(I\) is compact, so \(f(I)\) is bounded, meaning that \(\mc{C}(I, I^2) \subset \mc{B}(I, I^2)\). The uniform metric and sup metric coincide for bounded functions, so \(\mc{C}(I, I^2)\) is complete with the sup metric.} \(f_n\) converges to a continuous function \(f\).
+
+Surjectivity of \(f\) is shown by proving \(\cl{f(I)} = I^2\). Let \(x \in I^2\). For each \(n\), \(\exists t_n \in I\) such that \(d(x, f_n(t_n)) \leq \frac{1}{2^n}\), since each triangluar path touches the vertices of each smaller squares. Given \(\epsilon > 0\), \(\exists N\) such that \(\rho(f_N, f) < \frac{\epsilon}{2}\) and \(\frac{1}{2^N} < \frac{\epsilon}{2}\). Then \(d(x, f(t_N)) \leq d(x, f_N(t_N)) + d(f_N(t_N), f(t_N)) < \epsilon\). Thus for any \(\epsilon\)-ball centered on \(x\), it intersects \(f(I)\), so \(x \in \cl{f(I)}\). \qed
+
+\topic{Compactness in Metric Spaces}
+
+We want to relate compactness to completeness. If \((X, d)\) is compact, it is complete, since \((X, d)\) is sequentially compact. But the converse is not true, so we need an extra condition.
+
+\defn. \note{Totally Bounded} \((X, d)\) is totally bounded if \(\forall \epsilon > 0\), there is a finite covering of \(X\) by \(\epsilon\)-balls.
+
+\rmk If \((X, d)\) is compact, it is totally bounded. Also, totally bounded implies bounded, but the converse is false. Consider \((\R, \bar{d})\).
+
+\pagebreak
