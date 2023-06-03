@@ -1,0 +1,78 @@
+\section*{April 25th, 2023}
+
+\topic{Local Compactness}
+
+\defn. \note{Local Compactness} A space \(X\) is \textbf{locally compact} at \(x\) if there exists a compact subspace \(C\) of \(X\) that contains a neighborhood of \(x\). A space \(X\) is locally compact if it is locally compact for every \(x \in X\).
+
+\ex.
+\begin{enumerate}
+    \item \(\R\) is not compact, but it is locally compact. We can always take a closed interval containing a point. Similarly, \(\R^n\) is also locally compact.
+    \item \(\R^\omega\) with the product topology is not locally compact. Suppose not, take a basis element \(B = (a_1, b_1) \times \cdots \times (a_n, b_n) \times \R \times \cdots\) containing \(x \in \R^\omega\). Then \(B\) is contained in a compact subspace. ... Also, \(\cl{B} = [a_1, b_1] \times \cdots \times [a_n, b_n] \times \R \times \cdots\) should be compact (subset of \(C\)) but it isn't.
+    \item \(\Q\) is not locally compact. (Check!)
+\end{enumerate}
+
+\thm{29.1} Let \(X\) be a topological space. \(X\) is locally compact and Hausdorff if and only if there exists a topological space \(Y\) such that
+\begin{enumerate}
+    \item \(X\) is a subspace of \(Y\)
+    \item \(Y \bs X\) consists of a single point.
+    \item \(Y\) is a compact Hausdorff space.
+\end{enumerate}
+Moreover if \(Y, Y'\) are two spaces satisfying the three conditions, there exists homeomorphism from \(Y\) to \(Y'\) that equals the identity map on \(X\).
+
+If we are given a \textit{locally compact} Hausdorff space, we can find a \textit{compact} Hausdorff space, by adding a single point. Consider \(S^1\) with the north pole removed. By stereographic projection, we have a homeomorphism with \(\R\). We can also see that \(S^n\) except the north pole is homeomorphic to \(\R^n\). Keep this example in mind.
+
+\pf \note{Step 1} Existence of homeomorphism. (Uniqueness up to homeomorphism) \\
+Suppose that \(Y, Y'\) are the topological space satisfying the conditions. Construct a homeomorphism \(h : Y \ra Y'\) by \(h(x) = x\) for \(x \in X\), \(h(p) = q\) where \(p \in Y \bs X\), \(q \in Y' \bs X\). Next we show that \(h\) is an open map. Let \(U\) be open in \(Y\).
+
+If \(p \notin U\), \(h(U) = U\). \(U\) is open in \(X\), \(X\) is open in \(Y'\), so \(U\) is open in \(Y'\). If \(p \in U\), then \(Y \bs U \subset X\). \(Y \bs U\) is closed in \(Y\), so it is a compact subspace of \(Y\). Then it is also a compact subspace of \(X\), and also \(Y'\). So \(Y \bs U\) is closed in \(Y'\). (Hausdorff) Then \(h(U) = Y' \bs (Y \bs U)\) is open in \(Y'\). If we change the role of \(Y\) and \(Y'\), we can show that \(h\inv\) is also an open map. \(h\) is an homeomorphism.
+
+\note{Step 2} \note{\mimp} Construction of \(Y\). \\
+Let \(Y = X \cup \{\infty\}\). We give a topology on \(Y\). \(U \in \mc{T}_Y\) if either \(U \in \mc{T}_X\) (type 1) or \(U = Y \bs C\) where \(C\) is a compact subspace of \(X\) (type 2).\footnote{We want the interval that contains the punctured point.} We need to check that this is a topology.
+\begin{itemize}
+    \item \(\varnothing\), \(Y\) are indeed in \(\mc{T}_Y\).
+    \item \(U_1\cap U_2\) is open. For \((Y \bs C_1) \cap (Y \bs C_2) = Y \bs (C_1 \cup C_2)\), and finite union of compact set is compact. Also, \(U_1 \cap (Y \bs C_1) = U_1 \cap (X \bs C_1)\), and \(X - C_1\) is open in \(X\).
+    \item For arbitrary union, \(\bigcup U_\alpha\) is open, \(\bigcup (Y \bs C_\beta) = Y \bs \bigcap C_\beta\) is also open since \(\bigcap C_\beta\) is closed subset of a compact space \(C_\beta\). Next, \(\bigcup U_\alpha \cup \bigcup (Y - C_\beta) = Y \bs (\bigcap C_\beta \bs \bigcup U_\alpha)\), and \(\bigcap C_\beta \bs \bigcup U_\alpha\) is compact since it is a closed subspace of \(\bigcap C_\beta\).
+\end{itemize}
+
+Now \(Y\) is a topological space, next we show that \(X\) is a subspace of \(Y\). For open sets of the subspace topology on \(X\), if \(U \in \mc{T}_X\), \(U \cap X = U\). Also \((Y \bs C) \cap X = X \bs C\) is open in \(X\). The opposite direction is clear.
+
+Next we show that \(Y\) is compact. Let \(\mc{A}\) be an open covering of \(Y\). \(\mc{A}\) should contain an open set of type 2, since open sets of type 1 cannot cover \(\{\infty\}\). Suppose that \(Y \bs C \in \mc{A}\) where \(C\) is compact. Then there exists a finite subcover of \(C\). So union the subcover with \(Y \bs C\) to get a finite subcover of \(Y\).
+
+Finally we show that \(Y\) is Hausdorff. Let \(x, y \in Y\). If \(x, y \in X\), then there is nothing to check. Consider the case where \(x \in X\), \(y = \infty\). Since \(X\) is locally compact, there exists a compact subspace \(C\) of \(X\) containing a neighborhood \(U\) of \(x\). Then \(Y \bs C\) is a neighborhood of \(y\), and it is disjoint with \(U\).
+
+\note{Step 3} \note{\mimpd} Construction of \(X\).
+\(X\) is Hausdorff since it is a subspace of a Hausdorff space \(Y\). We show that \(X\) is locally compact. For \(x \in X\), there exists disjoint neighborhoods \(U, V\) of \(x\) and \(\infty\) in \(Y\), respectively. Then \(U \subset Y \bs V\) and \(Y \bs V\) is closed, so it is a compact subspace of \(Y\). \(Y \bs V\) is also compact in \(X\). \qed
+
+\pagebreak
+
+\rmk If \(X\) is already compact, \(\{\infty\}\) is open in \(Y\). Otherwise, \(\infty\) is a limit point of \(X\), so \(\cl{X} = Y\). We say that \(Y\) is a compactification of \(X\).
+
+\defn. \note{Compactification} For a compact Hausdorff space \(Y\), if \(X\) is a proper subspace of \(Y\) and \(Y = \cl{X}\), \(Y\) is a \textbf{compactification} of \(X\). In particular, if \(Y \bs X\) is a singleton, then \(Y\) is the one-point compactification of \(X\).
+
+\rmk The one-point compactification of \(\R^n\) is homeomorphic to \(S^n\).
+
+You will see many times that compact Hausdorff spaces are very important. Given a space \(X\), if you are lucky to find a compactification \(Y\) of \(X\), properties of \(Y\) also apply to \(X\).
+
+An open disk is homeomorphic to \(\R^2\). You can add the boundary \(S^1\) to obtain a compactification.
+
+Locally compactness is not actually a local property.
+
+\thm{29.2} Let \(X\) be a Hausdorff space. Then \(X\) is locally compact if and only if
+\begin{center}
+    \(\forall x\in X\), \(\forall\) neighborhood \(U\) of \(x\), \(\exists\)neighborhood \(V\) of \(x\) such that \(\cl{V}\) is compact and \(\cl{V} \subset U\).
+\end{center}
+
+\pf \note{\mimpd} Clear. \\
+\note{\mimp} \(X\) is locally compact, so let \(Y\) be the one-point compactification of \(X\). Let \(C = Y \bs U\). Then \(C\) is a compact subspace of \(Y\), and it is closed. By \sref{Lemma 26.4}, there exists disjoint open sets \(V\) and \(W\) of \(Y\) such that \(x \in V\) and \(C \subset W\). Then \(V \subset Y \bs W \subset Y \bs C \subset U\). Take the closure of \(V\) in \(Y\). Then \(\cl{V} \subset \cl{Y \bs W} = Y \bs W\), so \(\cl{V} \subset U\). Also \(\cl{V}\) is a closed subset of a compact space \(Y\), so it is compact, and \(X\) is open in \(Y\) so \(\cl{V}\) is compact in \(X\). \qed
+
+\cor{29.3} Given a locally compact Hausdorff space \(X\), let \(A \subset X\). If \(A\) is open (or closed) in \(X\) then \(A\) is locally compact.
+
+\pf For the closed case, check by yourself. \\
+Let \(A\) be open. By \sref{Theorem 29.2}, for \(x \in A\), there exists a neighborhood \(V\) of \(x\) in \(X\) such that \(\cl{V}\) is compact and \(\cl{V} \subset A\). Replace \(X\) by \(A\). Then we are done. \qed
+
+\cor{29.4} \(X\) is locally compact Hausdorff if and only if \(X\) is homeomorphic to an open subspace of a compact Hausdorff space.
+
+\pf \note{\mimpd} By \sref{Corollary 29.3}, subspace of a compact Hausdorff space is locally compact Hausdorff. \(X\) is homeomorphic to this subspace, so \(X\) is locally compact Hausdorff. \\
+\note{\mimp} By one-point compactification, \sref{Theorem 29.1}. \qed
+
+\pagebreak

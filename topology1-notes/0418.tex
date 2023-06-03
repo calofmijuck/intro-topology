@@ -1,0 +1,94 @@
+\section*{April 18th, 2023}
+
+In general, bounded and closed does not characterize compactness.
+
+\thm{27.4} \note{Extreme Value Theorem} Suppose that \(X\) is a topological space, \(Y\) is an ordered set in the order topology. If \(f : X \ra Y\) is continuous and \(X\) is compact, there exists \(c, d \in X\) such that \(f(c) \leq f(x) \leq f(d)\) for all \(x \in X\).
+
+\pf Let \(A = f(X)\). \(A\) is compact, and we show that \(A\) has a largest element \(M\). Suppose not, then \(\{(-\infty, a) : a \in A\}\) is an open covering of \(A\). Since \(f(X)\) is compact, there exists a finite subcover, \(\{(-\infty, a_1), \dots, (-\infty, a_n)\}\). But \(\max\{a_1, \dots, a_n\} \notin A\), so we have a contradiction. Similarly, we can show that \(A\) has a smallest element. \qed
+
+\rmk Let \((X, d)\) be a metric space. Take \(\varnothing \neq A \subset X\). For each \(x \in X\), define the distance to \(A\) as
+\[
+    d(x, A) = \inf \{d(x, a) : a \in A\}.
+\]
+Then \(f: X \ra \R\), \(f(x) = d(x, A)\) is continuous.
+
+\pf Let \(x, y \in X\). For any \(a \in A\),
+\[
+    d(x, A) \leq d(x, a) \leq d(x, y) + d(y, a) \implies d(x, A) - d(x, y) \leq d(y, a).
+\]
+Take the infimum, then \(d(x, A) - d(x, y) \leq d(y, A)\). So \(f(x) - f(y) \leq d(x, y)\). Now switch the roles of \(x, y\) to get \(\abs{f(x) - f(y)} \leq d(x, y)\). \qed
+
+The following lemma is very useful for metric spaces.
+
+\lemma{27.5} \note{Lebesgue Number Lemma} Let \((X, d)\) be a \textit{compact} metric space, and let \(\mc{A}\) be an open covering of \(X\). Then there exists \(\delta > 0\) such that for each subset \(B\) of \(X\) having \(\diam B < \delta\), there exists \(A \in \mc{A}\) such that \(B \subset A\). The \(\delta\) here is called the \textit{Lebesgue number}.
+
+\pf If \(X \in \mc{A}\), we are done, so assume \(X \notin \mc{A}\). Let \(\{A_1, \dots, A_m\} \subset \mc{A}\) be a cover of \(X\). Define \(f : X \ra \R\) as
+\[
+    f(x) = \frac{1}{n}\sum_{i=1}^n d(x, X \bs A_i).
+\]
+We first show that \(f(x) > 0\) for all \(x \in X\). For \(x \in X\), \(x \in A_i\) for some \(i\). Then since \(A_i\) is open, choose \(\epsilon > 0\) such that \(B_d(x, \epsilon) \subset A_i\). Then \(d(x, X \bs A_i) = \inf\{d(x, y) : y \notin A_i\} \geq \epsilon\). So \(f(x)\) has to be positive. Since \(X\) is compact and \(f\) is continuous, \(f\) has a minimum value \(\delta > 0\).
+
+Let \(x_0 \in B\), then \(B \subset B_d(x_0, \delta)\). For the largest among \(d(x_0, X \bs A_i)\), suppose that this value is maximum for \(i = m\). Then \(\delta \leq f(x_0) \leq d(x_0, X \bs A_m)\), so \(B \subset B_d(x_0, \delta) \subset A_m\). Otherwise, \(\exists x \in X \bs A_m\) such that \(d(x_0, x) < \delta \leq d(x_0, X \bs A_m)\). \qed
+
+\defn. \note{Uniform Continuity} Let \((X, d_X)\), \((Y, d_Y)\) be metric spaces. \(f: X \ra Y\) is \textbf{uniformly continuous} if
+\begin{center}
+    \(\forall \epsilon > 0, \exists \delta > 0\) such that \(d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \epsilon\) for all \(x, y \in X\).
+\end{center}
+
+Uniform continuity is very strong.
+
+\thm{27.6} \note{Uniform Continuity Theorem} Let \((X, d_X)\), \((Y, d_Y)\) be metric spaces. If \(f : X \ra Y\) is continuous and \(X\) is compact, then \(f\) is uniformly continuous.
+
+\pf Given \(\epsilon > 0\), \(\left\{B_{d_Y}\paren{y, \frac{\epsilon}{2}} : y \in Y\right\}\) is an open covering of \(Y\). Then
+\[
+    \mc{A} = \left\{f\inv\paren{B_{d_Y}\paren{y, \frac{\epsilon}{2}}} : y \in Y\right\}
+\]
+is an open covering of \(X\), since \(f\) is continuous. Now choose a Lebesgue number \(\delta\) for \(\mc{A}\). Then if \(d_X(x_0, x_1) < \delta\), \(\diam\{x_0, x_1\} < \delta\). By the Lebesgue lemma, there exists \(y \in Y\) such that \(\{x_0, x_1\} \subset f\inv\paren{B_{d_Y}\paren{y, \frac{\epsilon}{2}}}\). Then this implies that \(d_Y\paren{f(x_0), f(x_1)} \leq d_Y\paren{f(x_0), y} + d_Y\paren{y, f(x_1)} < \epsilon\), so \(f\) is uniformly continuous. \qed
+
+\defn. \note{Isolated Point} A point \(x\) of \(X\) is an \textbf{isolated point} of \(X\) if \(\{x\}\) is open in \(X\).
+
+\thm{27.7} Let \(X\) be a nonempty compact Hausdorff space. If \(X\) has no isolated points, then \(X\) is uncountable.
+
+\pf Read by yourself! \qed
+
+\cor{27.8} Every closed interval in \(\R\) is uncountable.
+
+\pagebreak
+
+\topic{Limit Point Compactness}
+
+The point of this section is to see when these concepts are equivalent to the usual compactness in the \textit{metric space}.
+
+\defn.
+\begin{enumerate}
+    \item \note{Limit Point Compact} A space \(X\) is \textbf{limit point compact} if every infinite subset of \(X\) has a limit point.
+
+    \item \note{Sequentially Compact} \(X\) is \textbf{sequentially compact} if every sequence of points of \(X\) has a convergent subsequence.
+\end{enumerate}
+
+\thm{28.2} Let \((X, d)\) be a metric space. The following are equivalent.
+\begin{enumerate}
+    \item \(X\) is compact.
+    \item \(X\) is limit point compact.
+    \item \(X\) is sequentially compact.
+\end{enumerate}
+
+\pf \\
+\note{1\mimp2} \note{Theorem 28.1} \textit{\(X\) doesn't have to be a metric space.} We show the contrapositive, that if \(A' = \varnothing\) then \(A\) is finite. If \(A' = \varnothing\), \(A\) is closed. For \(a \in A\), there exists a neighborhood \(U_a\) of \(a\) such that \(U_a \cap A = \{a\}\). Then \(\{U_a : a \in A\} \cup \{X \bs A\}\) is an open covering of \(X\). We can take a finite subcover \(\{U_{a_1}, \dots, U_{a_n}\}\) that covers \(A\). Then \(A = A \cap \bigcup_{i=1}^n U_{a_i} = \{a_1, \dots, a_n\}\).
+
+\note{2\mimp3} Let \(\seq{x_n}\) be a sequence in \(X\). Let \(A = \{x_n : n \in \N\}\). If \(A\) is finite, there exists \(x\) such that \(x_n = x\) for infinitely many \(n\). Then \(\seq{x}\) is a convergent subsequence. Assume that \(A\) is infinite, then by assumption \(A\) has a limit point \(x\). Then we can take \(x_{n_1} \in B_d(x, 1)\), \(x_{n_2} \in B_d\paren{x, \frac{1}{2}}\) with \(n_2 > n_1\).\footnote{We can choose \(n_2 > n_1\), since \(1, \dots, n_1\) is finite so take away finite points from an open set is still open.} Continue in this manner to construct a subsequence \(\seq{x_{n_k}}\) converging to \(x\).
+
+\note{3\mimp1} \note{Step 1} \(X\) satisfies the Lebesgue number lemma. \\
+If not, there exists an open covering \(\mc{A}\) of \(X\) such that for any \(n \in \N\), there is a set \(C_n\) of \(\diam C_n < \frac{1}{n}\), that is not contained in any \(A \in \mc{A}\). Choose \(x_n \in C_n\) (diameter is not 0). Then there exists a subsequence \(\seq{x_{n_i}}\) of \(\seq{x_n}\) that converges to \(a\). Then some \(A \in \mc{A}\) should cover \(a\). Also, there exists \(\epsilon > 0\) such that \(B_d(a, \epsilon) \subset A\). Then \(C_{n_i} \subset B_d\paren{x_{n_i}, \frac{\epsilon}{2}}\) for large enough \(i\). (\(\frac{1}{n_i} < \frac{\epsilon}{2}\)) Also, \(x_{n_i} \in B_d\paren{a, \frac{\epsilon}{2}}\). Hence \(C_{n_i} \subset A\), which is a contradiction.
+
+\pagebreak
+
+\note{Step 2} \(\forall \epsilon > 0\), there exists a finite covering of \(X\) by \(\epsilon\)-balls. \\
+Suppose not, take \(x_1 \in X\). Since \(X - B_d(x_1, \epsilon)\) is not empty (no finite covering), take \(x_2 \in X - B_d(x_1, \epsilon)\). In this manner, take \(x_k \in X - \bigcup_{i=1}^{k - 1} B_d(x_i, \epsilon)\). Then \(d(x_{n+1}, x_i) \geq \epsilon\) for \(i = 1, \dots, n\) by construction. So \(\seq{x_n}\) cannot have a convergent subsequence. This is because if \(x_{n_i} \ra a\), there exists \(i < j\) such that \(x_{n_i}, x_{n_j} \in B_d\paren{a, \frac{\epsilon}{2}}\).
+
+\note{Step 3} \(X\) is compact. \\
+Let \(\mc{A}\) be an open covering of \(X\). By \sref{Step 1}, there exists a Lebesgue number \(\delta > 0\). By \sref{Step 2}, \(\exists\) a finite covering of \(X\) by \(\frac{\delta}{3}\)-balls. These balls have diameter \(\leq \frac{2\delta}{3} < \delta\), so these balls lie in an element of \(\mc{A}\). So we can cover \(X\) with finitely many elements of \(\mc{A}\). \qed
+
+\rmk 2\mimp1 in the above theorem is not true for general topological spaces. Let \(Y = \{a, b\}\) and consider the indiscrete topology. Let \(X = \N \times Y\). \(\{\{n\} \times Y : n \in \N\}\) is an open cover, that does not have a finite subcover. So \(X\) is not compact. However, \(X\) is limit point compact, since every nonempty subset of \(X\) has a limit point. \(\{1 \times a\}\) has a limit point \(1 \times b\).
+
+\pagebreak
