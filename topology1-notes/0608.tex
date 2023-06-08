@@ -1,0 +1,75 @@
+\section*{June 1st, 2023}
+
+We will cover some of the skipped content. We will cover Tychonoff Theorem and paracompactness.
+
+\setcounter{topic}{36}
+\topic{The Tychonoff Theorem}
+
+We use the finite intersection property.
+
+\lemma{37.1} Let \(X\) be a set, \(\mc{A}\) be a collection of subsets of \(X\) having the finite intersection property. Then there is a collection \(\mc{D}\) of subsets of \(X\) such that \(\mc{A} \subset \mc{D}\) and \(\mc{D}\) has the finite intersection property and no collection of subsets of \(X\) that properly contains \(\mc{D}\) has this property.
+
+\rmk The last condition can be stated as: \(\mc{D}\) is maximal with respect to this finite intersection property.
+
+We need Zorn's lemma to prove this.
+
+\lemma. \note{Zorn's Lemma} Let \(A\) be a set that is strictly partially ordered. If every simply ordered subset of \(A\) has an upper bound in \(A\), then \(A\) has a maximal element.
+
+\pf We first define some notations. \(a \in X\), \(A \subset X\), \(\mc{A} \subset \mc{P}(X)\), \(\bb{A}\) is a superset whose elements are collection of subsets of \(X\). (\(\mc{P}(\mc{P}(X))\)?)
+
+Let \(\bb{A}\) be a superset consisting of all collection \(\mc{B}\) of subsets of \(X\) such that \(\mc{A} \subset \mc{B}\) and \(\mc{B}\) has the finite intersection property. Let \(\subsetneq\) be the strict partial order on \(\bb{A}\). We show that if \(\bb{B}\) is a simply ordered subsuperset of \(\bb{A}\) then \(\bb{B}\) has an upper bound in \(\bb{A}\). Then the result follows from Zorn's lemma.
+
+Define \(\mc{C} = \bigcup_{\mc{B} \in \bb{B}} \mc{B}\), then it is an upper bound. First of all, \(\mc{A} \subset \mc{C}\) since \(\mc{A} \subset \mc{B}\). The important part is that \(\mc{C}\) has the finite intersection property.
+
+Suppose that \(C_1, \dots, C_m \in \mc{C}\). For all \(i\), \(\exists \mc{B}_i \in \bb{B}\) such that \(C_i \in \mc{B}_i\). Then we have \(\{\mc{B}_1, \dots, \mc{B}_m\} \\\subset \bb{B}\). Since \(\bb{B}\) is simply ordered, \(\exists k\) such that \(\mc{B}_i \subset \mc{B}_k\) for all \(i = 1, \dots, m\). So all \(C_1, \dots, C_m\) are elements of \(\mc{B}_k\), which already has the finite intersection property. Thus \(C_1 \cap \cdots \cap C_m \neq \varnothing\). \qed
+
+
+\lemma{37.2} Let \(X\) be a set, \(\mc{D}\) be a collection of subsets of \(X\) that is maximal with respect to the finite intersection property.
+\begin{enumerate}
+    \item Any finite intersection of elements of \(\mc{D}\) is an element of \(\mc{D}\).
+    \item If \(A \cap D \neq \varnothing\) for all \(D \in \mc{D}\), then \(A \in \mc{D}\).
+\end{enumerate}
+
+\pf \note{1} Let \(\mc{E} = \mc{D} \cup \{B\}\), where \(B\) is the finite intersection of elements of \(\mc{D}\). Since \(\mc{D}\) is maximal, we show that \(\mc{E}\) has the finite intersection property. Then we can conclude that \(\mc{E} = \mc{D}\) and \(B \in \mc{D}\). The intersection of finitely many elements of \(\mc{E}\) is of the form \(D_1 \cap \cdots \cap D_m\) or \(D_1 \cap \cdots \cap D_m \cap B\). Both of them are nonempty, since \(\mc{D}\) already has the finite intersection property.
+
+\note{2} Let \(\mc{E} = \mc{D} \cup \{A\}\). The intersection of finitely many elements of \(\mc{E}\) is of the form \(D_1 \cap \cdots \cap D_m\) or \(D_1 \cap \cdots \cap D_m \cap A\). There is nothing to check about the first case. For the second case, \(D_1\cap \cdots \cap D_m\) is a finite intersection of elements of \(\mc{D}\), so by (1), it is an element of \(\mc{D}\). By assumption, intersection with \(A\) will be nonempty. \(\mc{E}\) has the finite intersection property, so by similar reasoning in (1), \(A \in \mc{D}\). \qed
+
+\thm{37.3} \note{Tychonoff} If \(X_\alpha\) is compact for all \(\alpha \in J\), then \(X = \prod X_\alpha\) is compact.
+
+\pf Let \(\mc{A}\) be a collection of subsets of \(X\) having the finite intersection property. Our claim is that \(\bigcap_{A \in \mc{A}} \cl{A} \neq \varnothing\). Let \(\mc{D}\) be a collection of subsets of \(X\) such that \(\mc{A} \subset \mc{D}\) and \(\mc{D}\) is maximal with respect to the finite intersection property. It is enough to show that \(\bigcap_{D \in \mc{D}} \cl{D} \neq \varnothing\). Then \(\mc{A} \subset \mc{D}\), so the result follows.
+
+Given \(\alpha \in J\), consider the projection \(\{\pi_\alpha(D) : D \in \mc{D}\} \). This collection also has the finite intersection property, since \(\mc{D}\) has finite intersection property too. Then \(\bigcap_{D \in \mc{D}} \cl{\pi_\alpha(D)} \neq \varnothing\). So choose \(x_\alpha\) in this set, and set \(x = (x_\alpha)_{\alpha \in J} \in X\). We want to show that \(x \in \cl{D}\) for every \(D \in \mc{D}\).
+
+Let \(U_\beta\) be a neighborhood of \(x_\beta\). Then \(U_\beta \cap \pi_\beta (D) \neq \varnothing\), by the choice of \(x_\beta\). Then \(\exists \pi_\beta(y)\) where \(y \in D\). So if a subbasis element \(\pi_\beta\inv(U_\beta)\) contains \(x\), then \(\pi_\beta\inv(U_\beta) \cap D \neq \varnothing\) for every \(D \in \mc{D}\). By \sref{Lemma 37.2} (2), every subbasis element containing \(x\) belongs to \(\mc{D}\). Then by \sref{Lemma 37.2} (1), we can say the same thing about every basis element containing \(x\), since basis elements are finite intersection of subbasis elements. So every basis element containing \(x\) intersects every element of \(\mc{D}\), since \(\mc{D}\) has the finite intersection property. Thus \(x \in \cl{D}\) for all \(D \in \mc{D}\). \qed
+
+\pagebreak
+
+\setcounter{topic}{40}
+\topic{Paracompactness}
+
+Paracompactness is somewhat similar to compactness, but it is more general.
+
+\defn. \note{Paracompactness} A space \(X\) is \textbf{paracompact} if every open covering \(\mc{A}\) of \(X\) has a locally finite open refinement \(\mc{B}\) that covers \(X\).
+
+\thm{41.1} Every paracompact Hausdorff space \(X\) is normal.
+
+\pf We first show that \(X\) is regular. Let \(a \in X\), and \(B \subset X\) be a closed subset that doesn't contain \(a\). \(X\) is Hausdorff, so for all \(b \in B\), there is a neighborhood \(U_b\) of \(b\) such that \(a \notin \cl{U_b}\). \(\{U_b\}_{b \in B} \cup \{X \bs B\}\) covers \(X\), so there is a locally finite open refinement \(\mc{C}\) that covers \(X\). Let \(\mc{D} = \{C \in \mc{C} : C \cap B \neq \varnothing\}\). \(V = \bigcup_{D \in \mc{D}} D \supset B\), since elements of \(\mc{D}\) intersect \(B\) and \(\mc{C}\) covers \(X\). Then \(\cl{V} = \bigcup_{D \in \mc{D}} \cl{D}\) does not contain \(a\).
+
+For normality, replace \(a\) with a closed set \(A\). \qed
+
+\thm{41.4} Every metrizable space is paracompact.\footnote{We need to remove the adjective `countably' from \sref{Lemma 39.2}.}
+
+\thm{41.5} Every regular Lindelöf space is paracompact.
+
+\defn. Let \(\{U_\alpha\}\) be an indexed open covering of \(X\). An indexed family of continuous functions \(\varphi_\alpha : X \ra [0, 1]\) is a \textbf{partition of unity} on \(X\) dominated by \(\{U_\alpha\}\) if
+\begin{enumerate}
+    \item \(\supp(\varphi_\alpha) = \cl{\{x : \varphi_\alpha(x) \neq 0\}} \subset U_i\).
+    \item \(\{\supp(\varphi_\alpha)\}\) is locally finite.
+    \item \(\sum \varphi_\alpha(x) = 1\) for all \(x \in X\).
+\end{enumerate}
+
+\thm{41.7} Let \(X\) be a paracompact Hausdorff space. If \(\{U_\alpha\}\) is an indexed open covering of \(X\), then there exists a partition of unity on \(X\) dominated by \(\{U_\alpha\}\).
+
+We skip these proofs due to time constraints, but the point is that many familiar spaces are paracompact.
+
+\pagebreak
