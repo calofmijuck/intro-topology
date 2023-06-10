@@ -1,0 +1,74 @@
+\section*{May 25th, 2023}
+
+Today we will talk about function spaces.
+
+\topic{Pointwise and Compact Convergence}
+
+\defn. \note{Topology of Pointwise Convergence} Given \(x \in X\), an open set \(U\) of \(Y\), let
+\[
+    S(x, U) = \{f \in Y^X : f(x) \in U\}.
+\]
+The sets \(S(x, U)\) are a subbasis for topology on \(Y^X\), which is called the \textbf{topology of pointwise convergence}.
+
+\rmk \(S(x, U) = \pi_x\inv(U)\). So it is a subbasis of product topology!
+
+\thm{46.1} \(f_n \ra f\) in the pointwise convergence topology if and only if \(\forall x \in X\), \(f_n(x) \ra f(x)\).
+
+\ex. \(f_n(x) = x^n \in \mc{C}(I, \R) \subset \R^I\), with \(I = [0, 1]\). Then \(f(x) = 1\) for \(x = 1\), and \(0\) otherwise. So \(\mc{C}(I, \R)\) is not closed in \(\R^I\) with the pointwise convergence topology.
+
+\defn. \note{Topology of Compact Convergence} Let \(X\) be a topological space, \((Y, d)\) be a metric space. Define
+\[
+    B_C(f, \epsilon) = \left\{g \in Y^X : \sup_{x \in C} d\paren{f(x), g(x)} < \epsilon\right\}
+\]
+for \(f \in Y^X\), compact \(C\), \(\epsilon > 0\). The sets \(B_C(f, \epsilon)\) form a basis for topology on \(Y^X\), which is called the \textbf{topology of compact convergence}.
+
+\rmk It is easy to check that these form a basis since \(B_C(f, \epsilon)\) is similar to a ball. If \(g \in B_C(f, \epsilon)\), then we can find \(\delta = \epsilon - \sup_{x \in C} d(f(x), g(x))\) such that \(B_C(g, \delta) \subset B_C(f, \epsilon)\). If \(g \in B_{C_1}(f_1, \epsilon_1) \cap B_{C_2}(f_2, \epsilon_2)\), we can choose \(\delta > 0\) such that \(g \in B_{C_1 \cup C_2}(g, \delta)\).
+
+\thm{46.2} \(f_n \ra f\) in the compact convergence topology if and only if for any compact set \(C\) of \(X\), \(f_n \mid_C \ra f \mid_C\) uniformly.
+
+\defn. \note{Compactly Generated} \(X\) is \textbf{compactly generated} if \(A\) is open/closed in \(X\) if \(A\cap C\) is open/closed in \(C\) for every compact set \(C\).
+
+\lemma{46.3} \(X\) is compactly generated if (1) \(X\) is locally compact or (2) \(X\) is 1st countable.
+
+\pf \note{1} Suppose that \(A \cap C\) is open in \(C\) for all compact \(C\). \(X\) is locally compact, so \(\forall x \in A\), there is a compact subspace \(C\) of \(X\) that contains a neighborhood \(U\) of \(x\). Then \(A \cap U = (A \cap C) \cap U\) is open in \(U\). Since \(U\) is open in \(X\), \(A \cap U\) is also open in \(X\). We have found a neighborhood of \(x\) contained in \(A\). \(A\) is open.
+
+\note{2} Suppose that \(B \cap C\) is closed in \(C\) and show that \(B\) is closed. Check by yourself. \qed
+
+\lemma{46.4} If \(X\) is compactly generated, \(f : X \ra Y\) if and only if \(f\mid_C\) is continuous for all compact \(C\) of \(X\).
+
+\pf \note{\mimp} Trivial. \\
+\note{\mimpd} For \(V\) open in \(Y\), \(f\inv(V) \cap C = (f\mid_C)\inv(V)\) is open. So \(f\inv(V)\) is open. \qed
+
+\thm{46.5} Let \(X\) be a compactly generated space and \((Y, d)\) be a metric space. Then \(\mc{C}(X, Y)\) is closed in the compact convergence topology of \(Y^X\).
+
+\pf For \(f \in \cl{\mc{C}(X, Y)}\), we show that \(f \mid_C\) is continuous for any compact \(C\). For \(n \in \N\), \(B_C\paren{f, \frac{1}{n}} \cap \mc{C}(X, Y) \neq \varnothing\). So choose sequence \(\seq{f_n}\) in \(\mc{C}(X, Y)\) converging to \(f\). Then by \sref{Lemma 46.2}, \(f_n \mid_C \ra f\mid_C\) converges uniformly and \(f\mid_C\) is continuous by the uniform limit theorem. \qed
+
+\cor{46.6} Let \(X\) be a compactly generated space and \((Y, d)\) be a metric space. If \(\seq{f_n} \subset \mc{C}(X, Y)\) converges to \(f\) in the compact convergence topology on \(Y^X\), then \(f\) is continuous.
+
+\thm{46.7} Let \(X\) be a space and \((Y, d)\) be a metric space. In \(Y^X\),
+\begin{center}
+    (pointwise convergence) \(\subseteq\) (compact convergence) \(\subseteq\) (uniform topology)
+\end{center}
+The first equality holds when \(X\) is discrete, since the compact sets are finite. The second equality holds when \(X\) is compact.
+
+\rmk Note that we didn't use metric \(d\) in the pointwise convergence topology. Can we extend the other topologies without using the metric?
+
+\defn. \note{Compact-Open Topology} Let \(S(C, U) = \left\{f \in \mc{C}(X, Y) : f(C) \subset U\right\}\) for compact \(C\) in \(X\) and open \(U\) in \(Y\). The sets \(S(C, U)\) form a subbasis for topology on \(\mc{C}(X, Y)\) that is called the \textbf{compact-open topology}.
+
+\thm{46.8} Let \(X\) be a space and \((Y, d)\) be a metric space. On \(\mc{C}(X, Y)\), the compact-open topology and the compact convergence topology coincide.
+
+\pf \note{\(\subset\)} Let \(f \in S(C, U)\) where \(S(C, U)\) is a subbasis for the compact-open topology. \(C\) is compact, so \(f(C)\) is compact and \(f(C) \subset U\). Define \(\Phi : f(C) \ra \R\) where \(y \mapsto d(y, Y \bs U)\). Then \(\Phi\) is continuous, also its image is always positive since \(f(C) \subset U\) and \(f(C)\) is compact. Thus there exists \(\epsilon > 0\) which is a minimum value of \(\Phi\). Then \(B_d(y, \epsilon) \cap (Y \bs U) = \varnothing\) for \(y \in f(C)\). So \(B_d(y, \epsilon) \subset U\), and it can be checked that if \(g \in B_C(f, \epsilon)\), \(d(f(x), g(x)) < \epsilon\). So \(g(x) \in B_d(f(x), \epsilon) \subset U\) and \(g(C) \subset U\). Thus \(B_C(f, \epsilon) \subset S(C, U)\).
+
+\note{\(\supset\)} Let \(f \in B_C(f, \epsilon)\). We show find a basis element, which is a finite intersection of \(S(C, U)\). i.e, \(f \in S(C_1, U_1) \cap \cdots \cap S(C_n, U_n) \subset B_C(f, \epsilon)\).
+
+Each \(x \in X\) has a neighborhood \(V_x\) such that \(f(\cl{V_x}) \subset U_x\) and \(\diam U_x < \epsilon\). This is possible since \(f\) is continuous, \(\exists V_x\) such that \(f(V_x) \subset B_d\paren{f(x), \frac{\epsilon}{4}}\). Then \(f(\cl{V_x}) \subset B_d\paren{f(x), \frac{\epsilon}{3}}\), and the diameter is less than \(\epsilon\).
+
+Cover \(C\) by finitely many sets \(V_{x_1}, \dots, V_{x_n}\). Then \(C_x = \cl{V_x} \cap C\) is compact since \(C\) is compact. Then \(f \in \bigcap_{i=1}^n S(C_{x_i}, U_{x_i}) \subset B_C(f, \epsilon)\). \(f\) is an element since \(f(C_{x_i}) \subset f(\cl{V_{x_i}}) \subset U_{x_i}\). The last inclusion holds since \(g(C_{x_i}), f(C_{x_i}) \subset U_{x_i}\), and \(\diam U_{x_i} < \epsilon\) and \(d(f(x), g(x)) < \epsilon\) for all \(x \in C\). (\(C\) is a cover) \qed
+
+\cor{46.9} The compact convergence topology on \(\mc{C}(X, Y)\) does not depend on the metric of \(Y\). So if \(X\) is compact, then the uniform topology on \(\mc{C}(X, Y)\) does not depend on the metric of \(Y\).
+
+\thm{46.10} Let \(X\) be locally compact Hausdorff. Equip \(\mc{C}(X, Y)\) with the compact-open topology. Then the evaluation map \(e : X \times \mc{C}(X, Y) \ra Y\) defined as \((x, f) \mapsto f(x)\) is continuous.
+
+\pf Let \((x, f) \in X \times \mc{C}(X, Y)\) and \(V\) be a neighborhood of \(e(x, f) = f(x)\). \(X\) is locally compact Hausdorff, so there is a neighborhood \(U\) of \(x\) such that \(f(\cl{U}) \subset V\) and \(\cl{U}\) is compact. (\sref{Theorem 29.2} and continuity of \(f\)) Then \(U \times S(\cl{U}, V) \subset e\inv(V)\), since for any element \(x' \times f' \subset U \times S(\cl{U}, V)\), \(x' \in  U \subset \cl{U}\) so \(f'(x') \in f'(\cl{U}) \subset V\). \(U \times S(\cl{U}, V)\) is open in the compact-open topology, so \(e\inv(V)\) is open and \(e\) is continuous. \qed
+
+\pagebreak

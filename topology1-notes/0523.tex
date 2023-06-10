@@ -1,0 +1,79 @@
+\section*{May 23rd, 2023}
+
+This is another characterization of compactness in metric spaces.
+
+\thm{45.1} \((X, d)\) is compact if and only if \(X\) is complete and totally bounded.
+
+\pf \note{\mimp} Compactness implies sequentially compactness, so it is complete. Compactness also implies totally bounded.
+
+\note{\mimpd} It is enough to show that \(X\) is sequentially compact. Let \(\seq{x_n}\) be a sequence in \(X\). \(X\) is totally bounded, so cover \(X\) with finitely many balls of radius 1. One of the balls should contain infinitely many elements of \(x_n\), let it be \(B_1\). So if we let \(J_1 = \{n \in \N : x_n \in B_1\}\), \(J_1\) is infinite.
+
+Now cover \(X\) with finitely many balls of radius \(\frac{1}{2}\). Then there exists some \(B_2\) such that \(J_2 = \{n \in J_1 : x_n \in B_2\}\) is infinite. Repeat in this manner, to obtain \(J_{k+1} = \{n \in J_{k} : x_n \in B_{k+1}\}\) where \(B_{k+1}\) is a ball of radius \(\frac{1}{k+1}\).
+
+The idea is that this sequence will be Cauchy. Choose \(n_1 \in J_1\). Given \(n_k\), choose \(n_{k+1} \in J_{k+1}\) such that \(n_{k+1} > n_k\), since \(J_{k+1}\) is infinite. Then for all \(i, j \geq k\), \(n_i, n_j \in J_k\). So \(x_{n_i}, x_{n_j} \in B_k\), and hence the subsequence is Cauchy. Completeness of \(X\) makes this sequence converge. \qed
+
+We want to characterize compact subspaces of \(\mc{C}(X, \R^n)\). This is very useful when we consider sequence of continuous functions.
+
+\defn. \note{Equicontinuous} Let \((Y, d)\) be a metric space, and let \(\mc{F} \subset \mc{C}(X, Y)\). \(\mc{F}\) is \textbf{equicontinuous} at \(x_0 \in X\) if for every \(\epsilon > 0\), there exists a neighborhood \(U\) of \(x_0\) such that
+\begin{center}
+    \(\forall x \in U\), \(\forall f \in \mc{F}\) then \(d(f(x), f(x_0)) < \epsilon\).
+\end{center}
+\(\mc{F}\) is equicontinuous if it is equicontinuous at every \(x_0 \in X\).
+
+The difference is that the neighborhood \(U\) works for any \(f \in \mc{F}\).
+
+\lemma{45.2} Let \(X\) be a space, \((Y, d)\) be a metric space. If \(\mc{F} \subset \mc{C}(X, Y)\) is totally bounded under the uniform metric \(\rhobar\) corresponding to \(d\), then it is equicontinuous under \(d\).
+
+\pf Take \(0 < \epsilon < 1\), \(\delta = \frac{\epsilon}{3}\). Then \(\{B_\rhobar(f_1, \delta), \dots, B_\rhobar(f_n, \delta)\}\) will cover \(\mc{F}\). For \(x_0 \in X\), there exists a neighborhood \(U\) of \(x_0\) such that if \(x \in U\), then \(d(f_i(x), f_i(x_0)) < \delta\) for \(i = 1, \cdots, n\). Such neighborhood exists since each \(f_i\) is continuous, and we can take intersections of them.
+
+Let \(f \in \mc{F}\). Then \(\exists i\) such that \(f \in B_\rhobar(f_i, \delta)\). So \(\dbar(f(x), f_i(x)) \leq \rhobar(f, f_i) < \delta\) for \(x \in X\). Since \(\epsilon < 1\), we can change \(\dbar\) to \(d\). Thus
+\[
+    d(f(x), f(x_0)) \leq d(f(x), f_i(x)) + d(f_i(x), f_i(x_0)) + d(f_i(x_0), f(x_0)) < \epsilon.
+\]
+\(\mc{F}\) is equicontinuous. \qed
+
+\lemma{45.3} Let \(X\) be a space, \((Y, d)\) be a metric space. If \(X, Y\) are compact and \(\mc{F} \subset \mc{C}(X, Y)\) is equicontinuous under \(d\), then \(\mc{F}\) is totally bounded under the uniform \(\rhobar\) and \(\sup\) metric \(\rho\) corresponding to \(d\).
+
+\pf Recall that \(\rhobar = \min\{\rho, 1\}\), we will use \(\rho\). Let \(\epsilon > 0\), set \(\delta = \frac{\epsilon}{3}\). For \(a \in X\), there is a neighborhood \(U_a\) of \(a\) such that if \(x \in U_a\) and \(f \in \mc{F}\), then \(d(f(x), f(a)) < \delta\). (\mast) Since \(X\) is compact, choose a finite subcover \(\{U_{a_1}, \dots, U_{a_k}\}\). Also \(Y\) is compact, so take a finite subcover \(\{V_1, \dots, V_m\}\) with balls of radius less than \(\delta\).
+
+Define \(J\) be the set of all functions \(\alpha : \{1, \dots, k\} \ra \{1, \dots, m\}\). If \(\exists f \in \mc{F}\) such that \(f(a_i) \in V_{\alpha(i)}\) for \(i = 1, \dots, k\), choose one \(f\) and label it \(f_\alpha\). Clearly, the index set \(\alpha \in J' \subset J\) is finite. Now we show that the finite collection \(\{B_\rho(f_\alpha, \epsilon)\}_{\alpha \in J'}\) covers \(\mc{F}\).
+
+Take any \(f \in \mc{F}\). For all \(i = 1, \dots, k\), there exists \(\alpha(i) \in \{1, \dots, m\}\) such that \(f(a_i) \in V_{\alpha(i)}\). Then \(\alpha \in J'\), and we show that \(f \in B_\rho(f_\alpha, \epsilon)\).
+
+For \(x \in X\), \(\exists i\) such that \(x \in U_{a_i}\). Then \(d(f(a_i), f_\alpha(a_i)) < \delta\) since \(V_k\) was constructed to have diameter less than \(\delta\), and \(f(a_i), f_\alpha(a_i) \in V_k\). By (\mast),
+\[
+    d(f(x), f_\alpha(x)) \leq d(f(x), f(a_i)) + d(f(a_i), f_\alpha(a_i)) + d(f_\alpha(a_i), f_\alpha(x)) < \epsilon, \quad \forall x \in X.
+\]
+Then \(\rho(f, f_\alpha) = \max\{d(f(x), f_\alpha(x))\} < \epsilon\).\footnote{\(d : X \times X \ra \R\) is continuous, so we can use \(\max\). See \sref{Exercise 20.3}.} \qed
+
+\defn. \note{Pointwise Bounded} Let \((Y, d)\) be a metric space. \(\mc{F} \subset \mc{C}(X, Y)\) is \textbf{pointwise bounded} under \(d\) if for each \(a \in X\), the set \(\mc{F}_a = \{f(a) : f \in \mc{F}\}\) is bounded under \(d\).
+
+\thm{45.4} \note{Ascoli, classic version} Let \(X\) be compact, let \((\R^n, d)\) be the Euclidean space in either the square or euclidean metric. Give \(\mc{C}(X, \R^n)\) the corresponding uniform topology. Then \(\mc{F} \subset \mc{C}(X, \R^n)\) has compact closure if and only if \(\mc{F}\) is equicontinuous and pointwise bounded under \(d\).
+
+\pf Let \(\mc{G} = \cl{\mc{F}}\) in \(\mc{C}(X, \R^n)\).
+
+\note{\mimp} \(\mc{G}\) is compact, so \(\mc{G}\) is totally bounded under \(\rho, \rhobar\). (\sref{Theorem 45.1}) So \(\mc{G}\) is equicontinuous under \(d\). (\sref{Lemma 45.2}) From compactness, \(\mc{G}\) is bounded under \(\rho\), so it is pointwise bounded under \(d\). (\(d(f(a), g(a)) \leq \rho(f, g) \leq M, \forall f, g \in \mc{G}\)) \(\mc{F} \subset \mc{G}\), so \(\mc{F}\) is also equicontinuous under \(d\) and pointwise bounded under \(d\).
+
+\note{\mimpd} We first show that \(\mc{G}\) is equicontinuous and pointwise bounded under \(d\).
+
+Let \(x_0 \in X\), \(\epsilon > 0\). Since \(\mc{F}\) is equicontinuous, there is a neighborhood \(U\) of \(x_0\) such that if \(x \in U\), then \(d(f(x), f(x_0)) < \frac{\epsilon}{3}\) for all \(f \in \mc{F}\). Let \(g \in \mc{G}\). There exists \(f \in \mc{F}\) such that \(\rho(f, g) < \frac{\epsilon}{3}\). Since \(d(f(x), g(x)) \leq \rho(f, g)\) for all \(x \in X\),
+\[
+    d(g(x), g(x_0)) \leq d(g(x), f(x)) + d(f(x), f(x_0)) + d(f(x_0), g(x_0)) < \epsilon
+\]
+for \(x \in U\). \(\mc{G}\) is equicontinuous. To show pointwise boundedness, let \(a \in X\). Then there exists \(M\) such that \(\diam \mc{F}_a \leq M\). If \(g, g' \in \mc{G}\), \(\exists f, f' \in \mc{F}\) such that \(\rho(f, g), \rho(f', g') < 1\). So,
+\[
+    d(g(a), g'(a)) \leq d(g(a), f(a)) + d(f(a), f'(a)) + d(f'(a), g'(a)) \leq M + 2
+\]
+and \(\mc{G}\) is pointwise bounded under \(d\).
+
+We cannot apply \sref{Lemma 45.3} right now, since \(\R^n\) is not compact. So we need to show that there is a compact subspace \(Y \subset \R^n\) such that \(\bigcup_{g \in \mc{G}} g(X) \subset Y\). Let \(a \in X\). Since \(\mc{G}\) is equi\-continuous, there is a neighborhood \(U_a\) of \(a\) such that if \(x \in U_a\), then \(d(g(x), g(a)) < 1\) for all \(g \in \mc{G}\). \(X\) is compact, so choose a finite subcover \(\{U_{a_1}, \dots, U_{a_k}\}\). Since each \(\mc{G}_{a_i}\) is bounded, finite union of them is bounded. So take \(N > 0\) such that \(\bigcup_{i=1}^k \mc{G}_{a_i} \subset B(\bf{0}, N)\). Then for all \(g \in \mc{G}\), \(g(X) \subset B(\bf{0}, N+1)\). Set \(Y = \cl{B(\bf{0}, N+1)}\), then \(Y\) is a compact subspace of \(\R^n\), since it is bounded and closed.
+
+\(\mc{G}\) is complete, since it is a closed subset of a complete metric space \(\mc{C}(X, \R^n)\). By \sref{Step 3}, \(\mc{G} \subset \mc{C}(X, Y)\) where \(Y\) is compact. By \sref{Lemma 45.3}, \(\mc{G}\) is totally bounded under \(\rho\). By \sref{Theorem 45.1}, \(\mc{G}\) is compact, and \(\mc{F}\) has compact closure. \qed
+
+\cor{45.5} Let \(X\) be compact, let \((\R^n, d)\) be the Euclidean space in either the square or euclidean metric. Give \(\mc{C}(X, \R^n)\) the corresponding uniform topology. Then \(\mc{F} \subset \mc{C}(X, \R^n)\) is compact if and only if \(\mc{F}\) is closed, bounded under sup metric \(\rho\) and equicontinuous under \(d\).
+
+\pf \note{\mimp} If \(\mc{F}\) is compact, then it is bounded (finite cover of 1-balls) and closed.\footnote{Use sequence lemma and sequential compactness.} By \sref{Theorem 45.4}, \(\mc{F}\) is equicontinuous.
+
+\note{\mimpd} If \(\mc{F}\) is closed \(\mc{F} = \mc{G}\). \(\mc{F}\) is pointwise bounded under \(d\) since it is bounded under the sup metric. \(\mc{F}\) is also equicontinuous, so \(\mc{F}\) is compact by \sref{Theorem 45.4}. \qed
+
+\pagebreak
