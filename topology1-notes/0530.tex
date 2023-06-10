@@ -1,0 +1,80 @@
+\section*{May 30th, 2023}
+
+Given a continuous function \(f : X \times Z \ra Y\), it induces a function \(F : Z \ra \mc{C}(X, Y)\) such that \(z \mapsto f(\cdot, z)\). Also, the converse holds (if \(X\) is locally compact Hausdorff).
+
+\thm{46.11} Equip \(\mc{C}(X, Y)\) with the compact-open topology. If \(f : X \times Z \ra Y\) is continuous then \(F : Z \ra \mc{C}(X, Y)\) is continuous. The converse holds when \(X\) is locally compact Hausdorff.
+
+\pf \note{\mimpd} Consider \(f\) as \(X \times Z \ra X \times \mc{C}(X, Y) \ra Y\), by \((x, z) \mapsto (x, F(z)) \mapsto F(z)(x) = f(x, z)\). Then it is a composition of \(i_X \times F\) and \(e\), which are both continuous.
+
+\note{\mimp} Take \(z_0 \in Z\), and a subbasis element \(S(C, U)\) that contains \(F(z_0)\). We want to find a neighborhood \(W\) of \(z_0\) such that \(F(W) \subset S(C, U)\). \(F(z_0) \in S(C, U)\) is equivalent to \(F(z_0)(x) = f(x, z_0) \in U\) for all \(x \in C\), which is also equivalent to \(f(C \times z_0) \subset U\). Then by continuity, \(f\inv(U)\) is an open set in \(X \times Z\), that contains \(C \times z_0\).
+
+Then \(f\inv(U) \cap (C \times Z)\) is an open set in \(C \times Z\), containing \(C \times z_0\). \(C\) is compact, so by the tube lemma, there exists a neighborhood \(W\) of \(z_0\) in \(Z\) such that \(C \times W \subset f\inv(U) \cap (C \times Z)\). So for all \(x \times z \in C \times W\), \(f(x, z) \in U\), which implies \(F(W) \subset S(C, U)\). \qed
+
+\rmk For later semester: Let \(f, g\) be continuous maps \(X \ra Y\). \(f, g\) are \textbf{homotpoic} if there exists a continuous function \(h : X \times [0, 1] \ra Y\) such that \(h(x, 0) = f(x)\) and \(h(x, 1) = g(x)\) for all \(x \in X\). \(h\) is called a \textbf{homotopy} between \(f\) and \(g\).
+
+By the above theorem, \(h\) induces a continuous function \(H : [0, 1] \ra \mc{C}(X, Y)\). In fact, a homotopy \(h\) corresponds to a path in \(\mc{C}(X, Y)\) from the point \(f\) to \(g\).
+
+\topic{Ascoli's Theorem}
+
+\thm. Let \(X\) be a space, \((Y, d)\) be a metric space. Equip \(\mc{C}(X, Y)\) with the compact convergence topology. Let \(\mc{F} \subset \mc{C}(X, Y)\).
+\begin{enumerate}
+    \item \(\mc{F}\) is equicontinuous under \(d\) and \(\mc{F}_a\) has a compact closure for every \(a \in X\).
+    \item \(\mc{F}\) is contained in a compact subspace of \(\mc{C}(X, Y)\).
+\end{enumerate}
+(1)\mimp(2) always holds, (2)\mimp(1) if \(X\) is locally compact Hausdorff.
+
+\pf \note{\mimp} Consider \(Y^X\) with the product topology. It is same as pointwise convergence topology, and \(Y^X\) is Hausdorff since \(Y\) is Hausdorff. Note that \(\mc{C}(X, Y)\) in the compact convergence topology is not a subspace of \(Y^X\). Let \(\mc{G} = \cl{\mc{F}}\) in \(Y^X\).
+
+\note{Step 1} \(\mc{G}\) is a compact subspace of \(Y^X\). \\
+Note that \(\mc{F} \subset \prod_{a \in X} \mc{F}_a \subset \prod_{a \in X} \cl{\mc{F}_a}\). Since \(\cl{\mc{F}_a}\) is compact, its product is also compact. (Tychonoff theorem) So \(\mc{G} = \cl{\mc{F}} \subset \prod_{a \in X} \cl{\mc{F}_a}\), and \(\mc{G}\) is a closed subset of compact set, so it is compact.
+
+\note{Step 2} \(\mc{G}\) is equicontinuous under \(d\).\\
+\(\forall x_0 \in X\), \(\forall \epsilon > 0\), there exists a neighborhood \(U\) of \(x_0\) such that for all \(f \in \mc{F}\), \(x \in U\), \(d(f(x), f(x_0)) < \frac{\epsilon}{3}\). Let \(g \in \mc{G}\) and \(x \in U\). Consider
+\[
+    V_x = \left\{h \in Y^X : d(h(x), g(x)) < \frac{\epsilon}{3} \text{ and } d(h(x_0), g(x_0)) < \frac{\epsilon}{3}\right\}.
+\]
+\(V_x\) is open in \(Y^X\), since the map \(h \mapsto h(x) \mapsto d(h(x), g(x))\) is continuous.\footnote{Why?} So \(V_x\) is a neighborhood of \(g\), so by definition of closure, \(g \in \cl{\mc{F}}\) implies that \(\exists f \in \mc{F}\) such that \(f \in V_x\). By triangle inequality,
+\[
+    d(g(x), g(x_0)) \leq d(g(x), f(x)) + d(f(x), f(x_0)) + d(f(x_0), g(x_0)) < \epsilon,
+\]
+for all \(g \in \mc{G}\) and \(x \in U\). Thus \(\mc{G}\) is equicontinuous under \(d\).
+
+\note{Step 3} The product topology on \(Y^X\) and the compact convergence topology on \(\mc{C}(X, Y)\) coincide on \(\mc{G}\).\\
+In general, the compact convergence topology is finer than the product topology, so we prove the reverse holds on \(\mc{G}\). For \(g \in \mc{G}\), take basis element \(B_C(g, \epsilon)\). We need to find an open set \(B\) containing \(g\) for the product topology in \(Y^X\) such that \(B \cap \mc{G} \subset B_C(g, \epsilon) \cap \mc{G}\).
+
+Using the fact that \(\mc{G}\) is equicontinuous and \(C\) being compact, we can choose open sets \(\{U_{x_1}, \dots, U_{x_n}\}\) covering \(C\) such that \(d(g(x), g(x_i)) < \frac{\epsilon}{3}\) for all \(g \in \mc{G}\), \(x \in U_{x_i}\). Set
+\[
+    B = \left\{h \in Y^X : d(h(x_i), g(x_i)) < \frac{\epsilon}{3},\; i = 1, \dots, n\right\}.
+\]
+Then \(B\) is open in the product topology of \(Y^X\). Take \(h \in B \cap \mc{G}\) and \(x \in C\). Choose \(i\) so that \(x \in U_{x_i}\). From \(g, h \in \mc{G}\), \(d(h(x), h(x_i)) < \frac{\epsilon}{3}\), \(d(g(x), g(x_i)) < \frac{\epsilon}{3}\) by equicontinuity of \(\mc{G}\). By triangle inequality again,
+\[
+    d(h(x), g(x)) < d(h(x), h(x_i)) + d(h(x_i), g(x_i)) + d(g(x_i), g(x)) < \epsilon.
+\]
+
+\note{Step 4} \(\mc{F} \subset \mc{G} \subset \mc{C}(X, Y)\) and \(\mc{G}\) is a compact subspace of \(Y^X\), and also in \(\mc{C}(X, Y)\) with the compact convergence topology, by \sref{Step 3}. Thus \(\mc{F}\) is contained in a compact subspace \(\mc{G}\).
+
+\note{\mimpd} Let \(\mc{H}\) be a compact subspace of \(\mc{C}(X, Y)\) containing \(\mc{F}\). We show that \(\mc{H}\) is equicontinuous and \(\mc{H}_a\) is compact for all \(a \in X\). Then \(\mc{F} \subset \mc{H}\), so \(\mc{F}\) would be equicontinuous. Also, \(\cl{\mc{F}_a} \subset \cl{\mc{H}_a} = \mc{H}_a\), so \(\cl{\mc{F}_a}\) is a closed subspace of a compact subspace, so it would be compact.
+
+\note{Step 1} \(\mc{H}_a\) is a compact subspace of \(Y\).\\
+Consider the composition \(\mc{C}(X, Y) \overset{j}{\ra} X \times \mc{C}(X, Y) \overset{e}{\ra} Y\) as \(f \mapsto a \times f \mapsto f(a)\). \(j\) is obviously continuous, and \(e\) is continuous. Since \(\mc{H}\) is compact, its continuous image \((e\circ j)(\mc{H}) = \mc{H}_a\) is compact.
+
+\note{Step 2} \(\mc{H}\) is equicontinuous at \(a \in X\).\\
+Let \(A\) be a compact subspace that contains a neighborhood \(V\) of \(a\). (\(X\) is locally compact Hausdorff) Our claim is that \(\mc{R} = \{f \mid_A : f \in \mc{H}\} \subset \mc{C}(A, Y)\) is equicontinuous at \(a\). The restriction map \(r : \mc{C}(X, Y) \ra \mc{C}(A, Y)\) is continuous, since \(r(B_C(f, \epsilon)) \subset B_C(f\mid_A, \epsilon)\). Then \(\mc{R} = r(\mc{H})\) is compact, and is a subspace of \(\mc{C}(A, Y)\) in the compact convergence topology. Since \(A\) is compact, we can consider \(\mc{C}(A, Y)\) in the uniform topology. We are now in a metric space, so compactness of \(\mc{R}\) implies that \(\mc{R}\) is totally bounded. Then totally bounded implies equicontinuity under \(d\), by \sref{Lemma 45.2}.
+
+Then for \(\epsilon > 0\), there is a neighborhood \(U\) of \(a\) in \(A\) such that \(d(f(x), f(a)) < \epsilon\) for all \(f \in \mc{H}\), \(x \in U\). \(U \cap V\) is open in \(V\) and also in \(X\). So \(d(f(x), f(a)) < \epsilon\) for all \(x \in U \cap V\). \(\mc{H}\) is equicontinuous at \(a\). \qed
+
+\topic{Baire Spaces}
+
+\defn. \(A \subset X\) has empty interior if \(A\) contains no open set of \(X\) other than \(\varnothing\).
+
+\rmk Note that \(X \bs A\) would be dense in \(X\). Any neighborhood should intersect the complement.
+
+\defn. \note{Baire Space} \(X\) is a \textbf{Baire space} if given any countable collection \(\seq{A_n}_{n \in \N}\) of closed sets of \(X\) with empty interior in \(X\), \(\bigcup A_n\) also has empty interior in \(X\).
+
+\ex. \(\Q\) is not a Baire space, since \(\Q\) is already a countable union. \(\N\) is a Baire space, since it is a discrete topology.
+
+\lemma{48.1} \(X\) is a Baire space if and only if given any countable collection \(\seq{U_n}_{n \in \N}\) of open dense sets in \(X\), \(\bigcap U_n\) is also dense in \(X\).
+
+\pf Directly follows from definition. \qed
+
+\pagebreak

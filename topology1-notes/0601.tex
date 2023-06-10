@@ -1,0 +1,70 @@
+\section*{June 1st, 2023}
+
+\thm{48.2} \note{Baire Category Theorem} If \(X\) is (1) compact Hausdorff or (2) a complete metric space then \(X\) is a Baire space.
+
+\pf Let \(\seq{A_n}\) be a countable collection of closed sets with empty interior. Let \(U_0\) be a nonempty open set in \(X\). We show that there exists \(x \in U_0\) such that \(x \notin \bigcup A_n\).
+
+Since \(A_n\) have empty interior, \(\exists y_0 \in U_0\) such that \(y_0 \notin A_1\). Since \(X \bs A_1\) is open, and \(X\) is regular, there is a neighborhood \(U_1\) of \(y_0\) such that \(\cl{U_1} \subset U_0 \cap (X \bs A_1)\). This is equivalent to \(\cl{U_1} \cap A_1 = \varnothing\), \(\cl{U_1} \subset U_0\). For (2), add the condition that \(\diam U_1 < 1\).
+
+Now, \(\exists y_1 \in U_1\) such that \(y_1 \notin A_2\). By the same argument, there is a neighborhood \(U_2\) of \(y_1\) such that \(\cl{U_2} \cap A_2 = \varnothing\) and \(\cl{U_2} \subset U_1\). Again, for (2), \(\diam U_2 < \frac{1}{2}\).
+
+For (1), \(\bigcap \cl{U_n} \neq \varnothing\) by the finite intersection property, since \(X\) is compact. For (2), it holds by the following lemma. Then for \(x \in \bigcap \cl{U_n}\), \(x \in \cl{U_1} \subset U_0\), and \(x \notin \bigcup A_n\), since \(U_n \cap A_n = \varnothing\). \qed
+
+\lemma. Let \(C_1 \supset C_2 \supset \cdots\) be a nested sequence of nonempty closed sets in the complete metric space. If \(\diam C_n \ra 0\), then \(\bigcap C_n \neq \varnothing\).
+
+\pf Choose \(x_n \in C_n\). For all \(n, m \geq N\), \(x_n, x_m \in C_N\). The diameter converges to 0, so \(\seq{x_n}\) is a Cauchy sequence. Let \(x_n \ra x\). Then \(x \in \cl{C_k} = C_k\) for all \(k \in \N\). Thus \(x \in \bigcap C_n\). \qed
+
+\lemma{48.4} Any open subspace \(Y\) of a Baire space \(X\) is also a Baire space.
+
+\pf Check by yourself. \qed
+
+\thm{48.5} Let \(X\) be a Baire space, let \((Y, d)\) be a metric space. If \(f_n : X \ra Y\) is a sequence of continuous functions such that \(f_n(x) \ra f(x)\) for all \(x \in X\). Then the set of points where \(f\) is continuous is dense in \(X\).
+
+\pf For \(N \in \N\), \(\epsilon > 0\), let
+\[
+    A_N(\epsilon) = \{x \in X : d\paren{f_n(x), f_m(x)} \leq \epsilon,\; \forall n, m \geq N\}.
+\]
+This set is closed, since it is an inverse image of continuous function. Fix \(\epsilon\). Then \(A_1(\epsilon) \subset A_2(\epsilon) \subset \cdots\). Then \(\bigcup A_n(\epsilon) = X\), since \(\seq{f_n(x_0)}\) is a Cauchy sequence for each \(x_0 \in X\). Let \(U(\epsilon) = \bigcup \inte A_N(\epsilon)\). It is clear that \(U(\epsilon)\) is open.
+
+\note{1} \(U(\epsilon)\) is dense in \(X\). \\
+We show that for any nonempty open set \(V\) of \(X\), \(\exists M\) such that \(V \cap \inte A_M(\epsilon) \neq \varnothing\). First, \(V \cap A_N(\epsilon)\) is closed in \(V\). \(V = \bigcup (V \cap A_N(\epsilon))\). Since \(V\) is open, it is also a Baire space. \(\exists M\) such that \(V \cap A_M(\epsilon)\) contains a nonempty open set \(W\) in \(V\). \(W\) is also open in \(X\), \(W \subset V \cap \inte A_M(\epsilon)\).
+
+\note{2} \(f\) is continuous at \(x \in C = \bigcap_{n \in \N} U\paren{\frac{1}{n}}\). \\
+Let \(x_0 \in C\). We will show that \(\forall \epsilon > 0\), there is a neighborhood \(W\) of \(x_0\) such that if \(x \in W\) then \(d(f(x), f(x_0)) < \epsilon\). Take \(k \in \N\) such that \(\frac{1}{k} < \frac{\epsilon}{3}\). Then \(x_0 \in U\paren{\frac{1}{k}}\). So \(\exists N\) such that \(x_0 \in \inte A_N\paren{\frac{1}{k}}\). There is a neighborhood \(W\) of \(x_0\) such that \(W \subset \inte A_N\paren{\frac{1}{k}}\) and if \(x \in W\), \(d(f_N(x), f_N(x_0)) < \frac{\epsilon}{3}\) (\(f_n\) is continuous) Then \(d(f_n(x), f_N(x)) \leq \frac{1}{k}\) for \(n \geq N\), \(x \in W\). Let \(n\ra\infty\). Then for \(x_0 \in W\), \(d(f(x_0), f_N(x_0)) < \frac{\epsilon}{3}\). Then the desired result follows from the triangle inequality. \qed
+
+\topic{A Nowhere Differentiable Function}
+
+\thm{49.1} Let \(f : [0, 1] \ra \R\) be continuous. For \(\epsilon > 0\), there is a continuous \(g: [0, 1] \ra \R\) such that \(\abs{f(x) - g(x)} < \epsilon\) for \(x \in [0, 1]\) and \(g\) is nowhere differentiable.
+
+\pf We will write \(\mc{C} = \mc{C}([0, 1], \R)\), with the metric \(\rho(f, g) = \max\{\abs{f(x) - g(x)}\}\). Then \(\mc{C}\) is a complete metric space, (\(\R\) is complete) and it is a Baire space. We will show that for \(n\), there is a (2) open set \(U_n \subset \mc{C}\) such that (3) \(U_n\) is dense in \(\mc{C}\) and (1) \(\bigcap U_n\) consists of nowhere differentiable functions. Then for all \(f \in \mc{C}\) and \(\epsilon > 0\), \(\paren{\bigcap U_n} \cap B_\rho(f, \epsilon)\) is nonempty, taking \(g\) from this set will give the desired result.
+
+For \(0 < h \leq \frac{1}{2}\), \(x \in [0, 1]\), at least one of \(x + h\) or \(x - h\) is in \([0, 1]\). Define
+\[
+    \Delta f(x, h) = \max\left\{\abs{\frac{f(x+h) - f(x)}{h}}, \abs{\frac{f(x-h) - f(x)}{-h}}\right\}.
+\]
+At least one of the difference quotients will be defined. If only one of them is defined, defined \(\Delta f(x, h)\) as that value. Let \(\Delta_h f = \inf \{\Delta f(x, h) : x\in [0, 1]\}\). For \(n \geq 2\), \(U_n = \left\{f \in \mc{C} : \Delta_hf > n \text{ for some } 0 < h \leq \frac{1}{n}\right\}\).
+
+\note{1} Let \(f \in \bigcap U_n\). We show that \(\forall x \in [0, 1]\), \(\lim_{h \ra 0} \Delta f(x, h)\) does not exist. (if \(f'(x)\) exists, \(\abs{f'(x)}\) would be equal to the limit) For \(n \in \N\), \(\exists h_n \in \left(0, \frac{1}{n}\right]\) such that \(\Delta f(x, h) > n\). So \(h_n \ra 0\), but \(\Delta f(x, h_n)\) does not converge. Thus \(f\) is not differentiable at \(x\).
+
+\note{2} Let \(f \in U_n\). Then \(\exists h \in \left(0, \frac{1}{n}\right]\) such that \(M = \Delta_h f > n\). Set \(\delta = \frac{h}{4}(M - n)\). We claim that for function \(g\), if \(\rho(f, g) < \delta\), then \(\Delta g(x, h) > n\), so \(g \in U_n\). (open ball with radius \(\delta\) centered at \(f\) is inside \(U_n\))
+\begin{itemize}
+    \item Case 1. \(\Delta f(x, h) = \abs{\frac{f(x + h) - f(x)}{h}} \geq M\). (\(M\) is infimum)
+          \[
+              \begin{aligned}
+                  \abs{\frac{f(x+h) -f(x)}{h} - \frac{g(x+h)-g(x)}{h}} & = \frac{1}{h}\abs{f(x+h)-g(x+h) - f(x) + g(x)} \\ &\leq \frac{2\delta}{h} = \frac{1}{2}(M - n).
+              \end{aligned}
+          \]
+          Then \(\Delta g(x, h) \geq \abs{\frac{g(x+h) - g(x)}{h}} \geq M - \frac{1}{2}(M - n) = \frac{1}{2}(M + n) > n\) by triangle inequality.
+    \item Case 2. \(\Delta f(x, h) = \abs{\frac{f(x - h) - f(x)}{-h}}\). Similar.
+\end{itemize}
+
+\note{3} For \(f \in \mc{C}\), \(\epsilon > 0\), \(n \in \N\), we show that \(B_\rho(f, \epsilon) \cap U_n \neq \varnothing\). Take a partition \(0 = t_0 < t_1 < \cdots < t_m = 1\), such that \(\abs{f(x) - f(y)} < \frac{\epsilon}{4}\) for all \(x, y \in [t_{i-1}, t_i]\). (\(f\) is uniformly continuous since \([0, 1]\) is compact) For \(i = 1, \dots, m\), choose \(a_i \in (t_{i-1}, t_i)\). Define
+\[
+    g_1(x) = \begin{cases}
+        f(t_{i-1})              & (t_{i-1} \leq x \leq a_i) \\
+        f(t_{i-1}) + m_i(x-a_i) & (a_i \leq x \leq t_i)     \\
+    \end{cases}
+\]
+where \(m_i = \frac{f(t_i) - f(t_{i-1})}{t_i - a_i}\). If we choose \(a_i\) very close to \(t_i\), the slope of \(g_1(x)\) on \([a_i, t_i]\) can be made very large. If \(f(t_i) \neq f(t_{i-1})\), we choose \(a_i\) such that \(\abs{m_i} > \alpha\). (Take \(\alpha > n\)) By construction, it can be checked that \(\rho(g_1, f) < \frac{\epsilon}{2}\). In \(g_1\), replace the zero slope lines with squiggly sawtooth functions, that each edge of the sawtooth has slope at least \(\alpha\) in absolute value. Then \(g\) is nowhere differentiable. \qed
+
+\pagebreak
