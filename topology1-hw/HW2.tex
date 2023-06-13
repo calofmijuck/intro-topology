@@ -94,7 +94,7 @@
 
     \prob{7}
     \begin{itemize}
-        \subprob{a} We show that \(Z \bs Y\) is open. Let \(a \in Z \bs Y\), \(b = r(a) \in Y\). \(Z\) is Hausdorff, so there are disjoint neighborhoods \(U, V\) of \(a, b\) respectively. Then \(V \cap Y\) is open in \(Y\), so \(r\inv(V\cap Y)\) is open in \(X\), and \(r\inv(V\cap Y) \cap U\) is open in \(X\).
+        \subprob{a} We show that \(Z \bs Y\) is open. Let \(a \in Z \bs Y\), \(b = r(a) \in Y\). \(Z\) is Hausdorff, so there are disjoint neighborhoods \(U, V\) of \(a, b\) respectively. Then \(V \cap Y\) is open in \(Y\), so \(r\inv(V\cap Y)\) is open in \(Z\), and \(r\inv(V\cap Y) \cap U\) is open in \(Z\).
 
         Then \(r\inv(V\cap Y) \cap U\) is a neighborhood of \(a\) contained in \(Z \bs Y\). \(a \in U\) by construction, \(a \in r\inv(V\cap Y)\) since \(b = r(a) \in V \cap Y\). Also, if \(x \in r\inv(V\cap Y) \cap U\), then \(x \in U\) and \(r(x) \in V \cap Y\). But \(U \cap V = \varnothing\), so \(r(x) \neq x\) and \(x \notin Y\). Thus \(Z \bs Y\) is open and \(Y\) is closed.
 
@@ -112,7 +112,7 @@
     \[
         \C_2 = \{(-r, 0) \cup \{x\} \cup (0, r) : r > 0,\, r \in \Q,\, x \in \{p, q\}\}
     \]
-    \(C_1, \C_2\) are definitely countable, so we show that \(\C = \C_1 \cup \C_2\) is a basis of \(X\).
+    \(\C_1, \C_2\) are definitely countable, so we show that \(\C = \C_1 \cup \C_2\) is a basis of \(X\).
 
     It is trivial that for every \(x \in X\), there is a basis element containing \(x\). Next, we show the second condition of being a basis.
     \begin{itemize}
