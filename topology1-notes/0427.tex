@@ -50,7 +50,7 @@ Both countability axioms are well behaved when taking subspaces or countable pro
 
 \note{2} For \(n \in \N\), if \(B_n \neq \varnothing\), choose \(x_n \in B_n\). Let \(D = \seq{x_n}_{n \in J}\). Now we show that \(\cl{D} = X\). For \(x \in X\), every \(B_n \in \mc{B}\) containing \(x\) should intersect \(D\). This is true since \(x_n \in B_n \cap D \neq \varnothing\). \qed
 
-\ex. \(\R_l\) is 1st countable, take a collection of \(\left[x, x + \frac{1}{n}\right)\), which is a basis at \(x\). The property (2) also holds. (rationals!) Is also Lindelöf. \textit{But \(\R_l\) is not 2nd countable.}
+\ex. \(\R_l\) is 1st countable, take a collection of \(\left[x, x + \frac{1}{n}\right)\), which is a basis at \(x\). The property (2) also holds, consider \(\Q\). It is also Lindelöf. \textit{But \(\R_l\) is not 2nd countable.}
 
 \pf Let \(\mc{B}\) be a basis for \(\R_l\). Define a map \(x \mapsto B_x\), where \(x \in B_x \subset [x, x+1)\). This map is injective. If \(B_x = B_y\), then \(\inf B_x = \inf B_y\), so \(x = y\). \(\mc{B}\) cannot be countable. \qed
 
@@ -64,8 +64,8 @@ Recall that Hausdorff axiom was a separation axiom.
 
 \defn. Suppose that one-points sets are closed in \(X\).
 \begin{enumerate}
-    \item \note{Regular} \(X\) is \textbf{regular} if for each pair of point \(x\) and a closed set \(B\) disjoint from \(x\), there exists disjoint open sets containing \(x\) and \(B\), respectively.
-    \item \note{Normal} \(X\) is \textbf{normal} if for each pair of disjoint closed sets \(A, B\) of \(X\), there exists disjoint open sets containing \(A, B\), respectively.
+    \item \note{Regular} \(X\) is \textbf{regular} if for each pair of point \(x\) and a closed set \(B\) disjoint from \(x\), there exist disjoint open sets containing \(x\) and \(B\), respectively.
+    \item \note{Normal} \(X\) is \textbf{normal} if for each pair of disjoint closed sets \(A, B\) of \(X\), there exist disjoint open sets containing \(A, B\), respectively.
 \end{enumerate}
 
 \rmk Normal \mimp Regular \mimp Hausdorff.
@@ -79,13 +79,13 @@ This is another way to formulate the separation axioms.
 \end{enumerate}
 
 \pf \\
-\note{1} \note{\mimp} Let \(B = X \bs U\), not containing \(x\). There exists disjoint open sets \(V\) containing \(x\), and \(W\) containing \(B\). Since \(V \subset X \bs W \subset X \bs B = U\), and \(X \bs W\) is closed, \(\cl{V} \subset X \bs W\). Thus \(\cl{V} \subset U\).
+\note{1} \note{\mimp} Let \(B = X \bs U\), not containing \(x\). There exist disjoint open sets \(V\) containing \(x\), and \(W\) containing \(B\). Since \(V \subset X \bs W \subset X \bs B = U\), and \(X \bs W\) is closed, \(\cl{V} \subset X \bs W\). Thus \(\cl{V} \subset U\).
 
 \note{\mimpd} Let \(x \in X\). Given closed set \(B\) disjoint from \(x\), let \(U = X \bs B\). \(U\) is a neighborhood of \(x\), so there is a neighborhood \(V\) of \(x\) such that \(\cl{V} \subset U = X \bs B\). Then \(x \in V\) and \(B \subset X \bs \cl{V}\).
 
 \note{2} Replace \(x\) with closed set \(A\). Check by yourself! \qed
 
-\thm{31.2} A subspace/product of a regular space is also regular.
+\thm{31.2} A subspace/product of regular space(s) is also regular.
 
 \pf
 \note{Subspace} Let \(x \in Y\), \(x \notin B \subset Y\), \(B\) closed. We can write \(B = \cl{B} \cap Y\). Then \(x \notin \cl{B}\). Since \(X\) is regular, there exists disjoint open sets \(V, W\) with \(x \in V\), \(\cl{B} \subset W\). Take intersections with \(Y\). Then \(x \in V \cap Y\), \(B = Y \cap \cl{B} \subset Y \cap W\).
@@ -104,7 +104,7 @@ This is another way to formulate the separation axioms.
 
 \topic{Normal Spaces}
 
-Although normal spaces don't behave very well, but you will see that normal spaces are important when we have additional properties. A normal space can be metrizable if some additional property is given.
+Although normal spaces don't behave very well, but you will see that normal spaces are important when we have additional properties. A normal space can be metrizable if some additional properties are given.
 
 \thm{32.3} Every compact Hausdorff space is normal.
 

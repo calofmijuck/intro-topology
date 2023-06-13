@@ -10,7 +10,7 @@ Next we need to show that \(\mc{B}\) is a basis for \(X\). Given \(x \in X\) and
 
 For each \(n \in \N\) and \(B \in \mc{B}_n\), there exists a continuous function \(f_{n, B}: X \ra \left[0, \frac{1}{n}\right]\) such that \(f_{n, B}(x) = 0\) for all \(x \in X \bs B\), \(f_{n, B}(x) > 0\) for all \(x \in B\). (\sref{Lemma 40.2}) Then \(\{f_{n, B}\}\) separates points from closed sets of \(X\), because \(\forall x_0 \in X\), for every neighborhood \(U\) of \(x_0\), there is a basis element \(B \in \mc{B}\) such that \(x_0 \in B \subset U\). Then for some \(n \in \N\), \(B \in \mc{B}_n\). So \(f_{n, B}(x) = 0\) for \(x \in X \bs B\), \(f_{n, B}(x) > 0\) for \(x \in B\).
 
-Let \(J = \{(n, B) \in \N \times \mc{B} : B \in \mc{B}_n\}\). Define \(F: X \ra [0, 1]^J\) where \(x \mapsto \paren{f_{n, B}(x)}_{(n, B) \in J}\). If \([0, 1]^J\) is given the product topology, then we know that \(F\) is an imbedding. (\sref{Theorem 34.2}) In this cases, equip \([0, 1]^J\) with the uniform topology. It is clear that \(F\) is still injective, and that \(F\) is an open map of \(X\) onto \(Z = F(X)\), since the uniform topology is finer. But we don't know if \(F\) is continuous yet. Our task is to show that \(F\) is continuous.
+Let \(J = \{(n, B) \in \N \times \mc{B} : B \in \mc{B}_n\}\). Define \(F: X \ra [0, 1]^J\) where \(x \mapsto \paren{f_{n, B}(x)}_{(n, B) \in J}\). If \([0, 1]^J\) is given the product topology, then we know that \(F\) is an imbedding. (\sref{Theorem 34.2}) In this case, equip \([0, 1]^J\) with the uniform topology. It is clear that \(F\) is still injective, and that \(F\) is an open map of \(X\) onto \(Z = F(X)\), since the uniform topology is finer. But we don't know if \(F\) is continuous yet. Our task is to show that \(F\) is continuous.
 
 Note that \(\bar{\rho}\mid_{[0, 1]^J \times [0, 1]^J} = \rho\) where \(\rho\paren{(x_\alpha), (y_\alpha)} = \sup \{\abs{x_\alpha - y_\alpha}\}\). We will show that \(\forall x_0 \in X\), \(\forall \epsilon > 0\), there exists a neighborhood \(W\) of \(x_0\) such that \(x \in W \implies \rho\paren{F(x), F(x_0)} < \epsilon\).
 
@@ -90,6 +90,6 @@ Since \(\R^J\) with the product topology is not metrizable, nothing to say more 
 \]
 So \(\seq{f_n(\alpha)}\) is Cauchy in \((Y, \bar{d})\), and it converges, say to \(y_\alpha \in Y\). Define \(f : J \ra Y\) by \(f(\alpha) = y_\alpha\), then \(f \in Y^J\). Now we show that \(f_n \ra f\) in the metric \(\bar{\rho}\).
 
-\(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(n,m \geq N \implies \bar{\rho}(f_n, f_m) < \frac{\epsilon}{2}\). Fix \(n \geq N\) and \(\alpha \in J\), then let \(m \ra \infty\) in (\mast). We have \(\bar{d}\paren{f_n(\alpha), f(\alpha)} \leq \frac{\epsilon}{2}\), so \(\bar{\rho}(f_n, f) \leq \frac{\epsilon}{2} < \epsilon\). \qed
+\(\forall \epsilon > 0\), \(\exists N \in \N\) such that \(n,m \geq N \implies \bar{\rho}(f_n, f_m) < \frac{\epsilon}{2}\). Fix \(n \geq N\) and \(\alpha \in J\), then let \(m \ra \infty\) in (\mast). We have \(\bar{d}\paren{f_n(\alpha), f(\alpha)} \leq \frac{\epsilon}{2}\) for all \(\alpha \in J\), so \(\bar{\rho}(f_n, f) \leq \frac{\epsilon}{2} < \epsilon\). \qed
 
 \pagebreak

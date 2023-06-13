@@ -26,7 +26,7 @@ for \(f \in Y^X\), compact \(C\), \(\epsilon > 0\). The sets \(B_C(f, \epsilon)\
 
 \thm{46.2} \(f_n \ra f\) in the compact convergence topology if and only if for any compact set \(C\) of \(X\), \(f_n \mid_C \ra f \mid_C\) uniformly.
 
-\defn. \note{Compactly Generated} \(X\) is \textbf{compactly generated} if \(A\) is open/closed in \(X\) if \(A\cap C\) is open/closed in \(C\) for every compact set \(C\).
+\defn. \note{Compactly Generated} \(X\) is \textbf{compactly generated} if \(A\cap C\) is open/closed in \(C\) for every compact set \(C\), then \(A\) is open/closed in \(X\).
 
 \lemma{46.3} \(X\) is compactly generated if (1) \(X\) is locally compact or (2) \(X\) is 1st countable.
 
@@ -34,7 +34,7 @@ for \(f \in Y^X\), compact \(C\), \(\epsilon > 0\). The sets \(B_C(f, \epsilon)\
 
 \note{2} Suppose that \(B \cap C\) is closed in \(C\) and show that \(B\) is closed. Check by yourself. \qed
 
-\lemma{46.4} If \(X\) is compactly generated, \(f : X \ra Y\) if and only if \(f\mid_C\) is continuous for all compact \(C\) of \(X\).
+\lemma{46.4} If \(X\) is compactly generated, \(f : X \ra Y\) is continuous if and only if \(f\mid_C\) is continuous for all compact subset \(C\) of \(X\).
 
 \pf \note{\mimp} Trivial. \\
 \note{\mimpd} For \(V\) open in \(Y\), \(f\inv(V) \cap C = (f\mid_C)\inv(V)\) is open. So \(f\inv(V)\) is open. \qed
@@ -59,7 +59,7 @@ The first equality holds when \(X\) is discrete, since the compact sets are fini
 
 \pf \note{\(\subset\)} Let \(f \in S(C, U)\) where \(S(C, U)\) is a subbasis for the compact-open topology. \(C\) is compact, so \(f(C)\) is compact and \(f(C) \subset U\). Define \(\Phi : f(C) \ra \R\) where \(y \mapsto d(y, Y \bs U)\). Then \(\Phi\) is continuous, also its image is always positive since \(f(C) \subset U\) and \(f(C)\) is compact. Thus there exists \(\epsilon > 0\) which is a minimum value of \(\Phi\). Then \(B_d(y, \epsilon) \cap (Y \bs U) = \varnothing\) for \(y \in f(C)\). So \(B_d(y, \epsilon) \subset U\), and it can be checked that if \(g \in B_C(f, \epsilon)\), \(d(f(x), g(x)) < \epsilon\). So \(g(x) \in B_d(f(x), \epsilon) \subset U\) and \(g(C) \subset U\). Thus \(B_C(f, \epsilon) \subset S(C, U)\).
 
-\note{\(\supset\)} Let \(f \in B_C(f, \epsilon)\). We show find a basis element, which is a finite intersection of \(S(C, U)\). i.e, \(f \in S(C_1, U_1) \cap \cdots \cap S(C_n, U_n) \subset B_C(f, \epsilon)\).
+\note{\(\supset\)} Let \(f \in B_C(f, \epsilon)\). We find a basis element, which is a finite intersection of \(S(C, U)\). i.e, \(f \in S(C_1, U_1) \cap \cdots \cap S(C_n, U_n) \subset B_C(f, \epsilon)\).
 
 Each \(x \in X\) has a neighborhood \(V_x\) such that \(f(\cl{V_x}) \subset U_x\) and \(\diam U_x < \epsilon\). This is possible since \(f\) is continuous, \(\exists V_x\) such that \(f(V_x) \subset B_d\paren{f(x), \frac{\epsilon}{4}}\). Then \(f(\cl{V_x}) \subset B_d\paren{f(x), \frac{\epsilon}{3}}\), and the diameter is less than \(\epsilon\).
 

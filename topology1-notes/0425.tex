@@ -7,22 +7,22 @@
 \ex.
 \begin{enumerate}
     \item \(\R\) is not compact, but it is locally compact. We can always take a closed interval containing a point. Similarly, \(\R^n\) is also locally compact.
-    \item \(\R^\omega\) with the product topology is not locally compact. Suppose not, take a basis element \(B = (a_1, b_1) \times \cdots \times (a_n, b_n) \times \R \times \cdots\) containing \(x \in \R^\omega\). Then \(B\) is contained in a compact subspace. ... Also, \(\cl{B} = [a_1, b_1] \times \cdots \times [a_n, b_n] \times \R \times \cdots\) should be compact (subset of \(C\)) but it isn't.
+    \item \(\R^\omega\) with the product topology is not locally compact. Suppose not, take a basis element \(B = (a_1, b_1) \times \cdots \times (a_n, b_n) \times \R \times \cdots\) containing \(x \in \R^\omega\). But no basis element can be contained in a compact set, since its closure \(\cl{B} = [a_1, b_1] \times \cdots \times [a_n, b_n] \times \R \times \cdots\) is not compact, even though it is a closed subset of a compact set.
     \item \(\Q\) is not locally compact. (Check!)
 \end{enumerate}
 
-\thm{29.1} Let \(X\) be a topological space. \(X\) is locally compact and Hausdorff if and only if there exists a topological space \(Y\) such that
+\thm{29.1} Let \(X\) be a topological space. \(X\) is locally compact Hausdorff if and only if there exists a topological space \(Y\) such that
 \begin{enumerate}
-    \item \(X\) is a subspace of \(Y\)
+    \item \(X\) is a subspace of \(Y\).
     \item \(Y \bs X\) consists of a single point.
     \item \(Y\) is a compact Hausdorff space.
 \end{enumerate}
 Moreover if \(Y, Y'\) are two spaces satisfying the three conditions, there exists homeomorphism from \(Y\) to \(Y'\) that equals the identity map on \(X\).
 
-If we are given a \textit{locally compact} Hausdorff space, we can find a \textit{compact} Hausdorff space, by adding a single point. Consider \(S^1\) with the north pole removed. By stereographic projection, we have a homeomorphism with \(\R\). We can also see that \(S^n\) except the north pole is homeomorphic to \(\R^n\). Keep this example in mind.
+\rmk If we are given a \textit{locally compact} Hausdorff space, we can find a \textit{compact} Hausdorff space, by adding a single point. Consider \(S^1\) with the north pole removed. By stereographic projection, we have a homeomorphism with \(\R\). We can also see that \(S^n\) except the north pole is homeomorphic to \(\R^n\). Keep this example in mind.
 
 \pf \note{Step 1} Existence of homeomorphism. (Uniqueness up to homeomorphism) \\
-Suppose that \(Y, Y'\) are the topological space satisfying the conditions. Construct a homeomorphism \(h : Y \ra Y'\) by \(h(x) = x\) for \(x \in X\), \(h(p) = q\) where \(p \in Y \bs X\), \(q \in Y' \bs X\). Next we show that \(h\) is an open map. Let \(U\) be open in \(Y\).
+Suppose that \(Y, Y'\) are the topological space satisfying the conditions. Construct \(h : Y \ra Y'\) by \(h(x) = x\) for \(x \in X\), \(h(p) = q\) where \(p \in Y \bs X\), \(q \in Y' \bs X\). Next we show that \(h\) is an open map. Let \(U\) be open in \(Y\).
 
 If \(p \notin U\), \(h(U) = U\). \(U\) is open in \(X\), \(X\) is open in \(Y'\), so \(U\) is open in \(Y'\). If \(p \in U\), then \(Y \bs U \subset X\). \(Y \bs U\) is closed in \(Y\), so it is a compact subspace of \(Y\). Then it is also a compact subspace of \(X\), and also \(Y'\). So \(Y \bs U\) is closed in \(Y'\). (Hausdorff) Then \(h(U) = Y' \bs (Y \bs U)\) is open in \(Y'\). If we change the role of \(Y\) and \(Y'\), we can show that \(h\inv\) is also an open map. \(h\) is an homeomorphism.
 

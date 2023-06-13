@@ -12,7 +12,7 @@ We want to talk about continuous functions \(J \ra Y\), so we need a topology on
 
 \pf \(\mc{C}(X, Y)\) is closed by the uniform limit theorem. If \(f \in \cl{\mc{C}(X, Y)}\), then there is a sequence \(\seq{f_n}\) in \(\mc{C}(X, Y)\) that converges to \(f\). For \(\epsilon > 0\), \(\exists N \in \N\) such that \(n \geq N \implies \bar{\rho}(f_n, f) < \epsilon\). Since \(\bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \epsilon\) for all \(x \in X\), \(f\) is continuous.
 
-If \(f \in \cl{\mc{B}(X, Y)}\), then there is a sequence \(\seq{f_n}\) in \(\mc{B}(X, Y)\) that converges to \(f\). Choose \(N \in \N\) such that \(\bar{\rho}(f_n, f) < \frac{1}{2}\). Since \(\bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \frac{1}{2}\) for all \(x \in X\). We can change \(\bar{d}\) to \(d\). Denote \(M = \diam f_N(X)\). Then \(\diam f(X) \leq M + 1\), and \(f\) is bounded. \qed
+If \(f \in \cl{\mc{B}(X, Y)}\), then there is a sequence \(\seq{f_n}\) in \(\mc{B}(X, Y)\) that converges to \(f\). Choose \(N \in \N\) so that \(\bar{\rho}(f_n, f) < \frac{1}{2}\) for \(n \geq N\). Since \(\bar{d}(f_n(x), f(x)) \leq \bar{\rho}(f_n, f) < \frac{1}{2}\) for all \(x \in X\). We can change \(\bar{d}\) to \(d\). Denote \(M = \diam f_N(X)\). Then \(\diam f(X) \leq M + 1\), and \(f\) is bounded. \qed
 
 \cor. If \(Y\) is complete, \(\mc{C}(X, Y)\) and \(\mc{B}(X, Y)\) are complete in \((Y^X, \bar{\rho})\).
 
@@ -34,7 +34,7 @@ If there is another \(h' : X \ra (Y', D')\), there exists an isometry \((\cl{h(X
 
 \thm{44.1} Let \(I = [0, 1]\). There is a continuous function \(f : I \ra I^2\) such that \(f(I) = I^2\).
 
-\pf Refer to the diagrams. \(f_n\) is a path made up of \(4^n\) triangluar paths. Each of them lie in a square having side length \(\frac{1}{2^n}\). Then we will show that \(\seq{f_n}\) is Cauchy in \(\mc{C}(I, I^2)\) with respect to the supremum metric \(\rho\) corresponding to the square metric \(d\).\footnote{This is a temporary notation.}
+\pf Refer to the diagrams in the textbook. \(f_n\) is a path made up of \(4^n\) triangluar paths. Each of them lie in a square having side length \(\frac{1}{2^n}\). Then we will show that \(\seq{f_n}\) is Cauchy in \(\mc{C}(I, I^2)\) with respect to the supremum metric \(\rho\) corresponding to the square metric \(d\).\footnote{This is a temporary notation.}
 
 Since \(d(f_n, f_{n+1}) \leq \frac{1}{2^n}\) by construction, \(\rho(f_n, f_{n+1}) \leq \frac{1}{2^n}\). Then \(\rho(f_n, f_{n+m}) \leq \frac{2}{2^n}\) by the triangle inequality. We can conclude that \(f_n\) is a Cauchy sequence with respect to metric \(\rho\). Since \(\mc{C}(I, I^2)\) is complete,\footnote{\(I^2\) is a closed subset of a complete metric space, so it is complete. Then \(\mc{C}(I, I^2)\) is complete with the uniform metric by \sref{Theorem 43.6}. Also, \(I\) is compact, so \(f(I)\) is bounded, meaning that \(\mc{C}(I, I^2) \subset \mc{B}(I, I^2)\). The uniform metric and sup metric coincide for bounded functions, so \(\mc{C}(I, I^2)\) is complete with the sup metric.} \(f_n\) converges to a continuous function \(f\).
 
@@ -44,7 +44,7 @@ Surjectivity of \(f\) is shown by proving \(\cl{f(I)} = I^2\). Let \(x \in I^2\)
 
 We want to relate compactness to completeness. If \((X, d)\) is compact, it is complete, since \((X, d)\) is sequentially compact. But the converse is not true, so we need an extra condition.
 
-\defn. \note{Totally Bounded} \((X, d)\) is totally bounded if \(\forall \epsilon > 0\), there is a finite covering of \(X\) by \(\epsilon\)-balls.
+\defn. \note{Totally Bounded} \((X, d)\) is \textbf{totally bounded} if for any \(\epsilon > 0\), there is a finite covering of \(X\) by \(\epsilon\)-balls.
 
 \rmk If \((X, d)\) is compact, it is totally bounded. Also, totally bounded implies bounded, but the converse is false. Consider \((\R, \bar{d})\).
 

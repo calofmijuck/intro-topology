@@ -16,7 +16,7 @@ We want to characterize compact subspaces of \(\mc{C}(X, \R^n)\). This is very u
 
 \defn. \note{Equicontinuous} Let \((Y, d)\) be a metric space, and let \(\mc{F} \subset \mc{C}(X, Y)\). \(\mc{F}\) is \textbf{equicontinuous} at \(x_0 \in X\) if for every \(\epsilon > 0\), there exists a neighborhood \(U\) of \(x_0\) such that
 \begin{center}
-    \(\forall x \in U\), \(\forall f \in \mc{F}\) then \(d(f(x), f(x_0)) < \epsilon\).
+    \(\forall x \in U\), \(\forall f \in \mc{F} \implies d(f(x), f(x_0)) < \epsilon\).
 \end{center}
 \(\mc{F}\) is equicontinuous if it is equicontinuous at every \(x_0 \in X\).
 
@@ -26,7 +26,7 @@ The difference is that the neighborhood \(U\) works for any \(f \in \mc{F}\).
 
 \pf Take \(0 < \epsilon < 1\), \(\delta = \frac{\epsilon}{3}\). Then \(\{B_\rhobar(f_1, \delta), \dots, B_\rhobar(f_n, \delta)\}\) will cover \(\mc{F}\). For \(x_0 \in X\), there exists a neighborhood \(U\) of \(x_0\) such that if \(x \in U\), then \(d(f_i(x), f_i(x_0)) < \delta\) for \(i = 1, \cdots, n\). Such neighborhood exists since each \(f_i\) is continuous, and we can take intersections of them.
 
-Let \(f \in \mc{F}\). Then \(\exists i\) such that \(f \in B_\rhobar(f_i, \delta)\). So \(\dbar(f(x), f_i(x)) \leq \rhobar(f, f_i) < \delta\) for \(x \in X\). Since \(\epsilon < 1\), we can change \(\dbar\) to \(d\). Thus
+Let \(f \in \mc{F}\). Then \(\exists i\) such that \(f \in B_\rhobar(f_i, \delta)\). So \(\dbar(f(x), f_i(x)) \leq \rhobar(f, f_i) < \delta\) for \(x \in X\). Since \(\epsilon < 1\), we can change \(\dbar\) to \(d\). Thus for \(x \in U\),
 \[
     d(f(x), f(x_0)) \leq d(f(x), f_i(x)) + d(f_i(x), f_i(x_0)) + d(f_i(x_0), f(x_0)) < \epsilon.
 \]
