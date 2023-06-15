@@ -1,0 +1,69 @@
+\section*{June 15th, 2023}
+
+\subsection*{What we will do Next Semester}
+
+The course title will be `Introduction to Topology 2', but we will cover \textit{algebraic topology}.
+
+We have a topological space, and one of the interesting problem is classifying the topological spaces. If \(X\), \(Y\) are spaces, we consider them identical when these spaces are \textit{homeomorphic}. To show this, we typically construct a homeomorphism.
+
+In general, showing that \(X\) and \(Y\) are not homeomorphic is a lot more difficult. So we have to investigate the properties preserved by homeomorphisms. Compactness, connectedness, etc.
+
+Suppose we have two spaces, a closed disk and annulus. Intuitively, they are not homeomorphic, so how would we show this? Both are compact, metric spaces, connected, its hard to find the topological property that distinguish these spaces.
+
+People tried to consturct topological embeddings, meaning that given a topological space, we consider a topological invariant. We associate the space with \(\Z\), \(\R\) or some group. For example, take a point in the disk, and draw some loop contained in the disk. If these two spaces were homeomorphic, there would be a loop mapped by the homeomorphism.
+
+A loop is a path \(f : I \ra X\) with \(f(0) = f(1)\). This loop can be continuously shrinked to a point. This base point has not changed, so there are families of loops that shrinks to the point.
+
+If these spaces were homeomorphic, there should also be a family of shrinking loops. But for the annulus, it doesn't work if the curve goes around the hole.
+
+This kind of concept is formalized as the \textit{fundamental group}. In the annulus, if the loop goes around the hole \(n\) times, all these loops are different, so the fundamental group is \(\Z\). However, all loops in the disk can be shrinked to a point, so the fundamental group is trivial. If two spaces are homeomorphic, then the fundamental group should be \textit{isomorphic}.
+
+\defn. Two paths \(f, f' : I \ra X\) are in \textbf{path homotopy} if \(f(0) = f'(0) = x_0 \in X\) and \(f(1) = f'(1) = x_1 \in X\) and there exists a continuous function \(F : I \times I \ra X\) such that
+\begin{center}
+    \(F(x, 0) = f(x)\), \(F(x, 1) = f'(x)\) and \(F(0, t) = x_0\), \(F(1, t) = x_1\) for all \(t\).
+\end{center}
+We write \(f \simeq_p f'\).
+
+This is indeed an equivalence relation, and the equivalence class is denoted as \([f]\).
+
+We wanted to construct a group, so we need group operations!
+
+\defn. The \textbf{product} \(f * g\) of \(f\) and \(g\) is the path
+\[
+    h(s) = \begin{cases}
+        f(2s) & s \in \left[0, \frac{1}{2}\right] \\ g(2s - 1) & s \in \left[\frac{1}{2}, 1\right]
+    \end{cases}
+\]
+This is actually concatenating the two paths, so the product is only defined when the endpoint of \(f\) is same as the starting point of \(g\).
+
+It can be shown that the product \([f] * [g] = [f * g]\) is well-defined, and associativity holds. The left, right identities are the constant paths \(e_{x_0}, e_{x_1}\) such that \([e_{x_0}] * [f] = [f]\) and \([f] * [e_{x_1}] = [f]\). Also we have inverses \([f] * [\bar{f}] = [e_{x_0}]\).
+
+These are very similar to group axioms, but we have one problem that the product is not always defined, since the starting point and end point need not be the same. But if we only consider \textit{loops}, the problems disappears!
+
+\defn. Let \(X\) be a space. The \textbf{fundamental group} \(\pi_1(X, x_0)\) of \(X\) relative to the base point \(x_0 \in X\) is the set of \textit{path homotopy classes} of loops based at \(x_0\) with the operation \(*\).
+
+A homeomorphism \(h: (X, x_0) \ra (Y, y_0)\) induces a map \(h_* : \pi_1(X, x_0) \ra \pi_1(Y, y_0)\), where \([f] \mapsto [h \circ f]\). The point is that this \(h_*\) becomes an isomorphism when \(h\) is a homeomorphism. So if the fundamental groups are not isomorphic, \(h\) is not a homeomorphism.
+
+How about the choice of \(x_0\)? We only consider path-connected components, so it doesn't matter which points we choose.
+
+The definition is easy, but the difficult part is computing the fundamental group. So computation is another important topic.
+
+We introduce covering spaces and covering maps. We will skip the definition, but consider \(\R\) and \(S^1 \subset \R^2\). A map \(x \mapsto (\cos 2\pi x, \sin 2\pi x)\) can be constructed. Using this map, we want to show that \(\pi_1(S^1) = \Z\). We see that the interval \([0, n]\) is mapped to a loop that goes around \(n\) times.
+
+We need some machinery for complex topological spaces, which is the Seifert-Van Kampen theorem. Consider \(S^2\), a torus \(T\), and a 2-torus. Recall that to construct a torus, we started from a unit square and considered the quotient space. The two sides of the square is identified as two loops on the torus, that do not shrink to a point. Let the two sides be \(\alpha\), \(\beta\). Consider \(\alpha\beta\alpha\inv\beta\inv\), then on the square, this path can be shrinked to a point, so \(\alpha\beta\alpha\inv\beta\inv = 1\). Thus, \(\pi_1(T, b_0) = \span{\alpha, \beta \mid \alpha\beta\alpha\inv\beta\inv} = \Z^2\). (free abelian group of rank 2)
+
+Now for the 2-torus, we use an octagon. Name the sides \(\alpha_1, \beta_1, \alpha_2, \beta_2\). If we ignore the right side, it is a torus, with a disk removed. (Consider from a rectangle) We do the same thing for the right side, and glue along the removed disks, then we get a 2-torus. Roughly, if we draw the sides on the 2-torus, they will be the generator of the fundamental group, and we can write it as
+\[
+    \pi_1(T\sharp T) = \span{\alpha_1, \beta_1, \alpha_2, \beta_2 \mid \alpha_1\beta_1\alpha_1\inv\beta_1\inv\alpha_2\beta_2\alpha_2\inv\beta_2\inv}
+\]
+This is a group presentation, a group presented by generators and relations. Now we need a way to distinguish the groups. But it's hard to work with non-abelian groups. \(\pi_1(T\sharp T)\) is in fact not abelian.
+
+Given a group \(G\), we quotient it by the \textit{commutator subgroup} of \(G\) and consider \(G/[G, G]\). Then this group is abelian. But we lose some information if we quotient, but the key point is that the abelian groups can be easily classified.
+
+It is known that \(\pi_1(T\sharp T) / [\pi_1(T\sharp T), \pi_1(T\sharp T)]\) is isomorphic to \(\Z^4\). (free abelian group of rank 4) In this way we can distinguish all \(n\)-torus. The quotient group will be isomorphic to the free abelian group of rank \(2n\), \(\Z^{2n}\).
+
+Using these techniques, we can classify orientable compact \(2\)-dimensional manifolds. It is homeomorphic to either \(S^2\) or \(n\)-torus.
+
+This is basically the whole story of the next semester.
+
+\pagebreak
