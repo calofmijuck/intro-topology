@@ -1,0 +1,76 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{
+    top = 15mm,
+    left = 15mm,
+    right = 15mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.3}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\R}{\mathbb{R}}
+
+\DeclareMathOperator{\Bd}{Bd}
+
+\begin{document}
+\begin{center}
+    \textbf{\large Introduction to Topology I Midterm}\\
+    April 20, 2023
+\end{center}
+
+\hrule
+\begin{enumerate}
+    \item (10 pts.) Show that \(X\) is Hausdorff if and only if the \textit{diagonal} \(\Delta = \{x \times x \mid x \in X\}\) is closed in \(X \times X\).
+
+    \item (10 pts.) Let \(X, Y\) be topological spaces, and \(f : X \ra Y\) a map. Show that \(f\) is continuous if and only if \(\cl{f\inv(B)} \subset f\inv(\cl{B})\) for every \(B \subset Y\).
+
+    \item (10 pts.) Show that the product, uniform, and box topologies on \(\R^J\) are all different if \(J\) is infinite.
+
+    \item (10 pts.) Let \(X\) be the rectangle \([0, 1] \times [0, 1]\). Define a partition \(X^*\) of \(X\) as follows: It consists of all the one-point sets \(\{x \times y\}\) where \(0 < x < 1\) and \(0 < y < 1\), the following types of two-point sets:
+          \[
+              \begin{aligned}
+                  \{x \times 0, x \times 1\} & \quad \text{where } 0 < x < 1, \\
+                  \{0 \times y, 1 \times y\} & \quad \text{where } 0 < y < 1,
+              \end{aligned}
+          \]
+          and the four-point set
+          \[
+              \{0 \times 0, 0 \times 1, 1 \times 0, 1 \times 1\}.
+          \]
+          Show that the quotient space \(X^*\) of \(X\) is homeomorphic to \(S^1 \times S^1\), where
+          \[
+              S^1 = \{x \times y \mid x^2 + y^2 = 1\}.
+          \]
+
+    \item (10 pts.) Let \(n > 1\), and \(B \subset \R^n\) be countable. Show that \(\R^n - B\) is connected.
+
+    \item (10 pts.) Let \(S\) denote the following subset of the plane \(\R^2\).
+          \[
+              S = \left\{x \times \sin \left(\frac{1}{x}\right) \;\middle\vert\; 0 < x \leq 1 \right\}.
+          \]
+          Show that the topologist's sine curve \(\cl{S}\) is not locally connected.
+
+    \item (10 pts.) Let \(A\) and \(B\) be disjoint compact subspaces of the Hausdorff space \(X\). Show that there exist disjoint open sets \(U\) and \(V\) containing \(A\) and \(B\), respectively.
+
+    \item[Bonus] (10 pts.) If \(A \subset X\), we define the \textit{boundary} of \(A\) by the equation
+        \[
+            \Bd A = \cl{A} \cap \cl{(X - A)}.
+        \]
+        A subset \(C\) of \(\R^n\) is \textit{convex} if for any two points \(\mathbf{x}, \mathbf{y}\) of \(C\), the straight-line path \(f : [0, 1] \ra \R^n\) defined by
+        \[
+            f(t) = (1 - t) \mathbf{x} + t \mathbf{y}
+        \]
+        lies in \(C\). Show that if \(U\) is a bounded, convex, open set in \(\R^n\), then there is a homeomorphism of \(\cl{U}\) with the closed unit ball \(B^n\) in \(\R^n\) carrying \(\Bd U\) onto the unit sphere \(S^{n - 1}\).
+\end{enumerate}
+
+\end{document}

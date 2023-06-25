@@ -1,0 +1,75 @@
+%!TEX encoding = utf-8
+\documentclass[12pt]{report}
+\usepackage{kotex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{geometry}
+\geometry{
+    top = 15mm,
+    left = 15mm,
+    right = 15mm,
+    bottom = 20mm
+}
+\geometry{a4paper}
+
+\pagenumbering{gobble}
+\renewcommand{\baselinestretch}{1.3}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\DeclareMathOperator{\Bd}{Bd}
+
+\begin{document}
+\begin{center}
+    \textbf{\large Introduction to Topology I Final}\\
+    June 13, 2023
+\end{center}
+
+\hrule
+\begin{enumerate}
+    \item (10 pts.) A space \(X\) is said to be \textit{countably compact} if every countable open covering of \(X\) contains a finite subcollection that covers \(X\). Show that for a metrizable space \(X\), countable compactness is equivalent to compactness.
+
+    \item (10 pts.) Consider the following subspaces of the plane \(\R^2\):
+          \begin{center}
+              \(X = \{x \times y \mid 1 < x^2 + y^2 \leq 4\}\) \quad and \quad \(Y = \{x \times y \mid x^2 + y^2 \leq 1\}\).
+          \end{center}
+          Show that the one-point compactification of \(X\) is homeomorphic with \(Y\).
+
+    \item (10 pts.) Let \(p : X \ra Y\) be a closed continuous surjective map such that \(p\inv(\{y\})\) is compact for each \(y \in Y\). Show that if \(X\) is second-countable, then so is \(Y\).
+
+    \item (10 pts.) Show that every regular Lindelöf space is normal.
+
+    \item (10 pts.) Let \(X\) be a compact Hausdorff space. Show that \(X\) is metrizable if and only if \(X\) has a countable basis.
+
+    \item (10 pts.) Show that if \(Y\) is locally compact Hausdorff, then composition of maps
+          \[
+              \mc{C}(X, Y) \times \mc{C}(Y, Z) \ra \mc{C}(X, Z)
+          \]
+          is continuous, provided the compact-open topology is used throughout.
+
+    \item (10 pts.) Let \(X\) be a complete metric space. Show that if \(Y\) is a \(G_\delta\) set in \(X\), then \(Y\) is a Baire space in the subspace topology.
+
+    \item[Bonus] (\(5 + 5 = 10\) pts.) Let \((X, d)\) be a metric space. If \(A \subset X\) and \(\epsilon > 0\), let
+        \[
+            U(A, \epsilon) = \{x \mid d(x, A) < \epsilon\}
+        \]
+        be the \(\epsilon\)-neighborhood of \(A\). Let \(\mc{H}\) be the collection of all (nonempty) closed, bounded subsets of \(X\). If \(A, B \in \mc{H}\), define
+        \[
+            D(A, B) = \inf\left\{\epsilon \mid A \subset U(B, \epsilon) \text{ and } B \subset U(A, \epsilon)\right\}.
+        \]
+        \begin{enumerate}
+            \item Show that \(D\) is a metric on \(\mc{H}\); it is called the \textit{Hausdorff metric}.
+            \item Show that if \((X, d)\) is totally bounded, so is \((\mc{H}, D)\).
+
+                      [\textit{Hint}: Given \(\epsilon\), choose \(\delta < \epsilon\) and let \(S\) be a finite subset of \(X\) such that the collection \(\{B_d(x, \delta) \mid x \in S\}\) covers \(X\). Let \(\mc{A}\) be the collectioin of all nonempty subsets of \(S\); show that \(\{B_D(A, \epsilon) \mid A \in \mc{A}\}\) covers \(\mc{H}\).]
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
